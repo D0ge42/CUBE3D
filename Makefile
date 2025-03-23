@@ -9,7 +9,7 @@ FT_PRINTF_PATH = $(LIBFT_PATH)/ft_printf
 FT_PRINTF_LIB = $(FT_PRINTF_PATH)/libftprintf.a
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Iincludes -g -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Imlx -Iincludes -g -gdwarf-4
 RM = rm -rf
 
 OBJS_DIR = objs

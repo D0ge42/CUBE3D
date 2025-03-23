@@ -1,0 +1,21 @@
+[
+ {
+  "directory": "/home/doge/CUBE3D",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Imlx",
+   "-Iincludes",
+   "-g",
+   "-gdwarf-4",
+   "-c",
+   "srcs/main.c",
+   "-o",
+   "objs/main.o"
+  ],
+  "file": "srcs/main.c"
+ }
+]
