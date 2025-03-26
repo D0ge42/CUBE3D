@@ -428,8 +428,8 @@
    "-Werror",
    "-Wextra",
    "-Ilibft",
-   "-Iincludes",
    "-Imlx",
+   "-Iincludes",
    "-c",
    "srcs/main.c"
   ]

@@ -8,6 +8,9 @@ LIBFT_FLAGS = -L$(LIBFT_PATH) -lft
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Iincludes -Imlx -g -gdwarf-4
 MLX_FLAGS = -Imlx -Lmlx -lmlx -lX11 -lXext -lm
+
+CC = cc
+CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Imlx -Iincludes -g -gdwarf-4
 RM = rm -rf
 
 OBJS_DIR = objs
