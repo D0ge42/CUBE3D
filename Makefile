@@ -6,24 +6,24 @@ LIBFT = $(LIBFT_PATH)/libft.a
 LIBFT_FLAGS = -L$(LIBFT_PATH) -lft
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Iincludes -Imlx -g -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Iincludes -g -gdwarf-4
 MLX_FLAGS = -Imlx -Lmlx -lmlx -lX11 -lXext -lm
 
-CC = cc
-CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Imlx -Iincludes -g -gdwarf-4
 RM = rm -rf
 
 OBJS_DIR = objs
 SRCS_DIR = srcs
 
-SRC = $(SRCS_DIR)/main.c  # Add other source files here
+SRC = srcs/main.c\
+      srcs/map.c\
+      srcs/map_utils.c
+
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
-# Include the header file cube3d.h
-HEADERS = includes/cube3d.h
+HEADERS = includes/cube.h
 
 $(NAME): $(LIBFT) $(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $^ $(LIBFT_FLAGS) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) -o $@ $^ $(MLX_FLAGS) $(LIBFT_FLAGS)  # Order matters here
 	@printf "\033[0;32m$(TITLE) compiled OK!\n"
 	@printf "CUBE3D compiled!\n"
 	@printf "\033[0;37m"
@@ -31,11 +31,6 @@ $(NAME): $(LIBFT) $(OBJ)
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
-
-# # Object file compilation (silent)
-# $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
-# 	@mkdir -p $(dir $@)
-# 	@$(CC) $(CFLAGS) -c $< -o $@ > /dev/null 2>&1
 
 all: $(NAME)
 

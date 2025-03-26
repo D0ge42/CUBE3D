@@ -428,10 +428,23 @@
    "-Werror",
    "-Wextra",
    "-Ilibft",
-   "-Imlx",
    "-Iincludes",
    "-c",
    "srcs/main.c"
+  ]
+ },
+ {
+  "directory": "/nfs/homes/lonulli/CUBE3D",
+  "file": "srcs/map.c",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Iincludes",
+   "-c",
+   "srcs/map.c"
   ]
  }
 ]

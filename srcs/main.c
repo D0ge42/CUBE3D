@@ -1,43 +1,32 @@
 #include "cube.h"
-#include "libft.h"
-#include <fcntl.h>
+
+/*static int create_img(t_data *data);*/
+/*static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);*/
 
 int main()
 {
-	int i = 4;
-	int fd = open("srcs/testfile",O_RDONLY);
-	while(i)
-	{
-		printf("%s\n",get_next_line(fd));
-		i--;
-	}
+	static t_data data;
+	static t_map map;
+	static t_player player;
+
+	data.map_ptr = open("maps/map.cub",O_RDONLY);
+	data.map = &map;
+	data.player = &player;
+	data.map->map = fill_map(&data);
+	data.map->is_map_valid = 1;
+	data.map = &map;
+	if (set_map_struct(&data) == 0)
+		printf("Map not valid\n");
+	print_map(map.map);
+	/*data.mlx_ptr = mlx_init();*/
+	/*map_checker(&data);*/
+	/*create_img(&data);*/
+	/*my_mlx_pixel_put(&data,500,500,0x00FF0000);*/
+	/*mlx_put_image_to_window(data.mlx_ptr,data.win_ptr,data.img,0,0);*/
+	/*mlx_loop(data.mlx_ptr);*/
+	return 0;
 }
-/*static int create_img(t_data *data);*/
-/*static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);*/
-/*static  int map_checker(t_data *data);*/
-/**/
-/**/
-/*int main()*/
-/*{*/
-/*	t_data data;*/
-/**/
-/*	data.map_ptr = open("../maps/map.cub",O_RDONLY);*/
-/*	data.mlx_ptr = mlx_init();*/
-/*	map_checker(&data);*/
-/*	create_img(&data);*/
-/*	my_mlx_pixel_put(&data,500,500,0x00FF0000);*/
-/*	mlx_put_image_to_window(data.mlx_ptr,data.win_ptr,data.img,0,0);*/
-/*	mlx_loop(data.mlx_ptr);*/
-/*	return 0;*/
-/*}*/
-/**/
-/*static  int map_checker(t_data *data)*/
-/*{*/
-/*	(void)data;*/
-/*	printf("ciao");*/
-/*	return 0;*/
-/*}*/
-/**/
+
 /*static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)*/
 /*{*/
 /*	char	*dst;*/
