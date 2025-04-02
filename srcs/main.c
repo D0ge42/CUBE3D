@@ -3,6 +3,7 @@
 /*static int create_img(t_data *data);*/
 /*static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);*/
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av);
+static void check_format(char *arg);
 
 int	main(int ac, char **av)
 {
@@ -28,11 +29,35 @@ int	main(int ac, char **av)
 
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)
 {
+  check_format(av[1]);
 	data->map_ptr = open(av[1], O_RDONLY);
+  if (data->map_ptr == -1)
+  {
+    printf("Error: couldn't open map\n");
+    exit(1);
+  }
 	data->player = player;
 	data->map = map;
 	data->map->map = fill_map(data);
 	data->map->is_map_valid = 1;
+}
+
+static void check_format(char *arg)
+{
+  int i = 0;
+  while(arg[i])
+    i++;
+  while(i > 0)
+  {
+    if (arg[i] == '.')
+      break;
+    i--;
+  }
+  if (ft_strncmp(&arg[i],".cub",5))
+  {
+    printf("Error: Format not valid\n");
+    exit(1);
+  }
 }
 /*static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)*/
 /*{*/
