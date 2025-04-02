@@ -15,10 +15,10 @@ OBJS_DIR = objs
 SRCS_DIR = srcs
 
 SRC = srcs/main.c\
-      srcs/strs_utils.c\
-      srcs/create_map.c\
-      srcs/map_utils.c\
-      srcs/map_checks.c
+      srcs/general_utils/strs_utils.c\
+      srcs/map/create_map.c\
+      srcs/map/map_utils.c\
+      srcs/map/map_checks.c
 
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
