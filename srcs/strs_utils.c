@@ -58,4 +58,3 @@ void	print_strs(char **map)
 		i++;
 	}
 }
-

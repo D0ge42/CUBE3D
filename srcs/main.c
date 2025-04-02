@@ -10,8 +10,8 @@ int	main(int ac, char **av)
 	static t_map	map;
 	static t_player	player;
 
-  if (ac != 2)
-    return 0;
+	if (ac != 2)
+		return (0);
 	set_pointers(&data, &map, &player, av);
 	is_map_valid(&data);
 	is_map_closed(&data);
@@ -25,7 +25,6 @@ int	main(int ac, char **av)
 	/*mlx_loop(data.mlx_ptr);*/
 	return (0);
 }
-
 
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)
 {
