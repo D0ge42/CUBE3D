@@ -7,6 +7,7 @@
 # include <fcntl.h>
 # include <limits.h>
 # include <stdio.h>
+#include <sys/types.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -16,6 +17,10 @@ typedef struct s_map
 	char		**map;
 	int			is_map_valid;
 	int			map_height;
+  char    *no_txt_path;
+  char    *so_txt_path;
+  char    *we_txt_path;
+  char    *ea_txt_path;
 	int			map_width;
 
 }				t_map;
@@ -83,6 +88,9 @@ void			free_strs(char **strs);
 
 void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 
+// Textures
+
+u_int32_t extract_index(char *path);
 
 // Game Loop
 void game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
