@@ -3,6 +3,8 @@ TITLE = cube3d
 
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
+MLX_PATH = mlx
+MLX  = $(MLX_PATH)/libmlx.a
 LIBFT_FLAGS = -L$(LIBFT_PATH) -lft
 
 CC = gcc
@@ -18,13 +20,13 @@ SRC = srcs/main.c\
       srcs/general_utils/strs_utils.c\
       srcs/map/create_map.c\
       srcs/map/map_utils.c\
-      srcs/map/map_checks.c
+      srcs/map/map_checks.c\
+      srcs/game/game_loop.c\
+      srcs/raycasting/raycasting_setup.c
 
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
-HEADERS = includes/cube.h
-
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(MLX) $(LIBFT) $(OBJ)
 	@$(CC) $(CFLAGS) -o $@ $^ $(MLX_FLAGS) $(LIBFT_FLAGS)  # Order matters here
 	@printf "\033[0;32m$(TITLE) compiled OK!\n"
 	@printf "CUBE3D compiled!\n"
@@ -34,10 +36,14 @@ $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-all: $(NAME)
+all: $(MLX) $(NAME)
 
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_PATH) --no-print-directory
+
+$(MLX):
+	@$(MAKE) -C $(MLX_PATH) --no-print-directory
+
 
 clean:
 	@$(RM) $(OBJ)

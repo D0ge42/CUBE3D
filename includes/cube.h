@@ -26,8 +26,20 @@ typedef struct s_player
 	int			pos_y;
 	char		facing_dir;
 	int			exists;
+	double			curr_pos_x;
+	double			curr_pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			curr_frame;
+	double			prev_frame;
 
 }				t_player;
+
+typedef struct s_camera
+{
+	double plane_x;
+	double plane_y;
+} t_camera;
 
 typedef struct s_mlx_data
 {
@@ -43,6 +55,7 @@ typedef struct s_mlx_data
 	int			map_ptr;
 	t_map		*map;
 	t_player	*player;
+	t_camera	*camera;
 
 }				t_data;
 
@@ -66,4 +79,11 @@ void			print_strs(char **map);
 int				ft_strslen(char **strs);
 void			free_strs(char **strs);
 
+// Ray casting
+
+void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
+
+
+// Game Loop
+void game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
 #endif
