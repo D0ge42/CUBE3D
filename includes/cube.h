@@ -90,7 +90,7 @@ void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 
 // Textures
 
-u_int32_t extract_index(char *path);
+int extract_index(char *path);
 
 // Game Loop
 void game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);

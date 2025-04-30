@@ -1,6 +1,7 @@
 #include "cube.h"
 #include "libft.h"
 #include <stdio.h>
+#include <string.h>
 
 static int	skip_map_infos(t_data *data, int x, int y);
 
@@ -37,57 +38,33 @@ static int	skip_map_infos(t_data *data, int x, int y)
 {
   char **map = data->map->map;
   int idx = 0 ;
-  int i = 0;
 	if (ft_strncmp(map[y], "NO ", 3) == 0)
   {
     idx = extract_index(map[y]);
     data->map->no_txt_path = malloc(ft_strlen(map[y] + 1));
-    while(map[y][idx])
-    {
-      data->map->no_txt_path[i] = map[y][idx];
-      i++;
-      idx++;
-    }
-    i = 0;
+    memmove(data->map->no_txt_path,&map[y][idx],ft_strlen(map[y]) - idx);
 		return (1);
   }
 	if (ft_strncmp(map[y], "SO ", 3) == 0)
   {
     idx = extract_index(map[y]);
     data->map->so_txt_path = malloc(ft_strlen(map[y] + 1));
-    while(map[y][idx])
-    {
-      data->map->so_txt_path[i] = map[y][idx];
-      i++;
-      idx++;
-    }
-    i = 0;
-		return (1);
+    memmove(data->map->so_txt_path,&map[y][idx],ft_strlen(map[y]) - idx);
+    return (1);
   }
 	if (ft_strncmp(map[y], "WE ", 3) == 0)
   {
 
     idx = extract_index(map[y]);
     data->map->we_txt_path = malloc(ft_strlen(map[y] + 1));
-    while(map[y][idx])
-    {
-      data->map->we_txt_path[i] = map[y][idx];
-      i++;
-      idx++;
-    }
-    i = 0;
+    memmove(data->map->we_txt_path,&map[y][idx],ft_strlen(map[y]) - idx);
 		return (1);
   }
 	if (ft_strncmp(map[y], "EA ", 3) == 0)
   {
     idx = extract_index(map[y]);
     data->map->ea_txt_path = malloc(ft_strlen(map[y] + 1));
-    while(map[y][idx])
-    {
-      data->map->ea_txt_path[i] = map[y][idx];
-      i++;
-      idx++;
-    }
+    memmove(data->map->ea_txt_path,&map[y][idx],ft_strlen(map[y]) - idx);
 		return (1);
   }
 	if (map[y][x] == 'F' || map[y][x] == 'C')
@@ -130,4 +107,12 @@ void	is_map_valid(t_data *data)
 		data->map->is_map_valid = 0;
 		exit(1);
 	}
+}
+
+int extract_index(char *path)
+{
+  int i = 0;
+  while(path[i] && path[i] != '.')
+    i++;
+  return i;
 }
