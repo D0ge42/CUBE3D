@@ -516,19 +516,5 @@
    "-c",
    "srcs/raycasting/raycasting_setup.c"
   ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "textures/textures.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-Ilibft",
-   "-Iincludes",
-   "-Imlx",
-   "textures/textures.c"
-  ]
  }
 ]

@@ -1,7 +1,7 @@
 #ifndef CUBE_H
 # define CUBE_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include "../mlx/mlx.h"
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -83,6 +83,7 @@ char			**ft_strscat(char **map, char *str);
 void			print_strs(char **map);
 int				ft_strslen(char **strs);
 void			free_strs(char **strs);
+void			free_everything(t_data *data);
 
 // Ray casting
 
@@ -90,7 +91,6 @@ void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 
 // Textures
 
-int extract_index(char *path);
 
 // Game Loop
 void game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);

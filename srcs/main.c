@@ -4,6 +4,7 @@
 // static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av);
 static void	check_format(char *arg);
+static void parser(t_data *data, t_map *map, t_player *player, char **av);
 
 int	main(int ac, char **av)
 {
@@ -13,28 +14,27 @@ int	main(int ac, char **av)
 	static t_camera	camera;
 
 	if (ac != 2)
-		return (0);
-	set_pointers(&data, &map, &player, av);
-	is_map_valid(&data);
-	is_map_closed(&data);
+    return (0);
+  parser(&data,&map,&player,av);
 	setup_ray_casting(&data, &player, &camera);
-	// game_loop(&data, &player, &map, &camera);
-	print_strs(map.map);
-  printf("%s\n",map.we_txt_path);
-  printf("%s\n",map.so_txt_path);
-  printf("%s\n",map.ea_txt_path);
-  printf("%s\n",map.no_txt_path);
-	free_strs(map.map);
-  free(map.no_txt_path);
-  free(map.ea_txt_path);
-  free(map.so_txt_path);
-  free(map.we_txt_path);
+	game_loop(&data, &player, &map, &camera);
+
 	// data.mlx_ptr = mlx_init();
 	// create_img(&data);
 	// my_mlx_pixel_put(&data, 500, 500, 0x00FF0000);
 	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	// mlx_loop(data.mlx_ptr);
 	return (0);
+}
+
+static void parser(t_data *data, t_map *map, t_player *player, char **av)
+{
+	set_pointers(data, map, player, av);
+	is_map_valid(data);
+	is_map_closed(data);
+	print_strs(data->map->map);
+  // free_everything(data);
+
 }
 
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)

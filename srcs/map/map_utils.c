@@ -41,7 +41,6 @@ int	check_zero_surroundings(char **tab, int x, int y)
 		c_bottom_left = tab[y + 1][x - 1];
 	if (is_coordinate_valid(tab, x + 1, y + 1))
 		c_bottom_right = tab[y + 1][x + 1];
-	// check_map_borders(tab,x,y);
 	if (are_sorroundings_valid(c_up) && are_sorroundings_valid(c_down)
 		&& are_sorroundings_valid(c_left) && are_sorroundings_valid(c_right)
 		&& are_sorroundings_valid(c_top_left)

@@ -23,6 +23,7 @@ char	**fill_map(t_data *data)
 			free_strs(map);
 			return (NULL);
 		}
+    // free(res);
 	}
 	return (map);
 }
