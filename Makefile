@@ -23,6 +23,8 @@ SRC = srcs/main.c\
       srcs/map/map_checks.c\
       srcs/game/game_loop.c\
       srcs/raycasting/raycasting_setup.c\
+	  srcs/raycasting/minimap.c\
+	  srcs/raycasting/draw_map.c
 
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 

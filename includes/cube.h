@@ -93,5 +93,8 @@ void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 
 
 // Game Loop
-void game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
+void	game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
+void	draw_mini_map(t_data *data);
+void	draw_background(t_data *data);
+
 #endif
