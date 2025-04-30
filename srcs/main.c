@@ -8,17 +8,16 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av);
 
 int	main(int ac, char **av)
 {
-	static t_data	data;
+  static t_data	data;
 	static t_map	map;
 	static t_player	player;
 	static t_camera	camera;
-
-	if (ac != 2)
+  if (ac != 2)
     return (0);
   parser(&data,&map,&player,av);
-	setup_ray_casting(&data, &player, &camera);
-	game_loop(&data, &player, &map, &camera);
-
+  setup_ray_casting(&data, &player, &camera);
+  // game_loop(&data, &player, &map, &camera);
+  printf("%i\n",map.map_width);
 	// data.mlx_ptr = mlx_init();
 	// create_img(&data);
 	// my_mlx_pixel_put(&data, 500, 500, 0x00FF0000);
