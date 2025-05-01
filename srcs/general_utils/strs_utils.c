@@ -66,4 +66,6 @@ void free_everything(t_data *data)
   free(data->map->no_txt_path);
   free(data->map->so_txt_path);
   free(data->map->we_txt_path);
+  free(data->map->c_rgb);
+  free(data->map->f_rgb);
 }
