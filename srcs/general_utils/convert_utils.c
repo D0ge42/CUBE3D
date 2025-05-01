@@ -1,6 +1,7 @@
 #include "cube.h"
 #include <stdlib.h>
-static int ft_atoi_base(char *color);
+
+//static int ft_atoi_base(char *color);
 
 void rgb_converter(t_data *data, char x)
 {
@@ -22,17 +23,17 @@ void rgb_converter(t_data *data, char x)
   char **tmp_color = ft_split(&str[i],',');
   while(tmp_color[j] != NULL)
   {
-    rgb[j] = ft_atoi_base(tmp_color[j]);
+    rgb[j] = ft_atoi(tmp_color[j]);
     j++;
   }
   free_strs(tmp_color);
   if (x == 'F')
-    data->map->f_rgb = rgb;
+    data->map->f_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
   else if (x == 'C')
-    data->map->c_rgb = rgb;
+    data->map->c_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
 }
 
-int	get_nb(char c, char *base)
+/*int	get_nb(char c, char *base)
 {
 	int	i;
 
@@ -53,7 +54,7 @@ static int ft_atoi_base(char *color)
     i++;
   }
   return res;
-}
+}*/
 
 void ft_print_rgb(int *RGB)
 {

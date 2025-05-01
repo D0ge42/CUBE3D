@@ -14,19 +14,18 @@
 
 typedef struct s_map
 {
-	char		**map;
-	int			is_map_valid;
-	int			map_height;
-  char    *no_txt_path;
-  char    *so_txt_path;
-  char    *we_txt_path;
-  char    *ea_txt_path;
-  char    *ceiling_info;
-  char    *floor_info;
-  int     *f_rgb;
-  int     *c_rgb;
-	int			map_width;
-
+	char			**map;
+	int				is_map_valid;
+	int				map_height;
+	char			*no_txt_path;
+	char			*so_txt_path;
+	char			*we_txt_path;
+	char			*ea_txt_path;
+	char			*ceiling_info;
+	char			*floor_info;
+	unsigned int	*f_rgb;
+	unsigned int	*c_rgb;
+	int				map_width;
 }				t_map;
 
 typedef struct s_player
