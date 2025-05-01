@@ -21,6 +21,10 @@ typedef struct s_map
   char    *so_txt_path;
   char    *we_txt_path;
   char    *ea_txt_path;
+  char    *ceiling_info;
+  char    *floor_info;
+  int     *f_rgb;
+  int     *c_rgb;
 	int			map_width;
 
 }				t_map;
@@ -90,6 +94,11 @@ void			free_everything(t_data *data);
 void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 
 // Textures
+
+// Convert
+
+void rgb_converter(t_data *data, char x);
+void ft_print_rgb(int *RGB);
 
 
 // Game Loop
