@@ -17,13 +17,16 @@ int	main(int ac, char **av)
   parser(&data,&map,&player,av);
   setup_ray_casting(&data, &player, &camera);
   // game_loop(&data, &player, &map, &camera);
-  rgb_converter(&data,'F');
-  rgb_converter(&data,'C');
-  printf("%i\n",map.map_width);
-  printf("FLOOR = %s\n",map.floor_info);
-  printf("CEILING = %s\n",map.ceiling_info);
-  ft_print_rgb(map.c_rgb);
-  ft_print_rgb(map.f_rgb);
+  // rgb_converter(&data,'F');
+  // rgb_converter(&data,'C');
+  // printf("%i\n",map.map_width);
+  // printf("FLOOR = %s\n",map.floor_info);
+  // printf("CEILING = %s\n",map.ceiling_info);
+  // printf("%i\n",data.map->map_start);
+  printf("%i\n",data.map->map_height);
+  print_strs(&map.map[map.map_start]);
+  // ft_print_rgb(map.c_rgb);
+  // ft_print_rgb(map.f_rgb);
 	// data.mlx_ptr = mlx_init();
 	// create_img(&data);
 	// my_mlx_pixel_put(&data, 500, 500, 0x00FF0000);
@@ -37,6 +40,7 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
 	set_pointers(data, map, player, av);
 	is_map_valid(data);
 	is_map_closed(data);
+  extract_map_only(data);
 	print_strs(data->map->map);
   // free_everything(data);
 

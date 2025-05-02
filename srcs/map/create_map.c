@@ -1,5 +1,8 @@
 #include "cube.h"
 
+static int skip_white_spaces(char *map);
+static int ft_isspace(char c);
+
 char	**fill_map(t_data *data)
 {
 	char	**map;
@@ -30,3 +33,37 @@ char	**fill_map(t_data *data)
 	return (map);
 }
 
+void extract_map_only(t_data *data)
+{
+  int y = 0;
+  int idx = 0;
+  char **map = data->map->map;
+  while(map[y] != NULL)
+    y++;
+  y-=1;
+  while(y > 0)
+  {
+    idx = skip_white_spaces(map[y]);
+    if (map[y][idx] == '1' || map[y][idx] == '0')
+      y--;
+    else
+      break;
+  }
+  data->map->map_start = y + 1;
+  data->map->map_height -= data->map->map_start + 1;
+}
+
+int skip_white_spaces(char *map)
+{
+  int y = 0;
+  while(ft_isspace(map[y]) == 1)
+      y++;
+  return y;
+}
+
+static int ft_isspace(char c)
+{
+  if (c == '\t' || c == '\r' || c == '\n' || c == '\v' || c == '\f' || c == 32)
+    return 1;
+  return 0;
+}
