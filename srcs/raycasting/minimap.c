@@ -1,6 +1,6 @@
 #include "cube.h"
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+static void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 {
 	char	*dst;
 
