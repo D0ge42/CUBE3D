@@ -20,8 +20,8 @@ int	main(int ac, char **av)
   rgb_converter(&data,'F');
   rgb_converter(&data,'C');
   printf("%i\n",map.map_width);
-  printf("%s\n",map.floor_info);
-  printf("%s\n",map.ceiling_info);
+  printf("FLOOR = %s\n",map.floor_info);
+  printf("CEILING = %s\n",map.ceiling_info);
   ft_print_rgb(map.c_rgb);
   ft_print_rgb(map.f_rgb);
 	// data.mlx_ptr = mlx_init();
