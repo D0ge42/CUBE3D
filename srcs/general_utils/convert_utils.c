@@ -15,7 +15,7 @@ void rgb_converter(t_data *data, char x)
     free_everything(data);
     exit(EXIT_FAILURE);
   }
-  int *rgb = ft_calloc(3,sizeof(int));
+  unsigned int *rgb = ft_calloc(3,sizeof(unsigned int));
   int i = 0;
   int j = 0;
   while(str[i] && !ft_isdigit(str[i]))
@@ -56,12 +56,12 @@ static int ft_atoi_base(char *color)
   return res;
 }*/
 
-void ft_print_rgb(int *RGB)
+void ft_print_rgb(unsigned int *RGB)
 {
-  int i = 0;
+  unsigned int i = 0;
   while(i < 3)
   {
-    printf("%i\n",RGB[i]);
+    printf("%X\n",RGB[i]);
     i++;
   }
 }

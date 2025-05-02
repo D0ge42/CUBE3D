@@ -1,7 +1,7 @@
 #include "cube.h"
 
 static int	create_img(t_data *data);
-static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+//static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av);
 static void	check_format(char *arg);
 static void parser(t_data *data, t_map *map, t_player *player, char **av);
@@ -20,11 +20,11 @@ int	main(int ac, char **av)
 	//game_loop(&data, &player, &map, &camera);
 	rgb_converter(&data,'F');
 	rgb_converter(&data,'C');
-	printf("%i\n",map.map_width);
-	printf("%s\n",map.floor_info);
-	printf("%s\n",map.ceiling_info);
- 	ft_print_rgb(map.c_rgb);
-	ft_print_rgb(map.f_rgb);
+	// printf("%i\n",map.map_width);
+	// printf("%s\n",map.floor_info);
+	// printf("%s\n",map.ceiling_info);
+ 	// ft_print_rgb(map.c_rgb);
+	// ft_print_rgb(map.f_rgb);
 	data.mlx_ptr = mlx_init();
 	create_img(&data);
 	draw_background(&data);
@@ -78,13 +78,13 @@ static void	check_format(char *arg)
 	}
 }
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+/*static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
 	dst = data->img_addr + (y * data->line_length + x * (data->bits_per_pixel
 		/ 8));
 	*(unsigned int *)dst = color;
-}
+}*/
 
 static int	create_img(t_data *data)
 {

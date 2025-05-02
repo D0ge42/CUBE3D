@@ -23,8 +23,8 @@ typedef struct s_map
 	char			*ea_txt_path;
 	char			*ceiling_info;
 	char			*floor_info;
-	unsigned int	*f_rgb;
-	unsigned int	*c_rgb;
+	unsigned int	f_rgb;
+	unsigned int	c_rgb;
 	int				map_width;
 }				t_map;
 
@@ -97,7 +97,7 @@ void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 // Convert
 
 void rgb_converter(t_data *data, char x);
-void ft_print_rgb(int *RGB);
+void ft_print_rgb(unsigned int *RGB);
 
 
 // Game Loop
