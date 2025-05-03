@@ -41,16 +41,17 @@ void extract_map_only(t_data *data)
   while(map[y] != NULL)
     y++;
   y-=1;
-  while(y > 0)
+  while(map[y] && y >= 0)
   {
     idx = skip_white_spaces(map[y]);
-    if (map[y][idx] == '1' || map[y][idx] == '0')
+    printf("%s",map[y]);
+    if (map[y][idx] == '1')
       y--;
     else
       break;
   }
-  data->map->map_start = y + 1;
-  data->map->map_height -= data->map->map_start + 1;
+  data->map->map_start = y  + 1;
+  data->map->map_height -= data->map->map_start;
 }
 
 int skip_white_spaces(char *map)
