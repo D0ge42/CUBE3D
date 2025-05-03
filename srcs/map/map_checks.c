@@ -5,7 +5,7 @@
 
 static int	extract_and_skip_map_infos(t_data *data, int x, int y);
 static void extract_path(t_data *data, char *path, char *which);
-static void extract_color(t_data *data, char *map_line);
+static void extract_color(t_data *data, char *map_line, char which);
 
 void	is_map_closed(t_data *data)
 {
@@ -100,9 +100,14 @@ static int	extract_and_skip_map_infos(t_data *data, int x, int y)
       extract_path(data, map[y], "EA ");
     return (1);
   }
-	if (map[y][x] == 'F' || map[y][x] == 'C')
+  if (map[y][x] == 'F')
   {
-    extract_color(data,map[y]);
+    extract_color(data,map[y],'F');
+		return (1);
+  }
+	if (map[y][x] == 'C')
+  {
+    extract_color(data,map[y],'C');
 		return (1);
   }
 	return (0);
@@ -136,17 +141,17 @@ static void extract_path(t_data *data, char *map_line, char *which)
   }
 }
 
-static void extract_color(t_data *data, char *map_line)
+static void extract_color(t_data *data, char *map_line, char which)
 {
   int idx = 0;
   while(map_line[idx] && !ft_isdigit(map_line[idx]))
     idx++;
-  if (!data->map->ceiling_info)
+  if (!data->map->ceiling_info && which == 'C')
   {
     data->map->ceiling_info = ft_calloc(1,ft_strlen(map_line) + 1);
     memmove(data->map->ceiling_info,&map_line[idx],ft_strlen(map_line) - idx);
   }
-  else if (!data->map->floor_info)
+  else if (!data->map->floor_info && which == 'F')
   {
     data->map->floor_info = ft_calloc(1,ft_strlen(map_line) + 1);
     memmove(data->map->floor_info,&map_line[idx],ft_strlen(map_line) - idx);
