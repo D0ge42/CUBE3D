@@ -1,4 +1,5 @@
 #include "cube.h"
+#include <string.h>
 
 static int	create_img(t_data *data);
 //static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -12,16 +13,16 @@ int	main(int ac, char **av)
 	static t_map	map;
 	static t_player	player;
 	static t_camera	camera;
+
 	if (ac != 2)
 	return (0);
 	parser(&data,&map,&player,av);
-	setup_ray_casting(&data, &player, &camera);
-
 	rgb_converter(&data,'F');
 	rgb_converter(&data,'C');
 	data.mlx_ptr = mlx_init();
 	create_img(&data);
 	draw_background(&data);
+	raycasting(&data, &player, &camera);
 	draw_mini_map(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	mlx_loop(data.mlx_ptr);
@@ -31,10 +32,24 @@ int	main(int ac, char **av)
 static void parser(t_data *data, t_map *map, t_player *player, char **av)
 {
 	set_pointers(data, map, player, av);
-	is_map_valid(data);
+  extract_map_only(data);
 	is_map_closed(data);
-	print_strs(data->map->map);
-	//free_everything(data);
+	is_map_valid(data);
+  get_map_infos(data);
+  // printf("MAP_HEIGHT = %i\n",map->map_height);
+  // printf("MAP_START = %i\n",map->map_start);
+  // printf("NO = %s\n",map->no_txt_path);
+  // printf("SO = %s\n",map->so_txt_path);
+  // printf("WE = %s\n",map->we_txt_path);
+  // printf("EA = %s\n",map->ea_txt_path);
+  // printf("CEILING = %s\n",map->ceiling_info);
+  // printf("FLOOR = %s\n",map->floor_info);
+  are_all_info_present(data);
+  print_strs(&data->map->map[map->map_start]);
+
+    // Free memory
+  // free_everything(data);
+
 }
 
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)

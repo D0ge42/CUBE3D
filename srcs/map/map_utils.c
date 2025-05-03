@@ -53,13 +53,14 @@ int	check_zero_surroundings(char **tab, int x, int y)
 
 int	check_and_set(t_data *data, char c, int x, int y)
 {
+  char **map = data->map->map;
 	if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
 	{
 		data->player->facing_dir = c;
 		data->player->pos_x = x;
 		data->player->pos_y = y;
 		data->player->exists += 1;
-		check_player_surroundings(data, data->map->map, x, y);
+		check_player_surroundings(data,map, x, y);
 		return (1);
 	}
 	else if (c == '0' || c == '1' || c == '\n' || c == '\t' || c == ' ')
@@ -70,16 +71,16 @@ int	check_and_set(t_data *data, char c, int x, int y)
 static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 {
 	int	map_height;
-
 	map_height = data->map->map_height;
-	if ((y <= 0 || y >= (map_height - 1) || (map[y][x + 1] != '0' && map[y][x
-				+ 1] != '1') || (map[y][x - 1] != '0' && map[y][x - 1] != '1')
-			|| (map[y - 1][x] != '0' && map[y - 1][x] != '1') || (map[y
-				+ 1][x] != '0' && map[y + 1][x] != '1') || (map[y - 1][x
-				- 1] != '0' && map[y - 1][x - 1] != '1') || (map[y - 1][x
-				+ 1] != '0' && map[y - 1][x + 1] != '1') || (map[y + 1][x
-				- 1] != '0' && map[y + 1][x - 1] != '1') || (map[y + 1][x
-				+ 1] != '0' && map[y + 1][x + 1] != '1')))
+	if ((y <= 0 || y - map_height >= (map_height - 1)
+        || (map[y][x + 1] != '0' && map[y][x + 1] != '1')
+        || (map[y][x - 1] != '0' && map[y][x - 1] != '1')
+        || (map[y - 1][x] != '0' && map[y - 1][x] != '1')
+        || (map[y + 1][x] != '0' && map[y + 1][x] != '1')
+        || (map[y - 1][x - 1] != '0' && map[y - 1][x - 1] != '1')
+        || (map[y - 1][x + 1] != '0' && map[y - 1][x + 1] != '1')
+        || (map[y + 1][x - 1] != '0' && map[y + 1][x - 1] != '1')
+        || (map[y + 1][x + 1] != '0' && map[y + 1][x + 1] != '1')))
 	{
 		printf("Player has no valid surroundings\n");
 		exit(1);

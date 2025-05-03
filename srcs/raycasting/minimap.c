@@ -34,7 +34,7 @@ void	draw_mini_map(t_data *data)
 	int		len;
 	int		height;
 
-	map = data->map->map;
+	map = data->map->map + data->map->map_start;
 	height = 0;
 	while(map[height])
 	{

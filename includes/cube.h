@@ -26,6 +26,7 @@ typedef struct s_map
 	unsigned int	f_rgb;
 	unsigned int	c_rgb;
 	int				map_width;
+	int				map_start;
 }				t_map;
 
 typedef struct s_player
@@ -74,7 +75,9 @@ void			is_map_valid(t_data *data);
 void			is_map_closed(t_data *data);
 int				check_and_set(t_data *data, char c, int x, int y);
 int				check_zero_surroundings(char **tab, int x, int y);
-
+void extract_map_only(t_data *data);
+void get_map_infos(t_data *data);
+void are_all_info_present(t_data *data);
 // Map utils
 
 int				is_coordinate_valid(char **tab, int x, int y);
@@ -90,6 +93,7 @@ void			free_everything(t_data *data);
 
 // Ray casting
 
+void	raycasting(t_data *data, t_player *player, t_camera *camera);
 void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 
 // Textures
