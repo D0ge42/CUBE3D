@@ -30,10 +30,10 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int			pos_x;
-	int			pos_y;
-	char		facing_dir;
-	int			exists;
+	int				pos_x;
+	int				pos_y;
+	char			facing_dir;
+	int				exists;
 	double			curr_pos_x;
 	double			curr_pos_y;
 	double			dir_x;
