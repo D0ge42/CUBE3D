@@ -1,10 +1,10 @@
-NO ./path_to_the_north_nexture
-SO ./path_to_the_north_nexture
+        NO ./path_to_the_north_nexture
+  SO ./path_to_the_north_nexture
 WE ./path_to_the_north_nexture
-EA ./path_to_the_north_nexture
+      EA ./path_to_the_north_nexture
 
-F 220,100,0
-C 225,30,0
+F   220,100,0
+      C    225,30,0
 
 1111111111111111111
 1000000010000000001
