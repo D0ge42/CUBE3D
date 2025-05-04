@@ -46,7 +46,7 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
   print_strs(&data->map->map[map->map_start]);
 
     // Free memory
-  free_everything(data);
+  //free_everything(data);
 
 }
 

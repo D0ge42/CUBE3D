@@ -28,3 +28,17 @@ void	draw_background(t_data *data)
 		height++;
 	}
 }
+
+void	draw_wall(int x, int y, t_ray *ray, t_data *data)
+{
+	//char	**map;
+	double		distance;
+
+	(void) ray;
+	//map = data->map->map;
+	if (ray->side == 0)
+		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
+	else
+		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
+	printf("%f\n", distance);
+}

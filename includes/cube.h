@@ -8,6 +8,7 @@
 # include <limits.h>
 # include <stdio.h>
 #include <sys/types.h>
+# include <math.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -38,8 +39,8 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	int				pos_x;
-	int				pos_y;
+	double			pos_x;
+	double			pos_y;
 	char			facing_dir;
 	int				exists;
 	double			curr_pos_x;
@@ -75,6 +76,19 @@ typedef struct s_mlx_data
 
 }				t_data;
 
+typedef struct s_ray
+{
+	double	ray_y;
+	double	ray_x;
+	double	dist_x;
+	double	dist_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		side;
+}				t_ray;
+
 // Map related functions
 
 char			**fill_map(t_data *data);
@@ -100,7 +114,8 @@ void			free_everything(t_data *data);
 // Ray casting
 
 void	raycasting(t_data *data, t_player *player, t_camera *camera);
-void setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
+void	setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
+int		two_point_distance(double x, double y, double x2, double y2);
 
 // Textures
 
@@ -114,5 +129,6 @@ void ft_print_rgb(unsigned int *RGB);
 void	game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
 void	draw_mini_map(t_data *data);
 void	draw_background(t_data *data);
+void	draw_wall(int x, int y, t_ray *ray, t_data *data);
 
 #endif

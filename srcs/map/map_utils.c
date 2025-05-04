@@ -64,7 +64,7 @@ int	check_and_set(t_data *data, char c, int x, int y)
 		data->player->pos_x = x;
 		data->player->pos_y = y;
 		data->player->exists += 1;
-		check_player_surroundings(data,map, x, y);
+		check_player_surroundings(data, map, x, y);
 		return (1);
 	}
 	else if (c == '0' || c == '1' || c == '\n' || c == '\t' || c == ' ')

@@ -61,9 +61,9 @@ void	is_map_valid(t_data *data)
 	}
 	if (data->player->exists == 0 || data->player->exists > 1)
 	{
-    ft_putstr_fd(ERR_PLAYER_COUNT, 2);
+    	ft_putstr_fd(ERR_PLAYER_COUNT, 2);
 		data->map->is_map_valid = 0;
-    free_everything(data);
+    	free_everything(data);
 		exit(1);
 	}
 }
