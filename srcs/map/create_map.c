@@ -136,27 +136,31 @@ void extract_map_infos(t_data *data, int x, int y)
 void extract_path(t_data *data, char *map_line, char *which)
 {
   int idx = 0;
+  int end = 0;
   while(map_line[idx] && map_line[idx] != '.' && map_line[idx] != '\n')
     idx++;
+  end = idx;
+  while(map_line[end] && !ft_isspace(map_line[end]))
+    end++;
   if (!data->map->ea_txt_path && ft_strncmp(which,"EA ",3) == 0)
   {
       data->map->ea_txt_path = ft_calloc(1,ft_strlen(map_line + 1));
-      memmove(data->map->ea_txt_path,&map_line[idx],ft_strlen(map_line) - idx);
+      memmove(data->map->ea_txt_path,&map_line[idx],end - idx);
   }
   if (!data->map->we_txt_path && ft_strncmp(which,"WE ",3) == 0)
   {
       data->map->we_txt_path = ft_calloc(1,ft_strlen(map_line + 1));
-      memmove(data->map->we_txt_path,&map_line[idx],ft_strlen(map_line) - idx);
+      memmove(data->map->we_txt_path,&map_line[idx],end - idx);
   }
   if (!data->map->so_txt_path && ft_strncmp(which,"SO ",3) == 0)
   {
       data->map->so_txt_path = ft_calloc(1,ft_strlen(map_line + 1));
-      memmove(data->map->so_txt_path,&map_line[idx],ft_strlen(map_line) - idx);
+      memmove(data->map->so_txt_path,&map_line[idx],end - idx);
   }
   if (!data->map->no_txt_path && ft_strncmp(which,"NO ",3) == 0)
   {
       data->map->no_txt_path = ft_calloc(1,ft_strlen(map_line + 1));
-      memmove(data->map->no_txt_path,&map_line[idx],ft_strlen(map_line) - idx);
+      memmove(data->map->no_txt_path,&map_line[idx],end - idx);
   }
 }
 

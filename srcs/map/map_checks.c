@@ -83,7 +83,7 @@ void are_all_info_present(t_data *data)
       printf("%p\n",data->map->so_txt_path);
       printf("%p\n",data->map->ceiling_info);
       printf("%p\n",data->map->floor_info);
-    // free_everything(data);
+    free_everything(data);
     ft_putstr_fd("Error: Some info are missing\n", 2);
     exit(1);
   }
