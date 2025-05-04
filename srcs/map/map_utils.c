@@ -62,7 +62,7 @@ int	check_and_set(t_data *data, char c, int x, int y)
 	{
 		data->player->facing_dir = c;
 		data->player->pos_x = x;
-		data->player->pos_y = y;
+		data->player->pos_y = y - data->map->map_start;
 		data->player->exists += 1;
 		check_player_surroundings(data,map, x, y);
 		return (1);
