@@ -79,12 +79,13 @@ void get_map_infos(t_data *data)
 {
   int start = data->map->map_start;
   char **map = data->map->map;
-  while(start >= 0 && map[start - 1])
+  while(start >= 0 && map[start])
   {
     int idx = skip_white_spaces(map[start]);
     extract_map_infos(data,idx,start);
     start--;
   }
+  are_all_info_present(data);
 }
 
 int skip_white_spaces(char *map)
@@ -125,9 +126,9 @@ void extract_map_infos(t_data *data, int x, int y)
     if (!data->map->ea_txt_path)
       extract_path(data, map[y], "EA ");
   }
-  if (map[y][x] == 'F')
+  if (ft_strncmp(&map[y][x],"F ", 2) == 0)
     extract_color(data,map[y],'F');
-	if (map[y][x] == 'C')
+	if (ft_strncmp(&map[y][x],"C ",2) == 0)
     extract_color(data,map[y],'C');
 }
 
