@@ -23,9 +23,7 @@ char	**fill_map(t_data *data)
 	while (1)
 	{
 		res = get_next_line(data->map_ptr);
-    if ((int)ft_strlen(res) > data->map->map_width)
-      data->map->map_width = ft_strlen(res) - 1;
-		if (!res)
+    		if (!res)
 			break ;
 		data->map->map_height++;
 		map = ft_strscat(map, res);

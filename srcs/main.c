@@ -34,6 +34,7 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
 	is_map_valid(data);
   printf("MAP_HEIGHT = %i\n",map->map_height);
   printf("MAP_START = %i\n",map->map_start);
+  printf("MAP_WIDTH = %i\n",map->map_width);
   printf("NO = %s\n",map->no_txt_path);
   printf("SO = %s\n",map->so_txt_path);
   printf("WE = %s\n",map->we_txt_path);
