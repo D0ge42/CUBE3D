@@ -40,7 +40,7 @@ int	check_zero_surroundings(t_data *data, char **tab, int x, int y)
 	if (is_coordinate_valid(tab, x - 1, y - 1))
 		c_top_left = tab[y - 1][x - 1];
 	if (is_coordinate_valid(tab, x + 1, y - 1))
-		c_top_right = tab[y - 1][x - 1];
+		c_top_right = tab[y - 1][x + 1];
 	if (is_coordinate_valid(tab, x - 1, y + 1))
 		c_bottom_left = tab[y + 1][x - 1];
 	if (is_coordinate_valid(tab, x + 1, y + 1))
