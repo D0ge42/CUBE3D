@@ -12,6 +12,13 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
+#define ERR_INVALID_CHAR "Error: Invalid char found\n"
+#define ERR_MAP_NOT_CLOSED "Error: Map not closed\n"
+#define ERR_MISSING_INFO "Error: Info are missing\n"
+#define ERR_NO_VALID_SURR "Error: Player has no valid surroundings\n"
+#define ERR_PLAYER_COUNT "Error: Player count is invalid\n"
+#define ERR_INVALID_MAP "Error: Invalid map\n"
+
 typedef struct s_map
 {
 	char			**map;
@@ -74,14 +81,13 @@ char			**fill_map(t_data *data);
 void			is_map_valid(t_data *data);
 void			is_map_closed(t_data *data);
 int				check_and_set(t_data *data, char c, int x, int y);
-int				check_zero_surroundings(char **tab, int x, int y);
+int				check_zero_surroundings(t_data *data, char **tab, int x, int y);
 void extract_map_only(t_data *data);
 void get_map_infos(t_data *data);
 void are_all_info_present(t_data *data);
 // Map utils
 
 int				is_coordinate_valid(char **tab, int x, int y);
-int				are_sorroundings_valid(char c);
 
 // General strs utils
 

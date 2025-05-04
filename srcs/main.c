@@ -1,5 +1,4 @@
 #include "cube.h"
-#include <string.h>
 
 static int	create_img(t_data *data);
 //static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
@@ -33,22 +32,21 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
 {
 	set_pointers(data, map, player, av);
   extract_map_only(data);
+  get_map_infos(data);
 	is_map_closed(data);
 	is_map_valid(data);
-  get_map_infos(data);
-  // printf("MAP_HEIGHT = %i\n",map->map_height);
-  // printf("MAP_START = %i\n",map->map_start);
-  // printf("NO = %s\n",map->no_txt_path);
-  // printf("SO = %s\n",map->so_txt_path);
-  // printf("WE = %s\n",map->we_txt_path);
-  // printf("EA = %s\n",map->ea_txt_path);
-  // printf("CEILING = %s\n",map->ceiling_info);
-  // printf("FLOOR = %s\n",map->floor_info);
-  are_all_info_present(data);
+  printf("MAP_HEIGHT = %i\n",map->map_height);
+  printf("MAP_START = %i\n",map->map_start);
+  printf("NO = %s\n",map->no_txt_path);
+  printf("SO = %s\n",map->so_txt_path);
+  printf("WE = %s\n",map->we_txt_path);
+  printf("EA = %s\n",map->ea_txt_path);
+  printf("CEILING = %s\n",map->ceiling_info);
+  printf("FLOOR = %s\n",map->floor_info);
   print_strs(&data->map->map[map->map_start]);
 
     // Free memory
-  // free_everything(data);
+  free_everything(data);
 
 }
 

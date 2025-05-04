@@ -61,9 +61,11 @@ void	print_strs(char **map)
 
 void free_everything(t_data *data)
 {
-  free_strs(data->map->map);
   free(data->map->ea_txt_path);
   free(data->map->no_txt_path);
   free(data->map->so_txt_path);
   free(data->map->we_txt_path);
+  free(data->map->ceiling_info);
+  free(data->map->floor_info);
+  free_strs(data->map->map);
 }
