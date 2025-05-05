@@ -44,8 +44,8 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
   printf("EA = %s\n",map->ea_txt_path);
   printf("CEILING = %s\n",map->ceiling_info);
   printf("FLOOR = %s\n",map->floor_info);
-  printf("PLAYER X = %i\n",player->pos_x);
-  printf("PLAYER Y = %i\n",player->pos_y);
+  printf("PLAYER X = %f\n",player->pos_x);
+  printf("PLAYER Y = %f\n",player->pos_y);
   print_strs(&data->map->map[map->map_start]);
 
     // Free memory
