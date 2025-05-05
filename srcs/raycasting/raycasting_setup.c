@@ -1,6 +1,6 @@
 #include "cube.h"
 
-static void	setup_direction(t_player *player)
+void	setup_direction(t_player *player)
 {
 	if (player->facing_dir == 'E')
 	{
@@ -27,7 +27,6 @@ static void	setup_direction(t_player *player)
 void setup_ray_casting(t_data *data, t_player *player,t_camera *camera)
 {
 	(void) data;
-	setup_direction(player);
 	camera->plane_x = -(player->dir_y) * 0.66;
 	camera->plane_y = player->dir_x * 0.66;
 }

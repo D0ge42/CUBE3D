@@ -117,6 +117,7 @@ void			free_everything(t_data *data);
 void	raycasting(t_data *data, t_player *player, t_camera *camera);
 void	setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 int		two_point_distance(double x, double y, double x2, double y2);
+void	setup_direction(t_player *player);
 
 // Textures
 

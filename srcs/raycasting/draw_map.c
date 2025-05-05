@@ -52,8 +52,10 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 		color = 0x000000;
 	while (i < height / 2)
 	{
-		my_mlx_pixel_put(data, ray->x, k + i, color);
-		my_mlx_pixel_put(data, ray->x, k - i, color);
+		if ((k + i) < HEIGHT)
+			my_mlx_pixel_put(data, ray->x, k + i, color);
+		if ((k - i) > 0)
+			my_mlx_pixel_put(data, ray->x, k - i, color);
 		i++;
 	}
 	fill_square(x * 10, (y - map->map_start) * 10, data, 0xFFFF00);

@@ -8,9 +8,15 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 65364)
 		data->player->facing_dir = 'S';
 	if (keycode == 65361)
-		data->player->facing_dir = 'W';
+	{
+		data->player->dir_x += 0.1;
+		data->player->dir_y += 0.1;
+	}
 	if (keycode == 65363)
-		data->player->facing_dir = 'E';
+	{
+		data->player->dir_x -= 0.1;
+		data->player->dir_y -= 0.1;
+	}
 	if (keycode == 119)
 		data->player->pos_y -= 0.1;
 	if (keycode == 100)

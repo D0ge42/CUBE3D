@@ -23,6 +23,7 @@ int	main(int ac, char **av)
 	create_img(&data);
 	draw_background(&data);
 	draw_mini_map(&data);
+	setup_direction(&player);
 	raycasting(&data, &player, &camera);
 	mlx_key_hook(data.win_ptr, key_hook, &data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
