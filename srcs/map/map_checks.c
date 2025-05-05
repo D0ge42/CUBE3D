@@ -14,12 +14,15 @@ void	is_map_closed(t_data *data)
 
 	y = data->map->map_start;
 	map = data->map->map;
+  int max_width = 0;
 	while (map[y])
 	{
 		x = 0;
 
 		while (map[y][x])
 		{
+      if (max_width < (int)ft_strlen(map[y]))
+        max_width = ft_strlen(map[y]) - 1;
 			if (map[y][x] == '0' && check_zero_surroundings(data,map, x, y) == 0)
 			{
         ft_putstr_fd(ERR_MAP_NOT_CLOSED,2);
@@ -30,6 +33,7 @@ void	is_map_closed(t_data *data)
 		}
 		y++;
 	}
+  data->map->map_width = max_width;
 }
 
 void	is_map_valid(t_data *data)
