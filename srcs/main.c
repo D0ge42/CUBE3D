@@ -21,8 +21,8 @@ int	main(int ac, char **av)
 	data.mlx_ptr = mlx_init();
 	create_img(&data);
 	draw_background(&data);
-	raycasting(&data, &player, &camera);
 	draw_mini_map(&data);
+	raycasting(&data, &player, &camera);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	mlx_loop(data.mlx_ptr);
 	return (0);

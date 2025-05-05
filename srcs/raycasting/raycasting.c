@@ -60,7 +60,9 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera)
 
 	x = 0;
 	setup_ray_casting(data, player, camera);
-	while (x < WIDTH)
+	player->pos_x += 0.5;
+	player->pos_y += 0.5;
+	while (x <= WIDTH)
 	{
 		camera_x = (2 * x) / (double)WIDTH - 1;
 		ray.ray_x = player->dir_x + camera->plane_x * camera_x;
@@ -69,5 +71,4 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera)
 		find_hit_point(&ray, player, data->map->map, data);
 		x++;
 	}
-
 }

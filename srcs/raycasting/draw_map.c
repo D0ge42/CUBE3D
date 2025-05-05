@@ -31,21 +31,15 @@ void	draw_background(t_data *data)
 
 void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 {
-	//char	**map;
+	t_map	*map;
 	double		distance;
-	int			i;
 
 	(void) ray;
-	i = 0;
-	//map = data->map->map;
+	map = data->map;
 	if (ray->side == 0)
 		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
 	else
 		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
-	distance *= 30;
-	while (i < distance && i < HEIGHT)
-	{
-		my_mlx_pixel_put(data, x * 30, (y * 30) + i, 0xFFFFFF);
-		i++;
-	}
+	printf("%f %d %d\n", distance, x, y);
+	fill_square(x * 10, (y - map->map_start) * 10, data, 0xFFFF00);
 }

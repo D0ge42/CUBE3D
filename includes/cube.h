@@ -130,5 +130,6 @@ void	game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
 void	draw_mini_map(t_data *data);
 void	draw_background(t_data *data);
 void	draw_wall(int x, int y, t_ray *ray, t_data *data);
+void	fill_square(int x, int y, t_data *data, int color);
 
 #endif
