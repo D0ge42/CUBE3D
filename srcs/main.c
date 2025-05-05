@@ -1,7 +1,7 @@
 #include "cube.h"
 
-// static int	create_img(t_data *data);
-// static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+static int	create_img(t_data *data);
+//static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av);
 static void	check_format(char *arg);
 static void parser(t_data *data, t_map *map, t_player *player, char **av);
@@ -12,33 +12,44 @@ int	main(int ac, char **av)
 	static t_map	map;
 	static t_player	player;
 	static t_camera	camera;
-  if (ac != 2)
-    return (0);
-  parser(&data,&map,&player,av);
-  setup_ray_casting(&data, &player, &camera);
-  // game_loop(&data, &player, &map, &camera);
-  rgb_converter(&data,'F');
-  rgb_converter(&data,'C');
-  printf("%i\n",map.map_width);
-  printf("FLOOR = %s\n",map.floor_info);
-  printf("CEILING = %s\n",map.ceiling_info);
-  ft_print_rgb(map.c_rgb);
-  ft_print_rgb(map.f_rgb);
-	// data.mlx_ptr = mlx_init();
-	// create_img(&data);
-	// my_mlx_pixel_put(&data, 500, 500, 0x00FF0000);
-	// mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
-	// mlx_loop(data.mlx_ptr);
+
+	if (ac != 2)
+	return (0);
+	parser(&data,&map,&player,av);
+	rgb_converter(&data,'F');
+	rgb_converter(&data,'C');
+	data.mlx_ptr = mlx_init();
+	create_img(&data);
+	draw_background(&data);
+	raycasting(&data, &player, &camera);
+	draw_mini_map(&data);
+	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
+	mlx_loop(data.mlx_ptr);
 	return (0);
 }
 
 static void parser(t_data *data, t_map *map, t_player *player, char **av)
 {
 	set_pointers(data, map, player, av);
-	is_map_valid(data);
+  extract_map_only(data);
+  get_map_infos(data);
 	is_map_closed(data);
-	print_strs(data->map->map);
-  // free_everything(data);
+	is_map_valid(data);
+  printf("MAP_HEIGHT = %i\n",map->map_height);
+  printf("MAP_START = %i\n",map->map_start);
+  printf("MAP_WIDTH = %i\n",map->map_width);
+  printf("NO = %s\n",map->no_txt_path);
+  printf("SO = %s\n",map->so_txt_path);
+  printf("WE = %s\n",map->we_txt_path);
+  printf("EA = %s\n",map->ea_txt_path);
+  printf("CEILING = %s\n",map->ceiling_info);
+  printf("FLOOR = %s\n",map->floor_info);
+  printf("PLAYER X = %f\n",player->pos_x);
+  printf("PLAYER Y = %f\n",player->pos_y);
+  print_strs(&data->map->map[map->map_start]);
+
+    // Free memory
+  //free_everything(data);
 
 }
 
@@ -76,26 +87,18 @@ static void	check_format(char *arg)
 		exit(1);
 	}
 }
-/**/
-/* static void	my_mlx_pixel_put(t_data *data, int x, int y, int color) */
-/* { */
-/* 	char	*dst; */
-/* 	dst = data->img_addr + (y * data->line_length + x * (data->bits_per_pixel */
-/* 				/ 8)); */
-/* 	*(unsigned int *)dst = color; */
-/* } */
-/**/
-/* static int	create_img(t_data *data) */
-/* { */
-/* 	if (!data->mlx_ptr) */
-/* 		return (0); */
-/* 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "CUBE3D"); */
-/* 	if (!data->win_ptr) */
-/* 		return (0); */
-/* 	data->img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT); */
-/* 	if (!data->img) */
-/* 		return (0); */
-/* 	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel, */
-/* 			&data->line_length, &data->endian); */
-/* 	return (1); */
-/* } */
+
+static int	create_img(t_data *data)
+{
+	if (!data->mlx_ptr)
+ 		return (0);
+ 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "CUBE3D");
+	if (!data->win_ptr)
+		return (0);
+ 	data->img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+ 	if (!data->img)
+		return (0);
+ 	data->img_addr = mlx_get_data_addr(data->img, &data->bits_per_pixel,
+ 			&data->line_length, &data->endian);
+	return (1);
+}
