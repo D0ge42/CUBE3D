@@ -43,12 +43,13 @@ void	draw_mini_map(t_data *data)
 		{
 			if (map[height][len] == '1')
 				fill_square(len * 10, height * 10, data, 0x00FF0000);
-			else if (map[height][len] == '0')
-				fill_square(len * 10, height * 10, data, 0x000000);
 			else if (map[height][len] != ' ' && map[height][len] != '\n')
-				fill_square(len * 10, height * 10, data, 0xFFFF00);
+				fill_square(len * 10, height * 10, data, 0x000000);
+			// else if (map[height][len] != ' ' && map[height][len] != '\n')
+			// 	fill_square(len * 10, height * 10, data, 0xFFFF00);
 			len++;
 		}
 		height++;
 	}
+	fill_square(data->player->pos_x * 10, (data->player->pos_y - data->map->map_start) * 10, data, 0xFFFF00);
 }

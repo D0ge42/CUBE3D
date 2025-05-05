@@ -8,13 +8,14 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av);
 
 int	main(int ac, char **av)
 {
-  static t_data	data;
+	static t_data	data;
 	static t_map	map;
 	static t_player	player;
 	static t_camera	camera;
 
 	if (ac != 2)
 	return (0);
+	data.camera = &camera;
 	parser(&data,&map,&player,av);
 	rgb_converter(&data,'F');
 	rgb_converter(&data,'C');
@@ -23,6 +24,7 @@ int	main(int ac, char **av)
 	draw_background(&data);
 	draw_mini_map(&data);
 	raycasting(&data, &player, &camera);
+	mlx_key_hook(data.win_ptr, key_hook, &data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	mlx_loop(data.mlx_ptr);
 	return (0);

@@ -32,14 +32,14 @@ void	draw_background(t_data *data)
 void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 {
 	t_map	*map;
-	double		distance;
+	double	distance;
 
-	(void) ray;
 	map = data->map;
 	if (ray->side == 0)
 		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
 	else
 		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
-	printf("%f %d %d\n", distance, x, y);
+	(void) distance;
+	//printf("%f %d %d\n", distance, x, y);
 	fill_square(x * 10, (y - map->map_start) * 10, data, 0xFFFF00);
 }

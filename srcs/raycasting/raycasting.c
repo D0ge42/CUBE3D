@@ -1,6 +1,5 @@
 #include "cube.h"
 
-
 static void	set_ray(t_ray	*ray, t_player *player)
 {
 	ray->dist_x = fabs(1 / ray->ray_x);
@@ -60,8 +59,6 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera)
 
 	x = 0;
 	setup_ray_casting(data, player, camera);
-	player->pos_x += 0.5;
-	player->pos_y += 0.5;
 	while (x <= WIDTH)
 	{
 		camera_x = (2 * x) / (double)WIDTH - 1;

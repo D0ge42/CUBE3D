@@ -131,5 +131,6 @@ void	draw_mini_map(t_data *data);
 void	draw_background(t_data *data);
 void	draw_wall(int x, int y, t_ray *ray, t_data *data);
 void	fill_square(int x, int y, t_data *data, int color);
+int		key_hook(int keycode, t_data *data);
 
 #endif
