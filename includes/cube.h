@@ -78,6 +78,7 @@ typedef struct s_mlx_data
 
 typedef struct s_ray
 {
+	int		x;
 	double	ray_y;
 	double	ray_x;
 	double	dist_x;

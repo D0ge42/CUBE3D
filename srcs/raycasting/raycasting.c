@@ -61,6 +61,7 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera)
 	setup_ray_casting(data, player, camera);
 	while (x <= WIDTH)
 	{
+		ray.x = x;
 		camera_x = (2 * x) / (double)WIDTH - 1;
 		ray.ray_x = player->dir_x + camera->plane_x * camera_x;
 		ray.ray_y = player->dir_y + camera->plane_y * camera_x;
