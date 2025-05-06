@@ -25,7 +25,8 @@ int	main(int ac, char **av)
 	draw_mini_map(&data);
 	setup_direction(&player);
 	raycasting(&data, &player, &camera);
-	mlx_key_hook(data.win_ptr, key_hook, &data);
+	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
+	//mlx_key_hook(data.win_ptr, key_hook, &data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	mlx_loop(data.mlx_ptr);
 	return (0);
