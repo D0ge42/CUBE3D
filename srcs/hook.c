@@ -41,7 +41,7 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 		temp_x = data->player->pos_x + move_y;
 		temp_y = data->player->pos_y - move_x;
 	}
-	if (map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ')
+	if (map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ' && map->map[(int)temp_y][(int)temp_x] != '\n' )
 	{
 		data->player->pos_x = temp_x;
 		data->player->pos_y = temp_y;
@@ -77,7 +77,8 @@ int	key_hook(int keycode, t_data *data)
 {
 	printf("%d\n", keycode);
 	rotate_player(keycode, data);
-	move_player(keycode, data, data->map);
+	if (keycode == 'w' || keycode == 'd' || keycode == 's' || keycode == 'a')
+		move_player(keycode, data, data->map);
 	draw_background(data);
 	raycasting(data, data->player, data->camera);
 	draw_mini_map(data);
