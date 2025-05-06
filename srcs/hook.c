@@ -20,20 +20,14 @@ static void	move_player(int keycode, t_data *data)
 		data->player->pos_y -= (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
 	}
 	if (keycode == 100)
-	{
 		data->player->pos_x -= (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
-		data->player->pos_y -= (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
-	}
 	if (keycode == 115)
 	{
 		data->player->pos_x += (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
 		data->player->pos_y += (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
 	}
 	if (keycode == 97)
-	{
 		data->player->pos_x += (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
-		data->player->pos_y += (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
-	}
 }
 
 static void	rotate_player(int keycode, t_data *data)

@@ -76,7 +76,7 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 {
 	int	map_height;
 	map_height = data->map->map_height;
-	if ((y <= 0 || y - map_height >= (map_height - 1)
+	if ((y <= 0 || y - data->map->map_start >= (map_height - 1)
         || (map[y][x + 1] != '0' && map[y][x + 1] != '1')
         || (map[y][x - 1] != '0' && map[y][x - 1] != '1')
         || (map[y - 1][x] != '0' && map[y - 1][x] != '1')
