@@ -14,20 +14,26 @@ static void	find_direction(t_player *player)
 
 static void	move_player(int keycode, t_data *data)
 {
-	if (keycode == 119)
+	if (keycode == 'w')
 	{
 		data->player->pos_x -= (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
 		data->player->pos_y -= (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
 	}
-	if (keycode == 100)
-		data->player->pos_x -= (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
-	if (keycode == 115)
+	if (keycode == 'a')
+	{
+		data->player->pos_x -= (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
+		data->player->pos_y += (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
+	}
+	if (keycode == 's')
 	{
 		data->player->pos_x += (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
 		data->player->pos_y += (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
 	}
-	if (keycode == 97)
-		data->player->pos_x += (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
+	if (keycode == 'd')
+	{
+		data->player->pos_x += (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
+		data->player->pos_y -= (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
+	}
 }
 
 static void	rotate_player(int keycode, t_data *data)
