@@ -12,27 +12,39 @@ static void	find_direction(t_player *player)
 		player->facing_dir = 'S';
 }
 
-static void	move_player(int keycode, t_data *data)
+static void	move_player(int keycode, t_data *data, t_map *map)
 {
-	if (keycode == 'w')
+	double	move_x;
+	double	move_y;
+	double	temp_x;
+	double	temp_y;
+
+	move_x = (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
+	move_y = (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
+	if (keycode == 'w' && map)
 	{
-		data->player->pos_x -= (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
-		data->player->pos_y -= (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
+		temp_x = data->player->pos_x - move_x;
+		temp_y = data->player->pos_y - move_y;
 	}
 	if (keycode == 'a')
 	{
-		data->player->pos_x -= (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
-		data->player->pos_y += (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
+		temp_x = data->player->pos_x - move_y;
+		temp_y = data->player->pos_y + move_x;
 	}
 	if (keycode == 's')
 	{
-		data->player->pos_x += (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
-		data->player->pos_y += (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
+		temp_x = data->player->pos_x + move_x;
+		temp_y = data->player->pos_y + move_y;
 	}
 	if (keycode == 'd')
 	{
-		data->player->pos_x += (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
-		data->player->pos_y -= (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
+		temp_x = data->player->pos_x + move_y;
+		temp_y = data->player->pos_y - move_x;
+	}
+	if (map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ')
+	{
+		data->player->pos_x = temp_x;
+		data->player->pos_y = temp_y;
 	}
 }
 
@@ -65,7 +77,7 @@ int	key_hook(int keycode, t_data *data)
 {
 	printf("%d\n", keycode);
 	rotate_player(keycode, data);
-	move_player(keycode, data);
+	move_player(keycode, data, data->map);
 	draw_background(data);
 	raycasting(data, data->player, data->camera);
 	draw_mini_map(data);
