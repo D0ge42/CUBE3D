@@ -45,14 +45,11 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 	{
 		data->player->pos_x = temp_x;
 		data->player->pos_y = temp_y;
-		draw_background(data);
-		raycasting(data, data->player, data->camera);
-		draw_mini_map(data);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
+		draw(data);
 	}
 }
 
-void	rotate_player(int keycode, t_data *data)
+int	rotate_player(int keycode, t_data *data)
 {
 	find_direction(data->player);
 	if ((keycode == 65361 && data->player->facing_dir == 'N') || (keycode == 65363 && data->player->facing_dir == 'S'))
@@ -60,21 +57,24 @@ void	rotate_player(int keycode, t_data *data)
 		data->player->dir_x += 0.1;
 		data->player->dir_y += 0.1;
 	}
-	if ((keycode == 65361 && data->player->facing_dir == 'E') || (keycode == 65363 && data->player->facing_dir == 'W'))
+	else if ((keycode == 65361 && data->player->facing_dir == 'E') || (keycode == 65363 && data->player->facing_dir == 'W'))
 	{
 		data->player->dir_x += 0.1;
 		data->player->dir_y -= 0.1;
 	}
-	if ((keycode == 65361 && data->player->facing_dir == 'S') || (keycode == 65363 && data->player->facing_dir == 'N'))
+	else if ((keycode == 65361 && data->player->facing_dir == 'S') || (keycode == 65363 && data->player->facing_dir == 'N'))
 	{
 		data->player->dir_x -= 0.1;
 		data->player->dir_y -= 0.1;
 	}
-	if ((keycode == 65361 && data->player->facing_dir == 'W') || (keycode == 65363 && data->player->facing_dir == 'E'))
+	else if ((keycode == 65361 && data->player->facing_dir == 'W') || (keycode == 65363 && data->player->facing_dir == 'E'))
 	{
 		data->player->dir_x -= 0.1;
 		data->player->dir_y += 0.1;
 	}
+	else
+		return (0);
+	return (1);
 }
 
 int	key_hook(int keycode, t_data *data)
@@ -85,15 +85,12 @@ int	key_hook(int keycode, t_data *data)
 		free_everything(data);
 		exit(0);
 	}
-	rotate_player(keycode, data);
+	if (rotate_player(keycode, data) == 1)
+		draw(data);
 	if (keycode == 'w' || keycode == 'd' || keycode == 's' || keycode == 'a')
 	{
 		move_player(keycode, data, data->map);
 		return (0);
 	}
-	draw_background(data);
-	raycasting(data, data->player, data->camera);
-	draw_mini_map(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	return (0);
 }

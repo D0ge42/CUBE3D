@@ -45,7 +45,7 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
 	else
 		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
-	height = (1500 / distance);
+	height = (1000 / distance);
 	ray->hitpoint_x = data->player->pos_x + (distance * ray->dist_x);
 	ray->hitpoint_y = data->player->pos_y + (distance * ray->dist_y);
 	if (ray->side == 0)
@@ -62,4 +62,12 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	}
 	fill_square(x * 10, (y - map->map_start) * 10, data, 0xFFFF00);
 	//create_texture(data, x, 0, ray);
+}
+
+void	draw(t_data *data)
+{
+	draw_background(data);
+	raycasting(data, data->player, data->camera);
+	draw_mini_map(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }

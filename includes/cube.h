@@ -141,6 +141,7 @@ int		key_hook(int keycode, t_data *data);
 void	create_texture(t_data *data, int x, int y, t_ray *ray);
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
-void	rotate_player(int keycode, t_data *data);
+int		rotate_player(int keycode, t_data *data);
+void	draw(t_data *data);
 
 #endif

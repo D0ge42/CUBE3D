@@ -21,16 +21,12 @@ int	main(int ac, char **av)
 	rgb_converter(&data,'C');
 	data.mlx_ptr = mlx_init();
 	create_img(&data);
-	draw_background(&data);
-	draw_mini_map(&data);
 	setup_direction(&player);
-	raycasting(&data, &player, &camera);
+	draw(&data);
 	//create_texture(&data, 0, 0, NULL);
 	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
 	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
 	mlx_hook(data.win_ptr, 17, 0L, free_exit, &data);
-	//mlx_key_hook(data.win_ptr, key_hook, &data);
-	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
