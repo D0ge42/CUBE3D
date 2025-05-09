@@ -79,6 +79,7 @@ typedef struct s_mlx_data
 
 typedef struct s_ray
 {
+	int		x;
 	double	ray_y;
 	double	ray_x;
 	double	dist_x;
@@ -117,6 +118,7 @@ void			free_everything(t_data *data);
 void	raycasting(t_data *data, t_player *player, t_camera *camera);
 void	setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 int		two_point_distance(double x, double y, double x2, double y2);
+void	setup_direction(t_player *player);
 
 // Textures
 
@@ -131,5 +133,7 @@ void	game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
 void	draw_mini_map(t_data *data);
 void	draw_background(t_data *data);
 void	draw_wall(int x, int y, t_ray *ray, t_data *data);
+void	fill_square(int x, int y, t_data *data, int color);
+int		key_hook(int keycode, t_data *data);
 
 #endif

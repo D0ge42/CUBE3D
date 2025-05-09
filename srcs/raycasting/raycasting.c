@@ -1,6 +1,5 @@
 #include "cube.h"
 
-
 static void	set_ray(t_ray	*ray, t_player *player)
 {
 	ray->dist_x = fabs(1 / ray->ray_x);
@@ -60,8 +59,9 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera)
 
 	x = 0;
 	setup_ray_casting(data, player, camera);
-	while (x < WIDTH)
+	while (x <= WIDTH)
 	{
+		ray.x = x;
 		camera_x = (2 * x) / (double)WIDTH - 1;
 		ray.ray_x = player->dir_x + camera->plane_x * camera_x;
 		ray.ray_y = player->dir_y + camera->plane_y * camera_x;
@@ -69,5 +69,4 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera)
 		find_hit_point(&ray, player, data->map->map, data);
 		x++;
 	}
-
 }
