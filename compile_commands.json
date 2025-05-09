@@ -516,5 +516,75 @@
    "-c",
    "srcs/raycasting/raycasting_setup.c"
   ]
+ },
+ {
+  "directory": "/nfs/homes/lonulli/CUBE3D",
+  "file": "srcs/raycasting/minimap.c",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Iincludes",
+   "-c",
+   "srcs/raycasting/minimap.c"
+  ]
+ },
+ {
+  "directory": "/nfs/homes/lonulli/CUBE3D",
+  "file": "srcs/raycasting/draw_map.c",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Iincludes",
+   "-c",
+   "srcs/raycasting/draw_map.c"
+  ]
+ },
+ {
+  "directory": "/nfs/homes/lonulli/CUBE3D",
+  "file": "srcs/general_utils/convert_utils.c",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Iincludes",
+   "-c",
+   "srcs/general_utils/convert_utils.c"
+  ]
+ },
+ {
+  "directory": "/nfs/homes/lonulli/CUBE3D",
+  "file": "srcs/raycasting/raycasting.c",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Iincludes",
+   "-c",
+   "srcs/raycasting/raycasting.c"
+  ]
+ },
+ {
+  "directory": "/nfs/homes/lonulli/CUBE3D",
+  "file": "srcs/raycasting/raycasting_utils.c",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Iincludes",
+   "-c",
+   "srcs/raycasting/raycasting_utils.c"
+  ]
  }
 ]
