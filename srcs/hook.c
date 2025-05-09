@@ -19,29 +19,29 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 	double	temp_x;
 	double	temp_y;
 
-	move_x = (data->player->dir_x * 0.1 + (0.1 - data->player->dir_x));
-	move_y = (data->player->dir_y * 0.1 + (0.1 - data->player->dir_y));
+	move_x = (data->player->dir_x * 0.1);
+	move_y = (data->player->dir_y * 0.1);
 	if (keycode == 'w' && map)
-	{
-		temp_x = data->player->pos_x - move_x;
-		temp_y = data->player->pos_y - move_y;
-	}
-	if (keycode == 'a')
-	{
-		temp_x = data->player->pos_x - move_y;
-		temp_y = data->player->pos_y + move_x;
-	}
-	if (keycode == 's')
 	{
 		temp_x = data->player->pos_x + move_x;
 		temp_y = data->player->pos_y + move_y;
 	}
-	if (keycode == 'd')
+	if (keycode == 'a')
 	{
 		temp_x = data->player->pos_x + move_y;
 		temp_y = data->player->pos_y - move_x;
 	}
-	if (map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ' && map->map[(int)temp_y][(int)temp_x] != '\n' )
+	if (keycode == 's')
+	{
+		temp_x = data->player->pos_x - move_x;
+		temp_y = data->player->pos_y - move_y;
+	}
+	if (keycode == 'd')
+	{
+		temp_x = data->player->pos_x - move_y;
+		temp_y = data->player->pos_y + move_x;
+	}
+	if (map->map[(int)temp_y][(int)temp_x] && map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ' && map->map[(int)temp_y][(int)temp_x] != '\n' )
 	{
 		data->player->pos_x = temp_x;
 		data->player->pos_y = temp_y;
