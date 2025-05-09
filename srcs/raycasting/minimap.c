@@ -1,14 +1,5 @@
 #include "cube.h"
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
-{
-	char	*dst;
-
-	dst = data->img_addr + (y * data->line_length + x * (data->bits_per_pixel
-				/ 8));
-	*(unsigned int *)dst = color;
-}
-
 void	fill_square(int x, int y, t_data *data, int color)
 {
 	t_map	*map;
@@ -36,17 +27,15 @@ void	draw_mini_map(t_data *data)
 
 	map = data->map->map + data->map->map_start;
 	height = 0;
-	while(map[height])
+	while(map[height] && height < HEIGHT)
 	{
 		len = 0;
-		while (map[height][len])
+		while (map[height][len] && len < WIDTH)
 		{
 			if (map[height][len] == '1')
 				fill_square(len * 10, height * 10, data, 0x00FF0000);
 			else if (map[height][len] != ' ' && map[height][len] != '\n')
 				fill_square(len * 10, height * 10, data, 0x000000);
-			// else if (map[height][len] != ' ' && map[height][len] != '\n')
-			// 	fill_square(len * 10, height * 10, data, 0xFFFF00);
 			len++;
 		}
 		height++;

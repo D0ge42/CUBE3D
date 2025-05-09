@@ -1,6 +1,6 @@
 #include "cube.h"
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 {
 	char	*dst;
 	dst = data->img_addr + (y * data->line_length + x * (data->bits_per_pixel
@@ -45,11 +45,13 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
 	else
 		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
-	height = (1000 / distance);
+	height = (1500 / distance);
+	ray->hitpoint_x = data->player->pos_x + (distance * ray->dist_x);
+	ray->hitpoint_y = data->player->pos_y + (distance * ray->dist_y);
 	if (ray->side == 0)
-		color = 0xFFFF00;
+		color = 242 << 16 | 231 << 8 | 21;
 	else
-		color = 0x000000;
+		color = 199 << 16 | 189 << 8 | 171;
 	while (i < height / 2)
 	{
 		if ((k + i) < HEIGHT)
@@ -59,4 +61,5 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 		i++;
 	}
 	fill_square(x * 10, (y - map->map_start) * 10, data, 0xFFFF00);
+	//create_texture(data, x, 0, ray);
 }

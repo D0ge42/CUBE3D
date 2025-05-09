@@ -11,7 +11,7 @@
 # include <math.h>
 
 # define WIDTH 1920
-# define HEIGHT 1080
+# define HEIGHT 800
 
 #define ERR_INVALID_CHAR "Error: Invalid char found\n"
 #define ERR_MAP_NOT_CLOSED "Error: Map not closed\n"
@@ -80,6 +80,8 @@ typedef struct s_mlx_data
 typedef struct s_ray
 {
 	int		x;
+	double	hitpoint_x;
+	double	hitpoint_y;
 	double	ray_y;
 	double	ray_x;
 	double	dist_x;
@@ -98,20 +100,21 @@ void			is_map_valid(t_data *data);
 void			is_map_closed(t_data *data);
 int				check_and_set(t_data *data, char c, int x, int y);
 int				check_zero_surroundings(t_data *data, char **tab, int x, int y);
-void extract_map_only(t_data *data);
-void get_map_infos(t_data *data);
-void are_all_info_present(t_data *data);
+void			extract_map_only(t_data *data);
+void			get_map_infos(t_data *data);
+void			are_all_info_present(t_data *data);
 // Map utils
 
 int				is_coordinate_valid(char **tab, int x, int y);
 
 // General strs utils
 
-char			**ft_strscat(char **map, char *str);
-void			print_strs(char **map);
-int				ft_strslen(char **strs);
-void			free_strs(char **strs);
-void			free_everything(t_data *data);
+char	**ft_strscat(char **map, char *str);
+void	print_strs(char **map);
+int		ft_strslen(char **strs);
+void	free_strs(char **strs);
+int		free_everything(t_data *data);
+int		free_exit(t_data *data);
 
 // Ray casting
 
@@ -135,5 +138,9 @@ void	draw_background(t_data *data);
 void	draw_wall(int x, int y, t_ray *ray, t_data *data);
 void	fill_square(int x, int y, t_data *data, int color);
 int		key_hook(int keycode, t_data *data);
+void	create_texture(t_data *data, int x, int y, t_ray *ray);
+void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+int		mouse_hook(int keycode, int x, int y, t_data *data);
+void	rotate_player(int keycode, t_data *data);
 
 #endif

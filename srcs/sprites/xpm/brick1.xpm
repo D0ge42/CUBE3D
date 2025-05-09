@@ -200,7 +200,8 @@ static char *b7c5517c52be4091f25b79701a504dcbA79xoc2KFmSI2cbY[] = {
 "*X c #EF8912",
 "=X c #EC8912",
 "-X c #E18019",
-";X c #E2851A",
+";
+X c #E2851A",
 ":X c #ED8419",
 ">X c #E58E1A",
 ",X c #F08612",

@@ -25,13 +25,36 @@ int	main(int ac, char **av)
 	draw_mini_map(&data);
 	setup_direction(&player);
 	raycasting(&data, &player, &camera);
+	//create_texture(&data, 0, 0, NULL);
 	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
+	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
+	mlx_hook(data.win_ptr, 17, 0L, free_exit, &data);
 	//mlx_key_hook(data.win_ptr, key_hook, &data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img, 0, 0);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
 
+void	create_texture(t_data *data, int x, int y, t_ray *ray)
+{
+	void			*texture;
+	int				texture_width;
+	int				texture_height;
+	char			*text_addr;
+	int				bits;
+	int				size_line;
+	int				endian;
+	unsigned int	color;
+
+	(void) ray;
+	texture = mlx_xpm_file_to_image(data->mlx_ptr, data->map->no_txt_path, &texture_width, &texture_height);
+	text_addr = mlx_get_data_addr(texture, &bits, &size_line, &endian);
+	color = *(text_addr + (x * size_line + y * (bits / 8)));
+	printf("COLOR = %i\n",color);
+	//color = *(text_addr + (int)(texture_width * (ray->hitpoint_x - (int)ray->hitpoint_x) + (texture_width * ((ray->hitpoint_y - (int)ray->hitpoint_y) * 10))));
+	fill_square(0, 0, data, color);
+	//mlx_destroy_image(data->mlx_ptr, texture);
+}
 static void parser(t_data *data, t_map *map, t_player *player, char **av)
 {
 	set_pointers(data, map, player, av);

@@ -59,7 +59,7 @@ void	print_strs(char **map)
 	}
 }
 
-void free_everything(t_data *data)
+int free_everything(t_data *data)
 {
   free(data->map->ea_txt_path);
   free(data->map->no_txt_path);
@@ -68,4 +68,12 @@ void free_everything(t_data *data)
   free(data->map->ceiling_info);
   free(data->map->floor_info);
   free_strs(data->map->map);
+  return (0);
+}
+
+int	free_exit(t_data *data)
+{
+	free_everything(data);
+	exit(0);
+	return (0);
 }

@@ -21,7 +21,7 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 
 	move_x = (data->player->dir_x * 0.1);
 	move_y = (data->player->dir_y * 0.1);
-	if (keycode == 'w' && map)
+	if (keycode == 'w')
 	{
 		temp_x = data->player->pos_x + move_x;
 		temp_y = data->player->pos_y + move_y;
@@ -41,14 +41,18 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 		temp_x = data->player->pos_x - move_y;
 		temp_y = data->player->pos_y + move_x;
 	}
-	if (map->map[(int)temp_y][(int)temp_x] && map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ' && map->map[(int)temp_y][(int)temp_x] != '\n' )
+	if (map->map[(int)temp_y][(int)temp_x] && map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ' && map->map[(int)temp_y][(int)temp_x] != '\n' && map->map[(int)temp_y][(int)temp_x] != '\0')
 	{
 		data->player->pos_x = temp_x;
 		data->player->pos_y = temp_y;
+		draw_background(data);
+		raycasting(data, data->player, data->camera);
+		draw_mini_map(data);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 	}
 }
 
-static void	rotate_player(int keycode, t_data *data)
+void	rotate_player(int keycode, t_data *data)
 {
 	find_direction(data->player);
 	if ((keycode == 65361 && data->player->facing_dir == 'N') || (keycode == 65363 && data->player->facing_dir == 'S'))
@@ -76,9 +80,17 @@ static void	rotate_player(int keycode, t_data *data)
 int	key_hook(int keycode, t_data *data)
 {
 	printf("%d\n", keycode);
+	if (keycode == XK_Escape)
+	{
+		free_everything(data);
+		exit(0);
+	}
 	rotate_player(keycode, data);
 	if (keycode == 'w' || keycode == 'd' || keycode == 's' || keycode == 'a')
+	{
 		move_player(keycode, data, data->map);
+		return (0);
+	}
 	draw_background(data);
 	raycasting(data, data->player, data->camera);
 	draw_mini_map(data);
