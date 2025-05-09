@@ -50,6 +50,8 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
   printf("FLOOR = %s\n",map->floor_info);
   printf("PLAYER X = %f\n",player->pos_x);
   printf("PLAYER Y = %f\n",player->pos_y);
+  ft_print_rgb(&data->map->c_rgb);
+  ft_print_rgb(&data->map->f_rgb);
   print_strs(&data->map->map[map->map_start]);
 
     // Free memory

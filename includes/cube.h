@@ -19,6 +19,7 @@
 #define ERR_NO_VALID_SURR "Error: Player has no valid surroundings\n"
 #define ERR_PLAYER_COUNT "Error: Player count is invalid\n"
 #define ERR_INVALID_MAP "Error: Invalid map\n"
+#define ERR_MALLOC_FAIL "Error: calloc/malloc failed\n"
 
 typedef struct s_map
 {
