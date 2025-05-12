@@ -59,11 +59,21 @@ typedef struct s_camera
 	double plane_y;
 } t_camera;
 
+typedef struct s_texture
+{
+	void	*img;
+	int		width;
+	int		height;
+	void	*img_ptr;
+	int		bits_per_pixel;
+	int		line_lenght;
+	int		endian;
+}				t_texture;
+
 typedef struct s_mlx_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-
 	void		*img;
 	void		*img_ptr;
 	void		*img_addr;
@@ -74,7 +84,10 @@ typedef struct s_mlx_data
 	t_map		*map;
 	t_player	*player;
 	t_camera	*camera;
-
+	t_texture	*nord;
+	t_texture	*sud;
+	t_texture	*est;
+	t_texture	*west;
 }				t_data;
 
 typedef struct s_ray
@@ -120,7 +133,6 @@ int		free_exit(t_data *data);
 
 void	raycasting(t_data *data, t_player *player, t_camera *camera);
 void	setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
-int		two_point_distance(double x, double y, double x2, double y2);
 void	setup_direction(t_player *player);
 
 // Textures
@@ -133,15 +145,19 @@ void ft_print_rgb(unsigned int *RGB);
 
 // Game Loop
 void	game_loop(t_data *data, t_player *player, t_map *map, t_camera *camera);
+
+// Draw
+void	draw(t_data *data);
 void	draw_mini_map(t_data *data);
 void	draw_background(t_data *data);
 void	draw_wall(int x, int y, t_ray *ray, t_data *data);
 void	fill_square(int x, int y, t_data *data, int color);
-int		key_hook(int keycode, t_data *data);
-void	create_texture(t_data *data, int x, int y, t_ray *ray);
+void	set_texture(t_data *data);
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
+
+// Hooks
+int		key_hook(int keycode, t_data *data);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
 int		rotate_player(int keycode, t_data *data);
-void	draw(t_data *data);
 
 #endif
