@@ -586,5 +586,19 @@
    "-c",
    "srcs/raycasting/raycasting_utils.c"
   ]
+ },
+ {
+  "directory": "/nfs/homes/lonulli/CUBE3D",
+  "file": "srcs/hook.c",
+  "arguments": [
+   "cc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-Iincludes",
+   "-c",
+   "srcs/hook.c"
+  ]
  }
 ]

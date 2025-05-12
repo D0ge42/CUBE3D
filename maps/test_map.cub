@@ -1,20 +1,16 @@
    N  xxx ./srcs/sprites/xpm/brick1.xpm  eeee
+S   ./path_to_the_south_texture 222222222
+     W   ./path_to_the_west_texture 222
+EA path_to_the_east_texture eee22
 
-
-
-SO   333 ./path_to_the_south_texture 222222222
-     W   2     ./path_to_the_west_texture 222
-   EA ./path_to_the_east_texture eee22
-
-        F  x 230,184,106
-    C 140,138,135
+        F   1,30,0
+    C 0,0,255
 
         1111111111111111111111111
         1000000000000000000000001
         1000000000000000000000001
         10000000000000000S0000001
 111111111000000000000000000011111
-10000000000000000000000000001
 10000000000111111100000000001
 100000000001     100000000001
 10000000000111111100000000001
