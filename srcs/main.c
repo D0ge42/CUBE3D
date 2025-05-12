@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	data.mlx_ptr = mlx_init();
 	create_img(&data);
 	setup_direction(&player);
-	//set_texture(&data);
+	set_texture(&data);
 	draw(&data);
 	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
 	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
@@ -34,22 +34,27 @@ int	main(int ac, char **av)
 void	set_texture(t_data *data)
 {
 	static t_texture	nord;
-	// static t_texture	sud;
-	// static t_texture	est;
-	// static t_texture	west;
+	static t_texture	sud;
+	static t_texture	est;
+	static t_texture	west;
 
 	nord.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->no_txt_path, &nord.width, &nord.height);
-	nord.img_ptr = mlx_get_data_addr(&nord.img, &nord.bits_per_pixel, &nord.line_lenght, &nord.endian);
-	// sud.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->so_txt_path, &sud.width, &sud.height);
-	// sud.img_ptr = mlx_get_data_addr(&sud.img, &sud.bits_per_pixel, &sud.line_lenght, &sud.endian);
-	// est.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->ea_txt_path, &est.width, &est.height);
-	// est.img_ptr = mlx_get_data_addr(&est.img, &est.bits_per_pixel, &est.line_lenght, &est.endian);
-	// west.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->we_txt_path, &west.width, &west.height);
-	// west.img_ptr = mlx_get_data_addr(&west.img, &west.bits_per_pixel, &west.line_lenght, &west.endian);
+	sud.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->so_txt_path, &sud.width, &sud.height);
+	est.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->ea_txt_path, &est.width, &est.height);
+	west.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->we_txt_path, &west.width, &west.height);
+	if (nord.img == NULL || sud.img == NULL || est.img == NULL || west.img == NULL)
+	{
+		printf("\ntexture not found\n");
+		return ;
+	}
+	nord.img_ptr = (unsigned int *)mlx_get_data_addr(nord.img, &nord.bits_per_pixel, &nord.line_lenght, &nord.endian);
+	sud.img_ptr = (unsigned *)mlx_get_data_addr(sud.img, &sud.bits_per_pixel, &sud.line_lenght, &sud.endian);
+	est.img_ptr = (unsigned *)mlx_get_data_addr(est.img, &est.bits_per_pixel, &est.line_lenght, &est.endian);
+	west.img_ptr = (unsigned *)mlx_get_data_addr(west.img, &west.bits_per_pixel, &west.line_lenght, &west.endian);
 	data->nord = &nord;
-	// data->sud = &sud;
-	// data->est = &est;
-	// data->west = &west;
+	data->sud = &sud;
+	data->est = &est;
+	data->west = &west;
 	// color = *(text_addr + (x * size_line + y * (bits / 8)));
 	// printf("COLOR = %i\n",color);
 	//color = *(text_addr + (int)(texture_width * (ray->hitpoint_x - (int)ray->hitpoint_x) + (texture_width * ((ray->hitpoint_y - (int)ray->hitpoint_y) * 10))));
