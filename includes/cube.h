@@ -20,6 +20,9 @@
 #define ERR_PLAYER_COUNT "Error: Player count is invalid\n"
 #define ERR_INVALID_MAP "Error: Invalid map\n"
 #define ERR_MALLOC_FAIL "Error: calloc/malloc failed\n"
+#define ERR_TOO_MANY_VALUES "Error: a color can only contain 3 values \n"
+#define ERR_OUT_OF_RANGE "Error: color value must be in range [0,255]\n"
+#define ERR_ONLY_DIGITS "Error: color only contain digits\n"
 
 typedef struct s_map
 {

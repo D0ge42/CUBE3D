@@ -136,7 +136,6 @@ void extract_path(t_data *data, char *map_line, char *which)
 {
   int idx = 0;
   int end = 0;
-  printf("%s\n",map_line);
   while(map_line[idx] && ft_isspace(map_line[idx]))
     idx++;
   while(map_line && map_line[idx] && map_line[idx] >= 'A' && map_line[idx] <= 'Z')
@@ -171,7 +170,11 @@ void extract_path(t_data *data, char *map_line, char *which)
 static void extract_color(t_data *data, char *map_line, char which)
 {
   int idx = 0;
-  while(map_line[idx] && !ft_isdigit(map_line[idx]))
+  while(map_line[idx] && ft_isspace(map_line[idx]))
+    idx++;
+  while(map_line[idx] && (map_line[idx] == 'F' || map_line[idx] == 'C'))
+    idx++;
+  while(map_line[idx] && ft_isspace(map_line[idx]))
     idx++;
   if (!data->map->ceiling_info && which == 'C')
   {
