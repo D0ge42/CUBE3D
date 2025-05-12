@@ -1,4 +1,5 @@
 #include "cube.h"
+#include "libft.h"
 #include <string.h>
 
 static int skip_white_spaces(char *map);
@@ -135,10 +136,15 @@ void extract_path(t_data *data, char *map_line, char *which)
 {
   int idx = 0;
   int end = 0;
-  while(map_line[idx] && map_line[idx] != '.' && map_line[idx] != '\n')
+  printf("%s\n",map_line);
+  while(map_line[idx] && ft_isspace(map_line[idx]))
+    idx++;
+  while(map_line && map_line[idx] && map_line[idx] >= 'A' && map_line[idx] <= 'Z')
+    idx++;
+  while(map_line[idx] && ft_isspace(map_line[idx]))
     idx++;
   end = idx;
-  while(map_line[end] && !ft_isspace(map_line[end]))
+  while(map_line[end] && map_line[end] != '\n')
     end++;
   if (!data->map->ea_txt_path && ft_strncmp(which,"EA ",3) == 0)
   {

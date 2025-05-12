@@ -14,7 +14,7 @@ int	main(int ac, char **av)
 	static t_camera	camera;
 
 	if (ac != 2)
-	return (0);
+    return (0);
 	data.camera = &camera;
 	parser(&data,&map,&player,av);
 	rgb_converter(&data,'F');
@@ -43,9 +43,9 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
   printf("MAP_START = %i\n",map->map_start);
   printf("MAP_WIDTH = %i\n",map->map_width);
   printf("NO = %s\n",map->no_txt_path);
-  printf("SO = %s\n",map->so_txt_path);
+  printf("SO = %s\n",map->so_txt_path); // ---> invalid read of size 1
   printf("WE = %s\n",map->we_txt_path);
-  printf("EA = %s\n",map->ea_txt_path);
+  printf("EA = %s\n",map->ea_txt_path); // --> invalid read of size 1
   printf("CEILING = %s\n",map->ceiling_info);
   printf("FLOOR = %s\n",map->floor_info);
   printf("PLAYER X = %f\n",player->pos_x);
