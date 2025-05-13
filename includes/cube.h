@@ -92,6 +92,7 @@ typedef struct s_mlx_data
 	t_texture	*sud;
 	t_texture	*est;
 	t_texture	*west;
+  t_texture **door;
 }				t_data;
 
 typedef struct s_ray
