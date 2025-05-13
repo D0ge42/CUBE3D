@@ -1,5 +1,4 @@
 #include "cube.h"
-#include <ctype.h>
 #include <stdlib.h>
 
 static void	check_player_surroundings(t_data *data, char **map, int x, int y);

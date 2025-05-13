@@ -22,39 +22,12 @@ int	main(int ac, char **av)
 	data.mlx_ptr = mlx_init();
 	create_img(&data);
 	setup_direction(&player);
-	//set_texture(&data);
 	draw(&data);
 	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
 	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
 	mlx_hook(data.win_ptr, 17, 0L, free_exit, &data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
-}
-
-void	set_texture(t_data *data)
-{
-	static t_texture	nord;
-	// static t_texture	sud;
-	// static t_texture	est;
-	// static t_texture	west;
-
-	nord.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->no_txt_path, &nord.width, &nord.height);
-	nord.img_ptr = mlx_get_data_addr(&nord.img, &nord.bits_per_pixel, &nord.line_lenght, &nord.endian);
-	// sud.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->so_txt_path, &sud.width, &sud.height);
-	// sud.img_ptr = mlx_get_data_addr(&sud.img, &sud.bits_per_pixel, &sud.line_lenght, &sud.endian);
-	// est.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->ea_txt_path, &est.width, &est.height);
-	// est.img_ptr = mlx_get_data_addr(&est.img, &est.bits_per_pixel, &est.line_lenght, &est.endian);
-	// west.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->we_txt_path, &west.width, &west.height);
-	// west.img_ptr = mlx_get_data_addr(&west.img, &west.bits_per_pixel, &west.line_lenght, &west.endian);
-	data->nord = &nord;
-	// data->sud = &sud;
-	// data->est = &est;
-	// data->west = &west;
-	// color = *(text_addr + (x * size_line + y * (bits / 8)));
-	// printf("COLOR = %i\n",color);
-	//color = *(text_addr + (int)(texture_width * (ray->hitpoint_x - (int)ray->hitpoint_x) + (texture_width * ((ray->hitpoint_y - (int)ray->hitpoint_y) * 10))));
-	// fill_square(0, 0, data, color);
-	//mlx_destroy_image(data->mlx_ptr, texture);
 }
 
 static void parser(t_data *data, t_map *map, t_player *player, char **av)
@@ -96,6 +69,10 @@ static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)
 	data->player = player;
 	data->map = map;
 	data->map->map = fill_map(data);
+  data->map->door_txt_path[0] = "srcs/sprites/cub3dtex/xpm/door1.xpm";
+  data->map->door_txt_path[1] = "srcs/sprites/cub3dtex/xpm/door2.xpm";
+  data->map->door_txt_path[2] = "srcs/sprites/cub3dtex/xpm/door3.xpm";
+  data->map->door_txt_path[3] = "srcs/sprites/cub3dtex/xpm/door4.xpm";
 	data->map->is_map_valid = 1;
 }
 
