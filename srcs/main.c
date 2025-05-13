@@ -33,11 +33,16 @@ int	main(int ac, char **av)
 
 void	set_texture(t_data *data)
 {
+	static t_texture	door[4];
 	static t_texture	nord;
 	static t_texture	sud;
 	static t_texture	est;
 	static t_texture	west;
 
+	door[0].img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->door_txt_path[0], &door[0].width, &door[0].height);
+	door[1].img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->door_txt_path[1], &door[1].width, &door[1].height);
+	door[2].img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->door_txt_path[2], &door[2].width, &door[2].height);
+	door[3].img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->door_txt_path[3], &door[3].width, &door[3].height);
 	nord.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->no_txt_path, &nord.width, &nord.height);
 	sud.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->so_txt_path, &sud.width, &sud.height);
 	est.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->ea_txt_path, &est.width, &est.height);
@@ -47,10 +52,18 @@ void	set_texture(t_data *data)
 		printf("\ntexture not found\n");
 		return ;
 	}
+	door[0].img_ptr = (unsigned int *)mlx_get_data_addr(door[0].img, &door[0].bits_per_pixel, &door[0].line_lenght, &door[0].endian);
+	door[1].img_ptr = (unsigned int *)mlx_get_data_addr(door[1].img, &door[1].bits_per_pixel, &door[1].line_lenght, &door[1].endian);
+	door[2].img_ptr = (unsigned int *)mlx_get_data_addr(door[2].img, &door[2].bits_per_pixel, &door[2].line_lenght, &door[2].endian);
+	door[3].img_ptr = (unsigned int *)mlx_get_data_addr(door[3].img, &door[3].bits_per_pixel, &door[3].line_lenght, &door[3].endian);
 	nord.img_ptr = (unsigned int *)mlx_get_data_addr(nord.img, &nord.bits_per_pixel, &nord.line_lenght, &nord.endian);
 	sud.img_ptr = (unsigned *)mlx_get_data_addr(sud.img, &sud.bits_per_pixel, &sud.line_lenght, &sud.endian);
 	est.img_ptr = (unsigned *)mlx_get_data_addr(est.img, &est.bits_per_pixel, &est.line_lenght, &est.endian);
 	west.img_ptr = (unsigned *)mlx_get_data_addr(west.img, &west.bits_per_pixel, &west.line_lenght, &west.endian);
+  data->door[0] = &door[0];
+  data->door[1] = &door[1];
+  data->door[2] = &door[2];
+  data->door[3] = &door[3];
 	data->nord = &nord;
 	data->sud = &sud;
 	data->est = &est;
