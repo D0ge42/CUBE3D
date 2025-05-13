@@ -11,7 +11,7 @@
 # include <math.h>
 
 # define WIDTH 1920
-# define HEIGHT 800
+# define HEIGHT 1080
 
 #define ERR_INVALID_CHAR "Error: Invalid char found\n"
 #define ERR_MAP_NOT_CLOSED "Error: Map not closed\n"
@@ -33,7 +33,7 @@ typedef struct s_map
 	char			*so_txt_path;
 	char			*we_txt_path;
 	char			*ea_txt_path;
-  char      *door_txt_path[4];
+	char      *door_txt_path[4];
 	char			*ceiling_info;
 	char			*floor_info;
 	unsigned int	f_rgb;

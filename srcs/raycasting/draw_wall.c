@@ -42,26 +42,18 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	height = (HEIGHT / distance);
 	ray->hitpoint_x = data->player->pos_x + (distance * ray->dist_x);
 	ray->hitpoint_y = data->player->pos_y + (distance * ray->dist_y);
-	// color = get_color(ray, data, k);
 	while (i < height / 2)
 	{
 		if ((k + i) < HEIGHT)
 		{
-			color = get_color(ray, data, (ray->x * 0.08), (k + i) * 0.08);
-			if ((ray->identifier == 'P' || ray->identifier == 'O') && color != 0xFFFFFF)
-				my_mlx_pixel_put(data, ray->x, k + i, color);
-			else if (ray->identifier != 'P')
-				my_mlx_pixel_put(data, ray->x, k + i, color);
+			color = get_color(ray, data, (ray->x ), (k + i));
+			my_mlx_pixel_put(data, ray->x, k + i, color);
 		}
 		if ((k - i) > 0)
 		{
-			color = get_color(ray, data, (ray->x * 0.08), (k - i) * 0.08);
-			if ((ray->identifier == 'P' || ray->identifier == 'O') && color != 0xFFFFFF)
-				my_mlx_pixel_put(data, ray->x, k - i, color);
-			else if (ray->identifier != 'P')
-				my_mlx_pixel_put(data, ray->x, k - i, color);
+			color = get_color(ray, data, (ray->x), (k - i));
+			my_mlx_pixel_put(data, ray->x, k - i, color);
 		}
 		i++;
 	}
-	//create_texture(data, x, 0, ray);
 }
