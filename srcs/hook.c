@@ -12,6 +12,23 @@ static void	find_direction(t_player *player)
 		player->facing_dir = 'S';
 }
 
+static char	see_in_front(t_data *data)
+{
+	double	move_x;
+	double	move_y;
+
+	move_x = (data->player->dir_x * 0.1);
+	move_y = (data->player->dir_y * 0.1);
+	move_x = data->player->pos_x + move_x;
+	move_y = data->player->pos_y + move_y;
+	if (data->map->map[(int)move_y][(int)move_x] == 'P')
+		data->map->map[(int)move_y][(int)move_x] = 'O';
+	else if (data->map->map[(int)move_y][(int)move_x] == 'O')
+		data->map->map[(int)move_y][(int)move_x] = 'P';
+	draw(data);
+	return (data->map->map[(int)move_y][(int)move_x]);
+}
+
 static void	move_player(int keycode, t_data *data, t_map *map)
 {
 	double	move_x;
@@ -41,7 +58,12 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 		temp_x = data->player->pos_x - move_y;
 		temp_y = data->player->pos_y + move_x;
 	}
-	if (map->map[(int)temp_y][(int)temp_x] && map->map[(int)temp_y][(int)temp_x] != '1' && map->map[(int)temp_y][(int)temp_x] != ' ' && map->map[(int)temp_y][(int)temp_x] != '\n' && map->map[(int)temp_y][(int)temp_x] != '\0')
+	if (map->map[(int)temp_y][(int)temp_x]
+	&& map->map[(int)temp_y][(int)temp_x] != '1'
+	&& map->map[(int)temp_y][(int)temp_x] != ' '
+	&& map->map[(int)temp_y][(int)temp_x] != '\n'
+	&& map->map[(int)temp_y][(int)temp_x] != '\0'
+	&& map->map[(int)temp_y][(int)temp_x] != 'P')
 	{
 		data->player->pos_x = temp_x;
 		data->player->pos_y = temp_y;
@@ -80,6 +102,8 @@ int	rotate_player(int keycode, t_data *data)
 int	key_hook(int keycode, t_data *data)
 {
 	printf("%d\n", keycode);
+	if (keycode == 32)
+		see_in_front(data);
 	if (keycode == XK_Escape)
 	{
 		free_everything(data);

@@ -8,10 +8,10 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av);
 
 int	main(int ac, char **av)
 {
-	static t_data	data;
-	static t_map	map;
-	static t_player	player;
-	static t_camera	camera;
+	static t_data		data;
+	static t_map		map;
+	static t_player		player;
+	static t_camera		camera;
 
 	if (ac != 2)
     return (0);
@@ -114,10 +114,10 @@ static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)
 	data->player = player;
 	data->map = map;
 	data->map->map = fill_map(data);
-	data->map->door_txt_path[0] = "srcs/sprites/cub3dtex/xpm/door1.xpm";
-	data->map->door_txt_path[1] = "srcs/sprites/cub3dtex/xpm/door2.xpm";
-	data->map->door_txt_path[2] = "srcs/sprites/cub3dtex/xpm/door3.xpm";
-	data->map->door_txt_path[3] = "srcs/sprites/cub3dtex/xpm/door4.xpm";
+	data->map->door_txt_path[0] = "./srcs/sprites/cube3dtex/xpm/door1.xpm";
+	data->map->door_txt_path[1] = "./srcs/sprites/cube3dtex/xpm/door2.xpm";
+	data->map->door_txt_path[2] = "./srcs/sprites/cube3dtex/xpm/door3.xpm";
+	data->map->door_txt_path[3] = "./srcs/sprites/cube3dtex/xpm/door4.xpm";
 	data->map->is_map_valid = 1;
 }
 

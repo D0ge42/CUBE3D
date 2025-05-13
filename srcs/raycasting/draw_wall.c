@@ -4,6 +4,10 @@ unsigned int	get_color(t_ray *ray, t_data *data, int x, int y)
 {
 	unsigned int	color;
 
+	if (ray->identifier == 'P')
+		return (*(data->door[0]->img_ptr + (((x % data->door[0]->width) + ((y % data->door[0]->height) * data->door[0]->width)))));
+	else if (ray->identifier == 'O')
+		return (*(data->door[3]->img_ptr + (((x % data->door[3]->width) + ((y % data->door[3]->height) * data->door[3]->width)))));
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x < 0)
@@ -27,7 +31,7 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	int				height;
 	int				i;
 	int				k;
-	// unsigned int	color;
+	unsigned int	color;
 
 	i = 0;
 	k = HEIGHT / 2;
@@ -42,9 +46,21 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	while (i < height / 2)
 	{
 		if ((k + i) < HEIGHT)
-			my_mlx_pixel_put(data, ray->x, k + i, get_color(ray, data, (ray->x * 0.08), (k + i) * 0.08));
+		{
+			color = get_color(ray, data, (ray->x * 0.08), (k + i) * 0.08);
+			if ((ray->identifier == 'P' || ray->identifier == 'O') && color != 0xFFFFFF)
+				my_mlx_pixel_put(data, ray->x, k + i, color);
+			else if (ray->identifier != 'P')
+				my_mlx_pixel_put(data, ray->x, k + i, color);
+		}
 		if ((k - i) > 0)
-			my_mlx_pixel_put(data, ray->x, k - i, get_color(ray, data, (ray->x * 0.08), (k - i) * 0.08));
+		{
+			color = get_color(ray, data, (ray->x * 0.08), (k - i) * 0.08);
+			if ((ray->identifier == 'P' || ray->identifier == 'O') && color != 0xFFFFFF)
+				my_mlx_pixel_put(data, ray->x, k - i, color);
+			else if (ray->identifier != 'P')
+				my_mlx_pixel_put(data, ray->x, k - i, color);
+		}
 		i++;
 	}
 	//create_texture(data, x, 0, ray);
