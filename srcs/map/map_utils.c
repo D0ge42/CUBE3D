@@ -67,7 +67,7 @@ int	check_and_set(t_data *data, char c, int x, int y)
 		check_player_surroundings(data, map, x, y);
 		return (1);
 	}
-	else if (c == '0' || c == '1' || c == '\n' || c == '\t' || c == ' ')
+	else if (c == '0' || c == '1' || c == 'P' || c == '\n' || c == '\t' || c == ' ')
 		return (1);
 	return (0);
 }
@@ -93,7 +93,7 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 
 static int	are_sorroundings_valid(t_data *data, char c)
 {
-	if (c && (c == '0' || c == '1' || c == 'W' || c == 'N' || c == 'S' || c == 'E'))
+	if (c && (c == '0' || c == '1' || c == 'W' || c == 'N' || c == 'S' || c == 'E' || c == 'P'))
     return 1;
   else if (is_space(c) == 1)
   {

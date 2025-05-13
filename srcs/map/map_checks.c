@@ -23,7 +23,7 @@ void	is_map_closed(t_data *data)
 		{
       if (max_width < (int)ft_strlen(map[y]))
         max_width = ft_strlen(map[y]) - 1;
-			if (map[y][x] == '0' && check_zero_surroundings(data,map, x, y) == 0)
+			if ((map[y][x] == '0' || map[y][x] == 'P') && check_zero_surroundings(data,map, x, y) == 0)
 			{
         ft_putstr_fd(ERR_MAP_NOT_CLOSED,2);
         free_everything(data);
