@@ -108,6 +108,7 @@ typedef struct s_ray
 	double	ray_dir_x;
 	double	ray_dir_y;
 	int		side;
+	char	identifier;
 }				t_ray;
 
 // Map related functions

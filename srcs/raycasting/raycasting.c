@@ -33,7 +33,7 @@ static void	find_hit_point(t_ray *ray, t_player *player, char **map, t_data *dat
 
 	x = (int)player->pos_x;
 	y = (int)player->pos_y;
-	while(map[y][x] != '1')
+	while(map[y][x] != '1' /* || map[y][x] != 'P' || map[y][x] != 'O' */)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -48,7 +48,12 @@ static void	find_hit_point(t_ray *ray, t_player *player, char **map, t_data *dat
 			ray->side = 1;
 		}
 	}
-	draw_wall(x, y, ray, data);
+	if (map[y][x] == '1')
+		draw_wall(x, y, ray, data);
+	// else if (map[y][x] == 'P')
+	// 	draw_close_door(x, y, ray, data);
+	// else
+	// 	draw_open_door(x, y, ray, data);
 }
 
 void	raycasting(t_data *data, t_player *player, t_camera *camera)
