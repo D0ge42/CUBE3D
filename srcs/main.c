@@ -101,6 +101,10 @@ static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)
 	data->player = player;
 	data->map = map;
 	data->map->map = fill_map(data);
+	data->map->door_txt_path[0] = "srcs/sprites/cub3dtex/xpm/door1.xpm";
+	data->map->door_txt_path[1] = "srcs/sprites/cub3dtex/xpm/door2.xpm";
+	data->map->door_txt_path[2] = "srcs/sprites/cub3dtex/xpm/door3.xpm";
+	data->map->door_txt_path[3] = "srcs/sprites/cub3dtex/xpm/door4.xpm";
 	data->map->is_map_valid = 1;
 }
 
