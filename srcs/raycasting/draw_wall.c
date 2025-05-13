@@ -38,7 +38,6 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	height = (HEIGHT / distance);
 	ray->hitpoint_x = data->player->pos_x + (distance * ray->dist_x);
 	ray->hitpoint_y = data->player->pos_y + (distance * ray->dist_y);
-	printf("x %f y %f\n", ray->hitpoint_x, ray->hitpoint_y);
 	// color = get_color(ray, data, k);
 	while (i < height / 2)
 	{

@@ -9,13 +9,12 @@ void	fill_square(int x, int y, t_data *data, int color)
 
 	height = 0;
 	map = data->map;
-	printf("%d\n", map->map_width);
 	while (height < 10)
 	{
 		len = 0;
 		while (len < 10)
 		{
-			my_mlx_pixel_put(data, (WIDTH - map->map_width * 10) + x + len, HEIGHT - map->map_height * 10 + y + height, color);
+			my_mlx_pixel_put(data, (WIDTH - (130) + x + len), (HEIGHT - map->map_height * 10) + y + height, color);
 			len++;
 		}
 		height++;
@@ -49,12 +48,12 @@ void	draw_mini_map(t_data *data)
 		while (map[m_start_y][temp_x] && temp_x < m_end_x && temp_x < WIDTH)
 		{
 			if (map[m_start_y][temp_x] == '1')
-				fill_square(temp_x * 10, m_start_y * 10, data, 0x00FF0000);
+				fill_square((temp_x - m_start_x) * 10, m_start_y * 10, data, 0xFF0000);
 			else if (map[m_start_y][temp_x] != ' ' && map[m_start_y][temp_x] != '\n')
-				fill_square(temp_x * 10, m_start_y * 10, data, 0x000000);
+				fill_square((temp_x - m_start_x) * 10, m_start_y * 10, data, 0x000000);
 			temp_x++;
 		}
 		m_start_y++;
 	}
-	fill_square(data->player->pos_x * 10, (data->player->pos_y - data->map->map_start) * 10, data, 0xFFFF00);
+	fill_square((data->player->pos_x - m_start_x) * 10, (data->player->pos_y - data->map->map_start) * 10, data, 0xFFFF00);
 }
