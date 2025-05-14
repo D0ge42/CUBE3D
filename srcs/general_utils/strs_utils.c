@@ -47,6 +47,14 @@ int	ft_strslen(char **strs)
 	return (i);
 }
 
+int	ft_isspace(char c)
+{
+	if (c == '\t' || c == '\r' || c == '\n' || c == '\v' || c == '\f'
+		|| c == 32)
+		return (1);
+	return (0);
+}
+
 void	print_strs(char **map)
 {
 	int	i;

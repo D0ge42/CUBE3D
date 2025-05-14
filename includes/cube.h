@@ -122,9 +122,17 @@ int				check_zero_surroundings(t_data *data, char **tab, int x, int y);
 void			extract_map_only(t_data *data);
 void			get_map_infos(t_data *data);
 void			are_all_info_present(t_data *data);
+void	extract_map_only(t_data *data);
+int	is_info(char *curr);
+int	skip_white_spaces(char *map);
+void	find_start_and_end_of_path(int *start, int *end, char *map_line);
+
 // Map utils
 
 int				is_coordinate_valid(char **tab, int x, int y);
+int	are_sorroundings_valid(t_data *data, char c);
+int	is_coordinate_valid(char **tab, int x, int y);
+int	is_space(char c);
 
 // General strs utils
 
@@ -134,6 +142,7 @@ int		ft_strslen(char **strs);
 void	free_strs(char **strs);
 int		free_everything(t_data *data);
 int		free_exit(t_data *data);
+int	ft_isspace(char c);
 
 // Ray casting
 
