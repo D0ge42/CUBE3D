@@ -25,6 +25,8 @@ unsigned int	get_color(t_ray *ray, t_data *data, int x, int y)
 	return (color);
 }
 
+
+
 void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 {
 	double			distance;
