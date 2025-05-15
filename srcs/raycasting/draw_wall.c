@@ -6,7 +6,7 @@
 /*   By: ldei-sva <ldei-sva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 13:41:27 by ldei-sva          #+#    #+#             */
-/*   Updated: 2025/05/15 15:47:09 by ldei-sva         ###   ########.fr       */
+/*   Updated: 2025/05/15 15:50:53 by ldei-sva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	if (ray->side == 0)
 	{
 		prova = ray->side_dist_x - ray->dist_x;
-		ray->hitpoint_x = data->player->pos_y + ray->ray_dir_y * prova;
+		ray->hitpoint_x = data->player->pos_x + ray->ray_dir_x * prova;
 	}
 	else
 	{
 		prova = ray->side_dist_y - ray->dist_y;
-		ray->hitpoint_x = data->player->pos_x + ray->ray_dir_x * prova;
+		ray->hitpoint_x = data->player->pos_y + ray->ray_dir_y * prova;
 	}
 	height = (HEIGHT / distance);
 	k = (HEIGHT / 2) - (height / 2);
