@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_wall.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldei-sva <ldei-sva@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/15 13:41:27 by ldei-sva          #+#    #+#             */
+/*   Updated: 2025/05/15 13:41:30 by ldei-sva         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
 unsigned int	get_color(t_ray *ray, t_data *data, int height, int y)
@@ -25,7 +37,7 @@ unsigned int	get_color(t_ray *ray, t_data *data, int height, int y)
 		else
 			texture = data->nord;
 	}
-	x = (ray->hitpoint_x - floor(ray->hitpoint_x)) * 10;
+	x = (ray->hitpoint_x - floor(ray->hitpoint_x)) * texture->width;
 	// printf("%f %f\n", x, ray->hitpoint_x);
 	if (height != 0)
 		y = y * texture->height / height;
@@ -43,14 +55,24 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 
 	i = 0;
 
-	if (ray->side == 0)
+	/*if (ray->side == 0)
 		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
 	else
-		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
+		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;*/
+	if (side == 0)
+	{
+		distance = ray->side_dist_x - ray->dist_x;
+		ray->hitpoint_x = data->player->pos_y + ray->dir_y * distance;
+	}
+	else
+	{
+		distance = ray->side_dist_y - ray->dist_y;
+		ray->hitpoint_x = data->player->pos_x + ray->dir_x * distance;
+	}
 	height = (HEIGHT / distance);
 	k = (HEIGHT / 2) - (height / 2);
-	ray->hitpoint_x = data->player->pos_x + (distance * ray->dist_x);
-	ray->hitpoint_y = data->player->pos_y + (distance * ray->dist_y);
+	/*ray->hitpoint_x = data->player->pos_x + (distance * ray->dist_x);
+	ray->hitpoint_y = data->player->pos_y + (distance * ray->dist_y);*/
 	//printf("%f\n", ray->hitpoint_x);
 	if (k + i < 0)
 		i = -k;
