@@ -22,7 +22,9 @@ SRC = srcs/main.c\
       srcs/map/map_checks.c\
       srcs/map/create_map_utils.c\
       srcs/map/check_surroundings.c\
-      srcs/map/check_surroundings_utils.c\
+			srcs/map/check_surroundings_utils.c\
+      srcs/map/map_checks.c\
+      srcs/map/create_map_utils.c\
       srcs/raycasting/raycasting_setup.c\
 			srcs/raycasting/minimap.c\
 			srcs/raycasting/draw_map.c\
