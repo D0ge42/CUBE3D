@@ -15,8 +15,8 @@ char	**fill_map(t_data *data)
 	map = ft_calloc(1, sizeof(char *));
 	if (!map)
 	{
-		ft_putstr_fd("Malloc error\n", 2);
-		return (NULL);
+    data->err_type = E_MAL_FAIL;
+    print_err_and_free(data,NULL);
 	}
 	while (1)
 	{
@@ -27,7 +27,8 @@ char	**fill_map(t_data *data)
 		map = ft_strscat(map, res);
 		if (!map)
 		{
-			free_strs(map);
+      data->err_type = E_MAL_FAIL;
+      print_err_and_free(data, NULL);
 			return (NULL);
 		}
 	}
@@ -112,11 +113,11 @@ static void	extract_color(t_data *data, char *map_line, char which)
 	int	idx;
 
 	idx = 0;
-	while (map_line[idx] && ft_isspace(map_line[idx]))
+	while (map_line[idx] && is_space(map_line[idx]))
 		idx++;
 	while (map_line[idx] && (map_line[idx] == 'F' || map_line[idx] == 'C'))
 		idx++;
-	while (map_line[idx] && ft_isspace(map_line[idx]))
+	while (map_line[idx] && is_space(map_line[idx]))
 		idx++;
 	if (!data->map->ceiling_info && which == 'C')
 	{

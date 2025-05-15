@@ -1,6 +1,4 @@
 #include "cube.h"
-#include <stdlib.h>
-
 
 int	are_sorroundings_valid(t_data *data, char c)
 {
@@ -9,16 +7,15 @@ int	are_sorroundings_valid(t_data *data, char c)
 		return (1);
 	else if (!c || is_space(c) == 1)
 	{
-		ft_putstr_fd(ERR_MAP_NOT_CLOSED, 2);
-		free_everything(data);
-		exit(EXIT_FAILURE);
+    data->err_type = E_MAP_CLOSED;
+    print_err_and_free(data,NULL);
 	}
 	else
 	{
-		ft_putstr_fd(ERR_INVALID_CHAR, 2);
-		free_everything(data);
-		exit(EXIT_FAILURE);
+    data->err_type = E_INV_CHAR;
+    print_err_and_free(data,NULL);
 	}
+  return 0;
 }
 
 int	is_coordinate_valid(char **tab, int x, int y)

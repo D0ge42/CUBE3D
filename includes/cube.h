@@ -24,6 +24,20 @@
 #define ERR_OUT_OF_RANGE "Error: color value must be in range [0,255]\n"
 #define ERR_ONLY_DIGITS "Error: color only contain digits\n"
 
+typedef enum e_err
+{
+  E_INV_CHAR =  1 << 1,
+  E_MAP_CLOSED =  1 << 2,
+  E_MISS_INFO =  1 << 3,
+  E_NO_VAL_SURR =  1 << 4,
+  E_PCOUNT =  1 << 5,
+  E_INV_MAP =  1 << 6,
+  E_MAL_FAIL =  1 << 7,
+  E_ERR_VALUES =  1 << 8,
+  E_OUT_OF_RANGE =  1 << 9,
+  E_ONLY_DIG =  1 << 10,
+} t_err;
+
 typedef struct s_map
 {
 	char			**map;
@@ -93,6 +107,7 @@ typedef struct s_mlx_data
 	t_texture	*est;
 	t_texture	*west;
 	t_texture	*door[4];
+  int err_type;
 }				t_data;
 
 typedef struct s_ray
@@ -133,6 +148,7 @@ int				is_coordinate_valid(char **tab, int x, int y);
 int	are_sorroundings_valid(t_data *data, char c);
 int	is_coordinate_valid(char **tab, int x, int y);
 int	is_space(char c);
+void print_err_and_free(t_data *data, void *ptr);
 
 // General strs utils
 
@@ -142,7 +158,6 @@ int		ft_strslen(char **strs);
 void	free_strs(char **strs);
 int		free_everything(t_data *data);
 int		free_exit(t_data *data);
-int	ft_isspace(char c);
 
 // Ray casting
 

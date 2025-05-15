@@ -35,7 +35,7 @@ void	find_start_and_end_of_path(int *start, int *end, char *map_line)
 	while (map_line && map_line[*start] && map_line[*start] >= 'A'
 		&& map_line[*start] <= 'Z')
 		(*start)++;
-	while (map_line[*start] && ft_isspace(map_line[*start]))
+	while (map_line[*start] && is_space(map_line[*start]))
 		(*start)++;
 	*end = *start;
 	while (map_line[*end] && map_line[*end] != '\n')
@@ -66,7 +66,7 @@ int	skip_white_spaces(char *map)
 	int	y;
 
 	y = 0;
-	while (map[y] && ft_isspace(map[y]) == 1)
+	while (map[y] && is_space(map[y]) == 1)
 		y++;
 	return (y);
 }
@@ -77,14 +77,7 @@ void	are_all_info_present(t_data *data)
 		|| data->map->no_txt_path == NULL || data->map->ea_txt_path == NULL
 		|| data->map->ceiling_info == NULL || data->map->floor_info == NULL)
 	{
-		printf("%p\n", data->map->we_txt_path);
-		printf("%p\n", data->map->ea_txt_path);
-		printf("%p\n", data->map->no_txt_path);
-		printf("%p\n", data->map->so_txt_path);
-		printf("%p\n", data->map->ceiling_info);
-		printf("%p\n", data->map->floor_info);
-		free_everything(data);
-		ft_putstr_fd("Error: Some info are missing\n", 2);
-		exit(1);
+    data->err_type = E_MISS_INFO;
+    print_err_and_free(data,NULL);
 	}
 }

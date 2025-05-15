@@ -1,5 +1,4 @@
 #include "cube.h"
-#include <stdlib.h>
 
 static void	check_player_surroundings(t_data *data, char **map, int x, int y);
 static int	check_horizontal_vertical(t_data *data, char **map, int x, int y);
@@ -93,17 +92,16 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 
 	map_height = data->map->map_height;
 	if ((y <= 0 || y - data->map->map_start >= (map_height - 1)
-        || (map[y][x + 1] != '0' && map[y][x + 1] != '1')
-        || (map[y][x - 1] != '0' && map[y][x - 1] != '1')
-        || (map[y - 1][x] != '0' && map[y - 1][x] != '1')
-        || (map[y + 1][x] != '0' && map[y + 1][x] != '1')
-        || (map[y - 1][x - 1] != '0' && map[y - 1][x - 1] != '1')
-        || (map[y - 1][x + 1] != '0' && map[y - 1][x + 1] != '1')
-        || (map[y + 1][x - 1] != '0' && map[y + 1][x - 1] != '1')
-        || (map[y + 1][x + 1] != '0' && map[y + 1][x + 1] != '1')))
+        || (map[y][x + 1] != '0' && map[y][x + 1] != '1' && map[y][x + 1] != 'P')
+        || (map[y][x - 1] != '0' && map[y][x - 1] != '1' && map[y][x - 1] != 'P')
+        || (map[y - 1][x] != '0' && map[y - 1][x] != '1' && map[y - 1][x] != 'P')
+        || (map[y + 1][x] != '0' && map[y + 1][x] != '1' && map[y + 1][x] != 'P')
+        || (map[y - 1][x - 1] != '0' && map[y - 1][x - 1] != '1' && map[y - 1][x - 1] != 'P')
+        || (map[y - 1][x + 1] != '0' && map[y - 1][x + 1] != '1' && map[y - 1][x + 1] != 'P')
+        || (map[y + 1][x - 1] != '0' && map[y + 1][x - 1] != '1' && map[y + 1][x - 1] != 'P')
+        || (map[y + 1][x + 1] != '0' && map[y + 1][x + 1] != '1' && map[y + 1][x + 1] != 'P')))
 	{
-		ft_putstr_fd(ERR_NO_VALID_SURR, 2);
-		exit(1);
+    data->err_type = E_NO_VAL_SURR;
+    print_err_and_free(data,NULL);
 	}
 }
-

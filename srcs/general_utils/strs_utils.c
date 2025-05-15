@@ -47,14 +47,6 @@ int	ft_strslen(char **strs)
 	return (i);
 }
 
-int	ft_isspace(char c)
-{
-	if (c == '\t' || c == '\r' || c == '\n' || c == '\v' || c == '\f'
-		|| c == 32)
-		return (1);
-	return (0);
-}
-
 void	print_strs(char **map)
 {
 	int	i;
@@ -67,16 +59,16 @@ void	print_strs(char **map)
 	}
 }
 
-int free_everything(t_data *data)
+int	free_everything(t_data *data)
 {
-  free(data->map->ea_txt_path);
-  free(data->map->no_txt_path);
-  free(data->map->so_txt_path);
-  free(data->map->we_txt_path);
-  free(data->map->ceiling_info);
-  free(data->map->floor_info);
-  free_strs(data->map->map);
-  return (0);
+	free(data->map->ea_txt_path);
+	free(data->map->no_txt_path);
+	free(data->map->so_txt_path);
+	free(data->map->we_txt_path);
+	free(data->map->ceiling_info);
+	free(data->map->floor_info);
+	free_strs(data->map->map);
+	return (0);
 }
 
 int	free_exit(t_data *data)
