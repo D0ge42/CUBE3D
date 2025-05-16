@@ -12,32 +12,33 @@
 
 #include "libft.h"
 
-char *ft_strjoin(const char *line, const char *stash)
+char	*ft_strjoin(const char *line, const char *stash)
 {
-  int len_line = ft_strlen(line);
-  int len_stash = ft_strlen(stash);
+	int		total;
+	char	*dest;
+	int		i;
+	int		j;
 
-  int total = len_line + len_stash + 1;
-
-  char *dest = malloc(sizeof(char) * total);
-  int i = 0;
-  int j = 0;
-  while(line && line[i])
-  {
-    dest[j] = line[i];
-    i++;
-    j++;
-  }
-  i = 0;
-  while(stash && stash[i])
-  {
-    dest[j] = stash[i];
-    i++;
-    j++;
-  }
-  free((char *)line);
-  dest[j] = '\0';
-  return dest;
+	total = ft_strlen(line) + ft_strlen(stash) + 1;
+	dest = malloc(sizeof(char) * total);
+	i = 0;
+	j = 0;
+	while (line && line[i])
+	{
+		dest[j] = line[i];
+		j++;
+		i++;
+	}
+	i = 0;
+	while (stash && stash[i])
+	{
+		dest[j] = stash[i];
+		j++;
+		i++;
+	}
+	free((char *)line);
+	dest[j] = '\0';
+	return (dest);
 }
 
 /*int main()

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_surroundings.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/16 10:19:59 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/16 10:20:01 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
 static void	check_player_surroundings(t_data *data, char **map, int x, int y);
@@ -91,17 +103,20 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 	int	map_height;
 
 	map_height = data->map->map_height;
-	if ((y <= 0 || y - data->map->map_start >= (map_height - 1)
-        || (map[y][x + 1] != '0' && map[y][x + 1] != '1' && map[y][x + 1] != 'P')
-        || (map[y][x - 1] != '0' && map[y][x - 1] != '1' && map[y][x - 1] != 'P')
-        || (map[y - 1][x] != '0' && map[y - 1][x] != '1' && map[y - 1][x] != 'P')
-        || (map[y + 1][x] != '0' && map[y + 1][x] != '1' && map[y + 1][x] != 'P')
-        || (map[y - 1][x - 1] != '0' && map[y - 1][x - 1] != '1' && map[y - 1][x - 1] != 'P')
-        || (map[y - 1][x + 1] != '0' && map[y - 1][x + 1] != '1' && map[y - 1][x + 1] != 'P')
-        || (map[y + 1][x - 1] != '0' && map[y + 1][x - 1] != '1' && map[y + 1][x - 1] != 'P')
-        || (map[y + 1][x + 1] != '0' && map[y + 1][x + 1] != '1' && map[y + 1][x + 1] != 'P')))
+	if ((y <= 0 || y - data->map->map_start >= (map_height - 1) || (map[y][x
+				+ 1] != '0' && map[y][x + 1] != '1' && map[y][x + 1] != 'P')
+			|| (map[y][x - 1] != '0' && map[y][x - 1] != '1' && map[y][x
+				- 1] != 'P') || (map[y - 1][x] != '0' && map[y - 1][x] != '1'
+				&& map[y - 1][x] != 'P') || (map[y + 1][x] != '0' && map[y
+				+ 1][x] != '1' && map[y + 1][x] != 'P') || (map[y - 1][x
+				- 1] != '0' && map[y - 1][x - 1] != '1' && map[y - 1][x
+				- 1] != 'P') || (map[y - 1][x + 1] != '0' && map[y - 1][x
+				+ 1] != '1' && map[y - 1][x + 1] != 'P') || (map[y + 1][x
+				- 1] != '0' && map[y + 1][x - 1] != '1' && map[y + 1][x
+				- 1] != 'P') || (map[y + 1][x + 1] != '0' && map[y + 1][x
+				+ 1] != '1' && map[y + 1][x + 1] != 'P')))
 	{
-    data->err_type = E_NO_VAL_SURR;
-    print_err_and_free(data,NULL);
+		data->err_type = E_NO_VAL_SURR;
+		print_err_and_free(data, NULL);
 	}
 }

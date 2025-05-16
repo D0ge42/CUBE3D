@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_checks.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/16 10:20:32 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/16 10:20:33 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 #include "libft.h"
 #include <string.h>
@@ -45,8 +57,8 @@ void	is_map_valid(t_data *data)
 		{
 			if (check_and_set(data, map[y][x], x, y) == 0)
 			{
-        data->err_type = E_INV_MAP;
-        print_err_and_free(data,NULL);
+				data->err_type = E_INV_MAP;
+				print_err_and_free(data, NULL);
 			}
 			x++;
 		}
@@ -60,8 +72,8 @@ static void	check_player_existence(t_data *data)
 {
 	if (data->player->exists == 0 || data->player->exists > 1)
 	{
-    data->err_type = E_PCOUNT;
-    print_err_and_free(data,NULL);
+		data->err_type = E_PCOUNT;
+		print_err_and_free(data, NULL);
 	}
 }
 
@@ -70,7 +82,7 @@ static void	check_zeros_and_doors(t_data *data, char **map, int x, int y)
 	if ((map[y][x] == '0' || map[y][x] == 'P') && check_zero_surroundings(data,
 			map, x, y) == 0)
 	{
-    data->err_type = E_MAP_CLOSED;
-    print_err_and_free(data,NULL);
+		data->err_type = E_MAP_CLOSED;
+		print_err_and_free(data, NULL);
 	}
 }

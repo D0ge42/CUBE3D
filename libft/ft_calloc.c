@@ -17,7 +17,7 @@
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*array;
-	
+
 	if (nmemb && size && (LONG_MAX / size <= nmemb))
 		return (0);
 	array = malloc(nmemb * size);

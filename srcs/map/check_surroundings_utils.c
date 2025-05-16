@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_surroundings_utils.c                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/16 10:20:07 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/16 10:20:09 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
 int	are_sorroundings_valid(t_data *data, char c)
@@ -7,15 +19,15 @@ int	are_sorroundings_valid(t_data *data, char c)
 		return (1);
 	else if (!c || is_space(c) == 1)
 	{
-    data->err_type = E_MAP_CLOSED;
-    print_err_and_free(data,NULL);
+		data->err_type = E_MAP_CLOSED;
+		print_err_and_free(data, NULL);
 	}
 	else
 	{
-    data->err_type = E_INV_CHAR;
-    print_err_and_free(data,NULL);
+		data->err_type = E_INV_CHAR;
+		print_err_and_free(data, NULL);
 	}
-  return 0;
+	return (0);
 }
 
 int	is_coordinate_valid(char **tab, int x, int y)

@@ -37,19 +37,19 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 }
 /*t_list *ft_lstnew(void *content)
 {
-	t_list *new;
+	t_list	*new;
 
 	new = (t_list *)malloc(sizeof(t_list));
 	if (!new)
-		return NULL;
+		return (NULL);
 	new->content = content;
 	new->next = NULL;
 	return (new);
 }
 
-void ft_lstclear(t_list **new_list, void (*del )(void *))
+void	ft_lstclear(t_list **new_list, void (*del )(void *))
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = *new_list;
 	while(*new_list && tmp)
@@ -62,7 +62,7 @@ void ft_lstclear(t_list **new_list, void (*del )(void *))
 	*new_list = NULL;
 }
 
-void ft_lstadd_back(t_list **new_list, t_list *new)
+void	ft_lstadd_back(t_list **new_list, t_list *new)
 {
 	if (!(*new_list))
 	{
@@ -79,17 +79,19 @@ void ft_lstadd_back(t_list **new_list, t_list *new)
 */
 /*void *to_uppercase(void *data)
 {
-    char *str = (char *)data;
-    for (int i = 0; str[i]; i++)
-        str[i] = toupper(str[i]);
-    return str;
+	char	*str;
+
+	str = (char *)data;
+	for (int i = 0; str[i]; i++)
+		str[i] = toupper(str[i]);
+	return (str);
 }
 
-void del_data(void *data)
+void	del_data(void *data)
 {
 	free(data);
 }
-int main()
+int	main(void)
 {
 	char *str = (char *)malloc(sizeof(char ) * 4);
 	char *str1 = (char *)malloc(sizeof(char ) * 4);

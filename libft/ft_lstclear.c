@@ -46,7 +46,7 @@ t_list	*ft_lstnew(void *content)
 	return (new);
 }
 
-int main()
+int	main(void)
 {
 	char *str0 = (char *)malloc(sizeof(char ) * 5);
 	char *str1 = (char *)malloc(sizeof(char ) * 5);
@@ -72,4 +72,4 @@ int main()
 	printf("\n");
 	ft_lstclear(&new, free_node);
 }*/
-//Test by running valgrind --leak-check=full ./program_name in terminal
+// Test by running valgrind --leak-check=full ./program_name in terminal

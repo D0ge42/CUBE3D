@@ -32,7 +32,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 /*#include <stdio.h>
 #include <string.h>
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	printf("Orig %i\n", memcmp(av[1],av[2],3));
 	printf("Mio %i\n", ft_memcmp(av[1],av[2],3));

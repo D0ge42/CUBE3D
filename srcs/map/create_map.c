@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/16 10:20:18 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/16 10:20:20 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 #include "libft.h"
 #include <string.h>
@@ -15,8 +27,8 @@ char	**fill_map(t_data *data)
 	map = ft_calloc(1, sizeof(char *));
 	if (!map)
 	{
-    data->err_type = E_MAL_FAIL;
-    print_err_and_free(data,NULL);
+		data->err_type = E_MAL_FAIL;
+		print_err_and_free(data, NULL);
 	}
 	while (1)
 	{
@@ -27,8 +39,8 @@ char	**fill_map(t_data *data)
 		map = ft_strscat(map, res);
 		if (!map)
 		{
-      data->err_type = E_MAL_FAIL;
-      print_err_and_free(data, NULL);
+			data->err_type = E_MAL_FAIL;
+			print_err_and_free(data, NULL);
 			return (NULL);
 		}
 	}
@@ -89,22 +101,22 @@ void	extract_path(t_data *data, char *map_line, char *which)
 	if (!data->map->ea_txt_path && ft_strncmp(which, "EA ", 3) == 0)
 	{
 		data->map->ea_txt_path = ft_calloc(1, ft_strlen(map_line + 1));
-		memmove(data->map->ea_txt_path, &map_line[start], end - start);
+		ft_memmove(data->map->ea_txt_path, &map_line[start], end - start);
 	}
 	if (!data->map->we_txt_path && ft_strncmp(which, "WE ", 3) == 0)
 	{
 		data->map->we_txt_path = ft_calloc(1, ft_strlen(map_line + 1));
-		memmove(data->map->we_txt_path, &map_line[start], end - start);
+		ft_memmove(data->map->we_txt_path, &map_line[start], end - start);
 	}
 	if (!data->map->so_txt_path && ft_strncmp(which, "SO ", 3) == 0)
 	{
 		data->map->so_txt_path = ft_calloc(1, ft_strlen(map_line + 1));
-		memmove(data->map->so_txt_path, &map_line[start], end - start);
+		ft_memmove(data->map->so_txt_path, &map_line[start], end - start);
 	}
 	if (!data->map->no_txt_path && ft_strncmp(which, "NO ", 3) == 0)
 	{
 		data->map->no_txt_path = ft_calloc(1, ft_strlen(map_line + 1));
-		memmove(data->map->no_txt_path, &map_line[start], end - start);
+		ft_memmove(data->map->no_txt_path, &map_line[start], end - start);
 	}
 }
 
@@ -122,13 +134,13 @@ static void	extract_color(t_data *data, char *map_line, char which)
 	if (!data->map->ceiling_info && which == 'C')
 	{
 		data->map->ceiling_info = ft_calloc(1, ft_strlen(map_line) + 1);
-		memmove(data->map->ceiling_info, &map_line[idx], ft_strlen(map_line)
+		ft_memmove(data->map->ceiling_info, &map_line[idx], ft_strlen(map_line)
 			- idx);
 	}
 	else if (!data->map->floor_info && which == 'F')
 	{
 		data->map->floor_info = ft_calloc(1, ft_strlen(map_line) + 1);
-		memmove(data->map->floor_info, &map_line[idx], ft_strlen(map_line)
+		ft_memmove(data->map->floor_info, &map_line[idx], ft_strlen(map_line)
 			- idx);
 	}
 }

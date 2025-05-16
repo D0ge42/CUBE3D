@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_map_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/16 10:20:27 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/16 10:20:28 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 #include "libft.h"
 #include <string.h>
@@ -56,7 +68,7 @@ int	is_info(char *curr)
 		return (1);
 	if (ft_strncmp(curr, "C ", 2) == 0)
 		return (1);
-	if (strcmp(curr, "") == 0)
+	if (ft_strlen(curr) == 0)
 		return (1);
 	return (0);
 }
@@ -77,7 +89,7 @@ void	are_all_info_present(t_data *data)
 		|| data->map->no_txt_path == NULL || data->map->ea_txt_path == NULL
 		|| data->map->ceiling_info == NULL || data->map->floor_info == NULL)
 	{
-    data->err_type = E_MISS_INFO;
-    print_err_and_free(data,NULL);
+		data->err_type = E_MISS_INFO;
+		print_err_and_free(data, NULL);
 	}
 }

@@ -1,17 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   convert_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/16 10:18:21 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/16 10:18:23 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 #include "libft.h"
-#include <stdlib.h>
 
 static void	check_color_validity(t_data *data, char *str, unsigned int *rgb,
 				char **tmp_color);
 static void	check_overflow(t_data *data, char *str);
-void print_err_and_free(t_data *data, void *ptr);
+static void	assign_color(t_data *data, unsigned int *rgb, char flag);
 
 void	rgb_converter(t_data *data, char x)
 {
 	char			*str;
 	unsigned int	*rgb;
-	int				i;
 	int				j;
 	char			**tmp_color;
 
@@ -22,62 +32,26 @@ void	rgb_converter(t_data *data, char x)
 	else if (x == 'C')
 		str = data->map->ceiling_info;
 	rgb = ft_calloc(3, sizeof(unsigned int));
-	i = 0;
 	j = 0;
-  if (str)
-	  tmp_color = ft_split(&str[i], ',');
-	if (ft_strslen(tmp_color) > 3)
-	{
-    data->err_type = E_ERR_VALUES;
-		free_strs(tmp_color);
-    print_err_and_free(data,rgb);
-	}
+	if (str)
+		tmp_color = ft_split(str, ',');
 	while (rgb && tmp_color && tmp_color[j] != NULL)
 	{
 		check_color_validity(data, tmp_color[j], rgb, tmp_color);
 		check_overflow(data, tmp_color[j]);
 		rgb[j] = ft_atoi(tmp_color[j]);
-		if (rgb[j] > 255)
-		{
-      data->err_type = E_OUT_OF_RANGE;
-      print_err_and_free(data, rgb);
-		}
 		j++;
 	}
 	free_strs(tmp_color);
-	if (rgb && x == 'F')
-		data->map->f_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
-	else if (rgb && x == 'C')
-		data->map->c_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
+	assign_color(data, rgb, x);
 }
 
-void print_err_and_free(t_data *data, void *ptr)
+static void	assign_color(t_data *data, unsigned int *rgb, char flag)
 {
-  if (data->err_type & E_INV_CHAR)
-    ft_putstr_fd(ERR_INVALID_CHAR, 2);
-  if (data->err_type & E_MAP_CLOSED)
-    ft_putstr_fd(ERR_MAP_NOT_CLOSED, 2);
-  if (data->err_type & E_OUT_OF_RANGE)
-    ft_putstr_fd(ERR_OUT_OF_RANGE, 2);
-  if (data->err_type & E_MISS_INFO)
-    ft_putstr_fd(ERR_MISSING_INFO, 2);
-  if (data->err_type & E_NO_VAL_SURR)
-    ft_putstr_fd(ERR_NO_VALID_SURR, 2);
-  if (data->err_type & E_PCOUNT)
-    ft_putstr_fd(ERR_PLAYER_COUNT, 2);
-  if (data->err_type & E_INV_MAP)
-    ft_putstr_fd(ERR_INVALID_MAP, 2);
-  if (data->err_type & E_MAL_FAIL)
-    ft_putstr_fd(ERR_MALLOC_FAIL, 2);
-  if (data->err_type & E_ERR_VALUES)
-    ft_putstr_fd(ERR_TOO_MANY_VALUES, 2);
-  if (data->err_type & E_OUT_OF_RANGE)
-    ft_putstr_fd(ERR_OUT_OF_RANGE, 2);
-  if (data->err_type & E_ONLY_DIG)
-    ft_putstr_fd(ERR_ONLY_DIGITS, 2);
-  free(ptr);
-  free_everything(data);
-  exit(EXIT_FAILURE);
+	if (rgb && flag == 'F')
+		data->map->f_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
+	else if (rgb && flag == 'C')
+		data->map->c_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
 }
 
 static void	check_overflow(t_data *data, char *str)
@@ -92,8 +66,8 @@ static void	check_overflow(t_data *data, char *str)
 		n = (n * 10) + (*str - '0');
 		if ((n * s) > 255 || (n * s) < 0)
 		{
-      data->err_type = E_OUT_OF_RANGE;
-      print_err_and_free(data,NULL);
+			data->err_type = E_OUT_OF_RANGE;
+			print_err_and_free(data, NULL);
 		}
 		str++;
 	}
@@ -104,6 +78,12 @@ static void	check_color_validity(t_data *data, char *str, unsigned int *rgb,
 {
 	int	i;
 
+	if (ft_strslen(tmp_color) > 3)
+	{
+		data->err_type = E_ERR_VALUES;
+		free_strs(tmp_color);
+		print_err_and_free(data, rgb);
+	}
 	i = 0;
 	while (str[i])
 	{
@@ -114,11 +94,10 @@ static void	check_color_validity(t_data *data, char *str, unsigned int *rgb,
 		}
 		if (!ft_isdigit(str[i]))
 		{
-      data->err_type = E_ONLY_DIG;
+			data->err_type = E_ONLY_DIG;
 			free_strs(tmp_color);
-      print_err_and_free(data,rgb);
+			print_err_and_free(data, rgb);
 		}
 		i++;
 	}
 }
-

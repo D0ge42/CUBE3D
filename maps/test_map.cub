@@ -1,10 +1,10 @@
-   N  ./srcs/sprites/cube3dtex/xpm/sprite42logo.xpm
+   N                                                    ./srcs/sprites/cube3dtex/xpm/sprite42logo.xpm
 S   ./srcs/sprites/cube3dtex/xpm/finestra.xpm
      W   ./srcs/sprites/cube3dtex/xpm/monitor1.xpm
-EA ./srcs/sprites/cube3dtex/xpm/monitor2.xpm
 
         F   1,30,0
-    C 0,0,255
+    C 0,0,252
+EA ./srcs/sprites/cube3dtex/xpm/monitor2.xpm
 
         1111111111111111111111111              11111111111111111
         100000000000000000000000111111111111111110000000000000011111111111111111111111
@@ -23,3 +23,5 @@ EA ./srcs/sprites/cube3dtex/xpm/monitor2.xpm
 1111110000000000000000000000P00000000000000000000000000000000000000000000000P01
 1000000000000000000001111111111111111111111111111111111111111111111111111111111
 11111111111111111111111111111
+
+
