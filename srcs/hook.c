@@ -82,7 +82,7 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 int	rotate_player(int keycode, t_data *data)
 {
 	find_direction(data->player);
-	printf("%f %f %c\n", data->player->dir_x, data->player->dir_y, data->player->facing_dir);
+	//printf("%f %f %c\n", data->player->dir_x, data->player->dir_y, data->player->facing_dir);
 	if ((keycode == 65361 && data->player->facing_dir == 'N') || (keycode == 65363 && data->player->facing_dir == 'S'))
 	{
 		data->player->dir_x -= 0.1;

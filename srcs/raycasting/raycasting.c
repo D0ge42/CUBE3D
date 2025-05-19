@@ -1,5 +1,16 @@
 #include "cube.h"
 
+int	check_identifier(char map, char *identifier)
+{
+	while (identifier && *identifier)
+	{
+		if (map == *identifier)
+			return (0);
+		identifier++;
+	}
+	return (1);
+}
+
 static void	set_ray(t_ray	*ray, t_player *player)
 {
 	ray->dist_x = fabs(1 / ray->ray_x);
@@ -26,15 +37,17 @@ static void	set_ray(t_ray	*ray, t_player *player)
 	}
 }
 
-static void	find_hit_point(t_ray *ray, t_player *player, char **map, t_data *data)
+static void	find_hit_point(t_ray *ray, char **map, t_data *data, char *identifier)
 {
 	int	x;
 	int	y;
 
-	x = (int)player->pos_x;
-	y = (int)player->pos_y;
-	while(map[y][x] != '1' && map[y][x] != 'P' && map[y][x] != 'O')
+	x = (int)data->player->pos_x;
+	y = (int)data->player->pos_y;
+	while(check_identifier(map[y][x], identifier))
 	{
+		if (map[y][x] == '1')
+			return ;
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->dist_x;
@@ -50,13 +63,9 @@ static void	find_hit_point(t_ray *ray, t_player *player, char **map, t_data *dat
 	}
 	ray->identifier = map[y][x];
 	draw_wall(x, y, ray, data);
-	// else if (map[y][x] == 'P')
-	// 	draw_close_door(x, y, ray, data);
-	// else
-	// 	draw_open_door(x, y, ray, data);
 }
 
-void	raycasting(t_data *data, t_player *player, t_camera *camera)
+void	raycasting(t_data *data, t_player *player, t_camera *camera, char *identifier)
 {
 	int				x;
 	static t_ray	ray;
@@ -71,7 +80,7 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera)
 		ray.ray_x = player->dir_x + camera->plane_x * camera_x;
 		ray.ray_y = player->dir_y + camera->plane_y * camera_x;
 		set_ray(&ray, player);
-		find_hit_point(&ray, player, data->map->map, data);
+		find_hit_point(&ray, data->map->map, data, identifier);
 		x++;
 	}
 }

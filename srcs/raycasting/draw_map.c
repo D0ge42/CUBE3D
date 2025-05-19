@@ -32,7 +32,8 @@ void	draw_background(t_data *data)
 void	draw(t_data *data)
 {
 	draw_background(data);
-	raycasting(data, data->player, data->camera);
+	raycasting(data, data->player, data->camera, "1");
+	raycasting(data, data->player, data->camera, "PO");
 	draw_mini_map(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }

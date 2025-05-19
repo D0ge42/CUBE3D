@@ -137,7 +137,7 @@ int		free_exit(t_data *data);
 
 // Ray casting
 
-void	raycasting(t_data *data, t_player *player, t_camera *camera);
+void	raycasting(t_data *data, t_player *player, t_camera *camera, char *identifier);
 void	setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
 void	setup_direction(t_player *player);
 
