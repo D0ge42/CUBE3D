@@ -1,14 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldei-sva <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/19 19:46:35 by ldei-sva          #+#    #+#             */
+/*   Updated: 2025/05/19 19:46:39 by ldei-sva         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
-// static void	set_coordinate(int)
 void	fill_square(int x, int y, t_data *data, int color)
 {
-	// t_map	*map;
 	int		len;
 	int		height;
 
 	height = 0;
-	// map = data->map;
 	while (height < 10)
 	{
 		len = 0;

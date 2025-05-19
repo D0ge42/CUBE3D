@@ -12,13 +12,10 @@
 
 #include "cube.h"
 
-unsigned int	get_color(t_ray *ray, t_data *data, int height, int y)
+t_texture	*choose_texture(t_ray *ray, t_data *data)
 {
-	unsigned int	color;
-	t_texture		*texture;
-	int				x;
+	t_texture	*texture;
 
-	x = ray->x;
 	if (ray->identifier == 'P')
 		texture = data->door[0];
 	else if (ray->identifier == 'O')
@@ -37,51 +34,72 @@ unsigned int	get_color(t_ray *ray, t_data *data, int height, int y)
 		else
 			texture = data->nord;
 	}
-	x = (int)(((ray->hitpoint_x - floor(ray->hitpoint_x))) * (double)texture->width);
+	return (texture);
+}
+
+unsigned int	get_color(t_ray *ray, t_data *data, int height, int y)
+{
+	unsigned int	color;
+	t_texture		*texture;
+	int				x;
+
+	x = ray->x;
+	texture = choose_texture(ray, data);
+	x = (int)((ray->hitpoint_x - floor(ray->hitpoint_x))\
+	* (double)texture->width);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
 		x = texture->width - x - 1;
 	if (ray->side == 1 && ray->ray_dir_y < 0)
 		x = texture->width - x - 1;
 	if (height != 0)
 		y = y * texture->height / height;
-	color = *(texture->img_ptr + (((((int)x % texture->width) + ((y % texture->height) * texture->width)))));
+	color = *(texture->img_ptr + (((((int)x % texture->width) + \
+	((y % texture->height) * texture->width)))));
 	return (color);
+}
+
+int	find_height(int x, int y, t_ray *ray, t_data *data)
+{
+	double			distance;
+	int				height;
+	double			delta_x;
+
+	if (ray->side == 0)
+	{
+		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) \
+		/ ray->ray_x;
+		delta_x = ray->side_dist_x - ray->dist_x;
+		ray->hitpoint_x = data->player->pos_y + (delta_x * ray->ray_y);
+	}
+	else
+	{
+		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) \
+		/ ray->ray_y;
+		delta_x = ray->side_dist_y - ray->dist_y;
+		ray->hitpoint_x = data->player->pos_x + (delta_x * ray->ray_x);
+	}
+	height = (HEIGHT / distance);
+	return (height);
 }
 
 void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 {
-	double			distance;
-	int				height;
 	int				i;
 	int				k;
-	double			prova;
+	int				height;
 	unsigned int	color;
 
 	i = 0;
-
-	if (ray->side == 0)
-		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
-	else
-		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
-	if (ray->side == 0)
-	{
-		prova = ray->side_dist_x - ray->dist_x;
-		ray->hitpoint_x = data->player->pos_y + (prova * ray->ray_y);
-	}
-	else
-	{
-		prova = ray->side_dist_y - ray->dist_y;
-		ray->hitpoint_x = data->player->pos_x + (prova * ray->ray_x);
-	}
-	printf("%f\n", distance);
-	height = (HEIGHT / distance);
+	height = find_height(x, y, ray, data);
 	k = (HEIGHT / 2) - (height / 2);
 	if (k + i < 0)
 		i = -k;
 	while (i < height && (k + i) < HEIGHT)
 	{
 		color = get_color(ray, data, height, i);
-		if ((color != 0xFFFFFF && (ray->identifier == 'P' || ray->identifier == 'O')) || (ray->identifier != 'P' && ray->identifier != 'O'))
+		if ((color != 0xFFFFFF && \
+		(ray->identifier == 'P' || ray->identifier == 'O')) || \
+		(ray->identifier != 'P' && ray->identifier != 'O'))
 			my_mlx_pixel_put(data, ray->x, k + i, color);
 		i++;
 	}

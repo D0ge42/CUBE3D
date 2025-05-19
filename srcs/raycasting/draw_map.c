@@ -1,10 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldei-sva <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/19 19:31:25 by ldei-sva          #+#    #+#             */
+/*   Updated: 2025/05/19 19:31:29 by ldei-sva         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 {
 	char	*dst;
-	dst = data->img_addr + (y * data->line_length + x * (data->bits_per_pixel
-		/ 8));
+
+	dst = data->img_addr + (y * data->line_length + x * \
+	(data->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -20,7 +33,7 @@ void	draw_background(t_data *data)
 		while (width < WIDTH)
 		{
 			if (height >= HEIGHT / 2)
-				my_mlx_pixel_put(data, width, height,  data->map->f_rgb);
+				my_mlx_pixel_put(data, width, height, data->map->f_rgb);
 			else
 				my_mlx_pixel_put(data, width, height, data->map->c_rgb);
 			width++;

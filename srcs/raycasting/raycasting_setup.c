@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting_setup.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldei-sva <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/19 19:47:47 by ldei-sva          #+#    #+#             */
+/*   Updated: 2025/05/19 19:47:51 by ldei-sva         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
 void	setup_direction(t_player *player)
@@ -24,7 +36,7 @@ void	setup_direction(t_player *player)
 	}
 }
 
-void setup_ray_casting(t_data *data, t_player *player,t_camera *camera)
+void	setup_ray_casting(t_data *data, t_player *player, t_camera *camera)
 {
 	(void) data;
 	camera->plane_x = -(player->dir_y) * 0.66;
