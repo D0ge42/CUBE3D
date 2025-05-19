@@ -73,6 +73,7 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 		prova = ray->side_dist_y - ray->dist_y;
 		ray->hitpoint_x = data->player->pos_x + (prova * ray->ray_x);
 	}
+	printf("%f\n", distance);
 	height = (HEIGHT / distance);
 	k = (HEIGHT / 2) - (height / 2);
 	if (k + i < 0)

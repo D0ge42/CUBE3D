@@ -33,7 +33,7 @@ typedef struct s_map
 	char			*so_txt_path;
 	char			*we_txt_path;
 	char			*ea_txt_path;
-	char      *door_txt_path[4];
+	char			*door_txt_path[4];
 	char			*ceiling_info;
 	char			*floor_info;
 	unsigned int	f_rgb;
@@ -110,6 +110,8 @@ typedef struct s_ray
 	double	ray_dir_y;
 	int		side;
 	char	identifier;
+	int		x_map;
+	int		y_map;
 }				t_ray;
 
 // Map related functions
