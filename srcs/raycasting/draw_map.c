@@ -20,9 +20,9 @@ void	draw_background(t_data *data)
 		while (width < WIDTH)
 		{
 			if (height >= HEIGHT / 2)
-				my_mlx_pixel_put(data, width, height,  data->map->c_rgb);
+				my_mlx_pixel_put(data, width, height,  data->map->f_rgb);
 			else
-				my_mlx_pixel_put(data, width, height, data->map->f_rgb);
+				my_mlx_pixel_put(data, width, height, data->map->c_rgb);
 			width++;
 		}
 		height++;

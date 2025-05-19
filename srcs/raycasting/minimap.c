@@ -38,10 +38,10 @@ void	draw_mini_map(t_data *data)
 	m_start_y = data->player->pos_y - data->map->map_start - 10;
 	if (m_start_y < data->map->map_start)
 		m_start_y = 0;
-	m_end_x = data->player->pos_x - data->map->map_start + 10;
+	m_end_x = data->player->pos_x + 10;
 	if (m_end_x > data->map->map_width)
 		m_end_x = data->map->map_width;
-	m_end_y = data->player->pos_y + 10;
+	m_end_y = data->player->pos_y - data->map->map_start + 10;
 	if (m_end_y > data->map->map_height)
 		m_end_y = data->map->map_height;
 	temp_y = m_start_y;

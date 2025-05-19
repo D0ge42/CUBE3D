@@ -1,10 +1,10 @@
-   N  ./srcs/sprites/xpm/brick1.xpm
+   N  ./srcs/sprites/cube3dtex/xpm/finestra.xpm
 S   ./srcs/sprites/Walls/WallS.xpm
-     W   ./srcs/sprites/Walls/WallE.xpm
-EA ./srcs/sprites/cube3dtex/xpm/monitor2.xpm
+     W   ./srcs/sprites/cube3dtex/xpm/monitor2.xpm
+EA ./srcs/sprites/cube3dtex/xpm/42window.xpm
 
-        F   1,30,0
-    C 0,0,255
+        F   105,97,88
+    C 232,176,107
 
         1111111111111111111111111              11111111111111111
         100000000000000000000000111111111111111110000000000000011111111111111111111111

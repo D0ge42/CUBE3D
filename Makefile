@@ -8,7 +8,7 @@ MLX  = $(MLX_PATH)/libmlx.a
 LIBFT_FLAGS = -L$(LIBFT_PATH) -lft
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra  -I$(LIBFT_PATH) -Iincludes -g -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra  -I$(LIBFT_PATH) -Iincludes -O3 -g -gdwarf-4
 MLX_FLAGS = -Imlx -Lmlx -lmlx -lX11 -lXext -lm
 
 RM = rm -rf

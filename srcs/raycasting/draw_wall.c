@@ -80,7 +80,7 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	while (i < height && (k + i) < HEIGHT)
 	{
 		color = get_color(ray, data, height, i);
-		if ((color != 0xFFFFFF && ray->identifier == 'P') || ray->identifier != 'P')
+		if ((color != 0xFFFFFF && (ray->identifier == 'P' || ray->identifier == 'O')) || (ray->identifier != 'P' && ray->identifier != 'O'))
 			my_mlx_pixel_put(data, ray->x, k + i, color);
 		i++;
 	}
