@@ -1,5 +1,4 @@
 #include "cube.h"
-#include <ctype.h>
 #include <stdlib.h>
 
 static void	check_player_surroundings(t_data *data, char **map, int x, int y);
@@ -61,13 +60,13 @@ int	check_and_set(t_data *data, char c, int x, int y)
 	if (c == 'N' || c == 'W' || c == 'S' || c == 'E')
 	{
 		data->player->facing_dir = c;
-		data->player->pos_x = x;
-		data->player->pos_y = y;
+		data->player->pos_x = x + 0.5;
+		data->player->pos_y = y + 0.5;
 		data->player->exists += 1;
 		check_player_surroundings(data, map, x, y);
 		return (1);
 	}
-	else if (c == '0' || c == '1' || c == '\n' || c == '\t' || c == ' ')
+	else if (c == '0' || c == '1' || c == '\n' || c == '\t' || c == 'P' || c == ' ')
 		return (1);
 	return (0);
 }
@@ -76,7 +75,7 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 {
 	int	map_height;
 	map_height = data->map->map_height;
-	if ((y <= 0 || y - map_height >= (map_height - 1)
+	if ((y <= 0 || y - data->map->map_start >= (map_height - 1)
         || (map[y][x + 1] != '0' && map[y][x + 1] != '1')
         || (map[y][x - 1] != '0' && map[y][x - 1] != '1')
         || (map[y - 1][x] != '0' && map[y - 1][x] != '1')
@@ -93,9 +92,15 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 
 static int	are_sorroundings_valid(t_data *data, char c)
 {
-	if (c && (c == '0' || c == '1' || c == 'W' || c == 'N' || c == 'S' || c == 'E'))
+	if (c && (c == 'P' || c == '0' || c == '1' || c == 'W' || c == 'N' || c == 'S' || c == 'E'))
     return 1;
   else if (is_space(c) == 1)
+  {
+    ft_putstr_fd(ERR_MAP_NOT_CLOSED, 2);
+    free_everything(data);
+    exit(EXIT_FAILURE);
+  }
+  else if (!c)
   {
     ft_putstr_fd(ERR_MAP_NOT_CLOSED, 2);
     free_everything(data);

@@ -1,28 +1,21 @@
 #include "cube.h"
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
-{
-	char	*dst;
-
-	dst = data->img_addr + (y * data->line_length + x * (data->bits_per_pixel
-				/ 8));
-	*(unsigned int *)dst = color;
-}
-
+// static void	set_coordinate(int)
 void	fill_square(int x, int y, t_data *data, int color)
 {
-	t_map	*map;
+	// t_map	*map;
 	int		len;
 	int		height;
 
 	height = 0;
-	map = data->map;
+	// map = data->map;
 	while (height < 10)
 	{
 		len = 0;
 		while (len < 10)
 		{
-			my_mlx_pixel_put(data, (WIDTH - (map->map_width * 10)) + x + len, HEIGHT - (map->map_height * 10) + y + height, color);
+			if ((WIDTH - 210 + x + len) < WIDTH && (WIDTH - 210 + x + len) > 0 && (HEIGHT - 210 + y + height) < HEIGHT && (HEIGHT - 210 + y + height) > 0)
+				my_mlx_pixel_put(data, (WIDTH - (210) + x + len), (HEIGHT - 210) + y + height, color);
 			len++;
 		}
 		height++;
@@ -31,24 +24,39 @@ void	fill_square(int x, int y, t_data *data, int color)
 void	draw_mini_map(t_data *data)
 {
 	char	**map;
-	int		len;
-	int		height;
+	int		m_start_x;
+	int		m_start_y;
+	int		m_end_x;
+	int		m_end_y;
+	int		temp_x;
+	int		temp_y;
 
 	map = data->map->map + data->map->map_start;
-	height = 0;
-	while(map[height])
+	m_start_x = data->player->pos_x - 10;
+	if (m_start_x < 0)
+		m_start_x = 0;
+	m_start_y = data->player->pos_y - data->map->map_start - 10;
+	if (m_start_y < data->map->map_start)
+		m_start_y = 0;
+	m_end_x = data->player->pos_x - data->map->map_start + 10;
+	if (m_end_x > data->map->map_width)
+		m_end_x = data->map->map_width;
+	m_end_y = data->player->pos_y + 10;
+	if (m_end_y > data->map->map_height)
+		m_end_y = data->map->map_height;
+	temp_y = m_start_y;
+	while(map[temp_y] && temp_y < m_end_y && temp_y < HEIGHT)
 	{
-		len = 0;
-		while (map[height][len])
+		temp_x = m_start_x;
+		while (map[temp_y][temp_x] && temp_x < m_end_x && temp_x < WIDTH)
 		{
-			if (map[height][len] == '1')
-				fill_square(len * 10, height * 10, data, 0x00FF0000);
-			else if (map[height][len] == '0')
-				fill_square(len * 10, height * 10, data, 0x000000);
-			else if (map[height][len] != ' ' && map[height][len] != '\n')
-				fill_square(len * 10, height * 10, data, 0xFFFF00);
-			len++;
+			if (map[temp_y][temp_x] == '1')
+				fill_square((temp_x - m_start_x) * 10, (temp_y - m_start_y) * 10, data, 0xFF0000);
+			else if (map[temp_y][temp_x] != ' ' && map[temp_y][temp_x] != '\n')
+				fill_square((temp_x - m_start_x) * 10, (temp_y - m_start_y) * 10, data, 0x000000);
+			temp_x++;
 		}
-		height++;
+		temp_y++;
 	}
+	fill_square((data->player->pos_x - m_start_x) * 10, (data->player->pos_y - data->map->map_start - m_start_y) * 10, data, 0xFFFF00);
 }

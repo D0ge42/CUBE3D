@@ -8,7 +8,7 @@ MLX  = $(MLX_PATH)/libmlx.a
 LIBFT_FLAGS = -L$(LIBFT_PATH) -lft
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -I$(LIBFT_PATH) -Iincludes -g -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra  -I$(LIBFT_PATH) -Iincludes -g -gdwarf-4
 MLX_FLAGS = -Imlx -Lmlx -lmlx -lX11 -lXext -lm
 
 RM = rm -rf
@@ -21,13 +21,14 @@ SRC = srcs/main.c\
       srcs/map/create_map.c\
       srcs/map/map_utils.c\
       srcs/map/map_checks.c\
-      srcs/game/game_loop.c\
       srcs/raycasting/raycasting_setup.c\
 	  srcs/raycasting/minimap.c\
 	  srcs/raycasting/draw_map.c\
       srcs/general_utils/convert_utils.c\
 	  srcs/raycasting/raycasting.c\
-	  srcs/raycasting/raycasting_utils.c\
+	  srcs/raycasting/draw_wall.c\
+	  srcs/hook.c\
+	  srcs/mouse_hook.c
 
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 

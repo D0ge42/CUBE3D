@@ -1,6 +1,6 @@
 #include "cube.h"
 
-static void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
+void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color)
 {
 	char	*dst;
 	dst = data->img_addr + (y * data->line_length + x * (data->bits_per_pixel
@@ -29,23 +29,10 @@ void	draw_background(t_data *data)
 	}
 }
 
-void	draw_wall(int x, int y, t_ray *ray, t_data *data)
+void	draw(t_data *data)
 {
-	//char	**map;
-	double		distance;
-	int			i;
-
-	(void) ray;
-	i = 0;
-	//map = data->map->map;
-	if (ray->side == 0)
-		distance = (x - data->player->pos_x + (1 - ray->ray_dir_x) / 2) / ray->ray_x;
-	else
-		distance = (y - data->player->pos_y + (1 - ray->ray_dir_y) / 2) / ray->ray_y;
-	distance *= 30;
-	while (i < distance && i < HEIGHT)
-	{
-		my_mlx_pixel_put(data, x * 30, (y * 30) + i, 0xFFFFFF);
-		i++;
-	}
+	draw_background(data);
+	raycasting(data, data->player, data->camera);
+	draw_mini_map(data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img, 0, 0);
 }
