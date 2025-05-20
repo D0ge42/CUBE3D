@@ -63,8 +63,6 @@ static void	find_hit_point(t_ray *ray, char **map, t_data *data, char *identifie
 	int			x;
 	int			y;
 	t_list		**rays;
-	t_list		*node;
-	t_ray		*ray_copy;
 
 	x = (int)data->player->pos_x;
 	y = (int)data->player->pos_y;
@@ -74,11 +72,7 @@ static void	find_hit_point(t_ray *ray, char **map, t_data *data, char *identifie
 		if (check_identifier(map[y][x], identifier) == 0)
 		{
 			ray->identifier = map[y][x];
-			node = ft_lstnew(ray_copy);
-			ray_copy = copy_ray(ray);
-			ray_copy->x_map = x;
-			ray_copy->y_map = y;
-			ft_lstadd_front(rays, node);
+			add_list(rays, ray, x, y);
 		}
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
@@ -95,11 +89,12 @@ static void	find_hit_point(t_ray *ray, char **map, t_data *data, char *identifie
 	}
 	ray->identifier = map[y][x];
 	draw_wall(x, y, ray, data);
-	while (*rays)
-	{
-		draw_wall(((t_ray *)(*rays)->content)->x_map, ((t_ray *)(*rays)->content)->y_map, (t_ray *)((*rays)->content), data);
-		*rays = (*rays)->next;
-	}
+	draw_door(rays, data);
+	// while (*rays)
+	// {
+	// 	draw_wall(((t_ray *)(*rays)->content)->x_map, ((t_ray *)(*rays)->content)->y_map, (t_ray *)((*rays)->content), data);
+	// 	*rays = (*rays)->next;
+	// }
 	//ft_lstclear(rays, free);
 }
 

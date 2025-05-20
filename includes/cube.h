@@ -139,9 +139,15 @@ int		free_exit(t_data *data);
 
 // Ray casting
 
-void	raycasting(t_data *data, t_player *player, t_camera *camera, char *identifier);
-void	setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
-void	setup_direction(t_player *player);
+void			raycasting(t_data *data, t_player *player, t_camera *camera, char *identifier);
+void			setup_ray_casting(t_data *data, t_player *player, t_camera *camera);
+void			setup_direction(t_player *player);
+int				find_height(int x, int y, t_ray *ray, t_data *data);
+t_texture		*choose_texture(t_ray *ray, t_data *data);
+unsigned int	get_color(t_ray *ray, t_data *data, int height, int y);
+void			add_list(t_list **rays, t_ray *ray, int x, int y);
+t_ray			*copy_ray(t_ray *old);
+void			draw_door(t_list **ray, t_data *data);
 
 // Textures
 

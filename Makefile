@@ -28,7 +28,8 @@ SRC = srcs/main.c\
 	  srcs/raycasting/raycasting.c\
 	  srcs/raycasting/draw_wall.c\
 	  srcs/hook.c\
-	  srcs/mouse_hook.c
+	  srcs/mouse_hook.c\
+	  srcs/raycasting/draw_door.c
 
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
