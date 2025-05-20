@@ -20,6 +20,8 @@ t_texture	*choose_texture(t_ray *ray, t_data *data)
 		texture = data->door[0];
 	else if (ray->identifier == 'O')
 		texture = data->door[3];
+	else if (ray->identifier == 'D')
+		texture = data->desk;
 	else if (ray->side == 0)
 	{
 		if (ray->ray_dir_x < 0)

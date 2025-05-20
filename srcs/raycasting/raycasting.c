@@ -1,26 +1,5 @@
 #include "cube.h"
 
-t_ray	*copy_ray(t_ray *old)
-{
-	t_ray	*copy;
-
-	copy = calloc(1, sizeof(t_ray));
-	copy->x = old->x;
-	copy->hitpoint_x = old->hitpoint_x;
-	copy->hitpoint_y = old->hitpoint_y;
-	copy->ray_y = old->ray_y;
-	copy->ray_x = old->ray_x;
-	copy->dist_x = old->dist_x;
-	copy->dist_y = old->dist_y;
-	copy->side_dist_x = old->side_dist_x;
-	copy->side_dist_y = old->side_dist_y;
-	copy->ray_dir_x = old->ray_dir_x;
-	copy->ray_dir_y = old->ray_dir_y;
-	copy->side = old->side;
-	copy->identifier = old->identifier;
-	return (copy);
-}
-
 int	check_identifier(char map, char *identifier)
 {
 	while (identifier && *identifier)
@@ -89,13 +68,7 @@ static void	find_hit_point(t_ray *ray, char **map, t_data *data, char *identifie
 	}
 	ray->identifier = map[y][x];
 	draw_wall(x, y, ray, data);
-	draw_door(rays, data);
-	// while (*rays)
-	// {
-	// 	draw_wall(((t_ray *)(*rays)->content)->x_map, ((t_ray *)(*rays)->content)->y_map, (t_ray *)((*rays)->content), data);
-	// 	*rays = (*rays)->next;
-	// }
-	//ft_lstclear(rays, free);
+	draw_sprite(rays, data);
 }
 
 void	raycasting(t_data *data, t_player *player, t_camera *camera, char *identifier)

@@ -12,6 +12,27 @@
 
 #include "cube.h"
 
+t_ray	*copy_ray(t_ray *old)
+{
+	t_ray	*copy;
+
+	copy = calloc(1, sizeof(t_ray));
+	copy->x = old->x;
+	copy->hitpoint_x = old->hitpoint_x;
+	copy->hitpoint_y = old->hitpoint_y;
+	copy->ray_y = old->ray_y;
+	copy->ray_x = old->ray_x;
+	copy->dist_x = old->dist_x;
+	copy->dist_y = old->dist_y;
+	copy->side_dist_x = old->side_dist_x;
+	copy->side_dist_y = old->side_dist_y;
+	copy->ray_dir_x = old->ray_dir_x;
+	copy->ray_dir_y = old->ray_dir_y;
+	copy->side = old->side;
+	copy->identifier = old->identifier;
+	return (copy);
+}
+
 void	add_list(t_list **rays, t_ray *ray, int x, int y)
 {
 	t_list	*node;
@@ -24,7 +45,7 @@ void	add_list(t_list **rays, t_ray *ray, int x, int y)
 	ft_lstadd_front(rays, node);
 }
 
-void	draw_door(t_list **rays, t_data *data)
+void	draw_sprite(t_list **rays, t_data *data)
 {
 	t_list	**copy;
 
@@ -32,7 +53,9 @@ void	draw_door(t_list **rays, t_data *data)
 	while (*rays)
 	{
 		draw_wall(((t_ray *)(*rays)->content)->x_map, ((t_ray *)(*rays)->content)->y_map, (t_ray *)((*rays)->content), data);
+		free((*rays)->content);
 		*rays = (*rays)->next;
 	}
 	ft_lstclear(copy, free);
+	free(copy);
 }

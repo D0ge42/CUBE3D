@@ -93,6 +93,7 @@ typedef struct s_mlx_data
 	t_texture	*est;
 	t_texture	*west;
 	t_texture	*door[4];
+	t_texture	*desk;
 }				t_data;
 
 typedef struct s_ray
@@ -147,7 +148,8 @@ t_texture		*choose_texture(t_ray *ray, t_data *data);
 unsigned int	get_color(t_ray *ray, t_data *data, int height, int y);
 void			add_list(t_list **rays, t_ray *ray, int x, int y);
 t_ray			*copy_ray(t_ray *old);
-void			draw_door(t_list **ray, t_data *data);
+void			draw_sprite(t_list **ray, t_data *data);
+char			see_in_front(t_data *data);
 
 // Textures
 

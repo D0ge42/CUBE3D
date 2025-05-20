@@ -28,6 +28,7 @@ SRC = srcs/main.c\
 	  srcs/raycasting/raycasting.c\
 	  srcs/raycasting/draw_wall.c\
 	  srcs/hook.c\
+	  srcs/hook_utils.c\
 	  srcs/mouse_hook.c\
 	  srcs/raycasting/draw_door.c
 

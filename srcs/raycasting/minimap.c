@@ -24,7 +24,7 @@ void	fill_square(int x, int y, t_data *data, int color)
 		while (len < 10)
 		{
 			if ((WIDTH - 210 + x + len) < WIDTH && (WIDTH - 210 + x + len) > 0 && (HEIGHT - 210 + y + height) < HEIGHT && (HEIGHT - 210 + y + height) > 0)
-				my_mlx_pixel_put(data, (WIDTH - (210) + x + len), (HEIGHT - 210) + y + height, color);
+				my_mlx_pixel_put(data, (WIDTH - (210) + x + len), HEIGHT - 210 + y + height, color);
 			len++;
 		}
 		height++;

@@ -32,41 +32,6 @@ static void	find_direction(t_player *player)
 		player->facing_dir = 'S';
 }
 
-static char	see_in_front(t_data *data)
-{
-	double	move_x;
-	double	move_y;
-	double	x;
-	double	y;
-	int		dist;
-
-	move_x = (data->player->dir_x * 0.1);
-	move_y = (data->player->dir_y * 0.1);
-	x = data->player->pos_x + move_x;
-	y = data->player->pos_y + move_y;
-	dist = 0;
-	while (dist < 12)
-	{
-		if (data->map->map[(int)y][(int)x] == 'P')
-		{
-			data->map->map[(int)y][(int)x] = 'O';
-			draw(data);
-			break ;
-		}
-		else if (data->map->map[(int)y][(int)x] == 'O')
-		{
-			data->map->map[(int)y][(int)x] = 'P';
-			draw(data);
-			break ;
-		}
-		x += move_x;
-		y += move_y;
-		dist++;
-	}
-
-	return (data->map->map[(int)move_y][(int)move_x]);
-}
-
 static void	move_player(int keycode, t_data *data, t_map *map)
 {
 	double	move_x;
