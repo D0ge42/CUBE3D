@@ -48,11 +48,15 @@ void	add_list(t_list **rays, t_ray *ray, int x, int y)
 void	draw_sprite(t_list **rays, t_data *data)
 {
 	t_list	**copy;
+	int		x;
+	int		y;
 
 	copy = rays;
 	while (*rays)
 	{
-		draw_wall(((t_ray *)(*rays)->content)->x_map, ((t_ray *)(*rays)->content)->y_map, (t_ray *)((*rays)->content), data);
+		x = ((t_ray *)(*rays)->content)->x_map;
+		y = ((t_ray *)(*rays)->content)->y_map;
+		draw_wall(x, y, (t_ray *)((*rays)->content), data);
 		free((*rays)->content);
 		*rays = (*rays)->next;
 	}

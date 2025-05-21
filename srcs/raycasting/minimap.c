@@ -12,6 +12,22 @@
 
 #include "cube.h"
 
+void	define_values(t_minimap *minimap, t_data *data)
+{
+	minimap->start_x = data->player->pos_x - 10;
+	if (minimap->start_x < 0)
+		minimap->start_x = 0;
+	minimap->start_y = data->player->pos_y - data->map->map_start - 10;
+	if (minimap->start_y < data->map->map_start)
+		minimap->start_y = 0;
+	minimap->end_x = data->player->pos_x + 10;
+	if (minimap->end_x > data->map->map_width)
+		minimap->end_x = data->map->map_width;
+	minimap->end_y = data->player->pos_y - data->map->map_start + 10;
+	if (minimap->end_y > data->map->map_height)
+		minimap->end_y = data->map->map_height;
+}
+
 void	fill_square(int x, int y, t_data *data, int color)
 {
 	int		len;
@@ -32,40 +48,27 @@ void	fill_square(int x, int y, t_data *data, int color)
 }
 void	draw_mini_map(t_data *data)
 {
-	char	**map;
-	int		m_start_x;
-	int		m_start_y;
-	int		m_end_x;
-	int		m_end_y;
-	int		temp_x;
-	int		temp_y;
+	char				**map;
+	static t_minimap	minimap;
+	int					temp_x;
+	int					temp_y;
 
 	map = data->map->map + data->map->map_start;
-	m_start_x = data->player->pos_x - 10;
-	if (m_start_x < 0)
-		m_start_x = 0;
-	m_start_y = data->player->pos_y - data->map->map_start - 10;
-	if (m_start_y < data->map->map_start)
-		m_start_y = 0;
-	m_end_x = data->player->pos_x + 10;
-	if (m_end_x > data->map->map_width)
-		m_end_x = data->map->map_width;
-	m_end_y = data->player->pos_y - data->map->map_start + 10;
-	if (m_end_y > data->map->map_height)
-		m_end_y = data->map->map_height;
-	temp_y = m_start_y;
-	while(map[temp_y] && temp_y < m_end_y && temp_y < HEIGHT)
+	define_values(&minimap, data);
+
+	temp_y = minimap.start_y;
+	while(map[temp_y] && temp_y < minimap.end_y && temp_y < HEIGHT)
 	{
-		temp_x = m_start_x;
-		while (map[temp_y][temp_x] && temp_x < m_end_x && temp_x < WIDTH)
+		temp_x = minimap.start_x;
+		while (map[temp_y][temp_x] && temp_x < minimap.end_x && temp_x < WIDTH)
 		{
 			if (map[temp_y][temp_x] == '1')
-				fill_square((temp_x - m_start_x) * 10, (temp_y - m_start_y) * 10, data, 0xFF0000);
+				fill_square((temp_x - minimap.start_x) * 10, (temp_y - minimap.start_y) * 10, data, 0xFF0000);
 			else if (map[temp_y][temp_x] != ' ' && map[temp_y][temp_x] != '\n')
-				fill_square((temp_x - m_start_x) * 10, (temp_y - m_start_y) * 10, data, 0x000000);
+				fill_square((temp_x - minimap.start_x) * 10, (temp_y - minimap.start_y) * 10, data, 0x000000);
 			temp_x++;
 		}
 		temp_y++;
 	}
-	fill_square((data->player->pos_x - m_start_x) * 10, (data->player->pos_y - data->map->map_start - m_start_y) * 10, data, 0xFFFF00);
+	fill_square((data->player->pos_x - minimap.start_x) * 10, (data->player->pos_y - data->map->map_start - minimap.start_y) * 10, data, 0xFFFF00);
 }

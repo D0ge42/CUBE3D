@@ -47,7 +47,7 @@ unsigned int	get_color(t_ray *ray, t_data *data, int height, int y)
 
 	x = ray->x;
 	texture = choose_texture(ray, data);
-	x = (int)((ray->hitpoint_x - floor(ray->hitpoint_x))\
+	x = (int)((ray->hitpoint_x - floor(ray->hitpoint_x)) \
 	* (double)texture->width);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
 		x = texture->width - x - 1;

@@ -115,6 +115,14 @@ typedef struct s_ray
 	int		y_map;
 }				t_ray;
 
+typedef struct s_minimap
+{
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+}			t_minimap;
+
 // Map related functions
 
 char			**fill_map(t_data *data);

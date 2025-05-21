@@ -27,6 +27,7 @@ int	main(int ac, char **av)
 	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
 	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
 	mlx_hook(data.win_ptr, 17, 0L, free_exit, &data);
+	//draw(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }

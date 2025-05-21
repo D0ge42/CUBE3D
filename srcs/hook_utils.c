@@ -26,6 +26,7 @@ int	check_if_door(int x, int y, t_data *data)
 		{
 			data->door[3] = data->door[i];
 			draw(data);
+			mlx_do_sync(data->mlx_ptr);
 			i++;
 		}
 		data->door[3] = temp;
@@ -41,6 +42,7 @@ int	check_if_door(int x, int y, t_data *data)
 		{
 			data->door[0] = data->door[i];
 			draw(data);
+			mlx_do_sync(data->mlx_ptr);
 			i--;
 		}
 		data->door[0] = temp;
