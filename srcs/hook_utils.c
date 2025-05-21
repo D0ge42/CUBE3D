@@ -14,38 +14,27 @@
 
 int	check_if_door(int x, int y, t_data *data)
 {
-	int			i;
-	t_texture	*temp;
-
-	i = 0;
 	if (data->map->map[y][x] == 'P')
 	{
+		data->map->map[(int)y][(int)x] = '2';
+		draw(data);
+		mlx_do_sync(data->mlx_ptr);
+		data->map->map[(int)y][(int)x] = '3';
+		draw(data);
+		mlx_do_sync(data->mlx_ptr);
 		data->map->map[(int)y][(int)x] = 'O';
-		temp = data->door[3];
-		while (i < 3)
-		{
-			data->door[3] = data->door[i];
-			draw(data);
-			mlx_do_sync(data->mlx_ptr);
-			i++;
-		}
-		data->door[3] = temp;
 		draw(data);
 		return (1);
 	}
 	else if (data->map->map[(int)y][(int)x] == 'O')
 	{
+		data->map->map[(int)y][(int)x] = '3';
+		draw(data);
+		mlx_do_sync(data->mlx_ptr);
+		data->map->map[(int)y][(int)x] = '2';
+		draw(data);
+		mlx_do_sync(data->mlx_ptr);
 		data->map->map[(int)y][(int)x] = 'P';
-		temp = data->door[0];
-		i = 3;
-		while (i >= 0)
-		{
-			data->door[0] = data->door[i];
-			draw(data);
-			mlx_do_sync(data->mlx_ptr);
-			i--;
-		}
-		data->door[0] = temp;
 		draw(data);
 		return (1);
 	}

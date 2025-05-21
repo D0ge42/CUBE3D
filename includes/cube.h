@@ -158,6 +158,7 @@ void			add_list(t_list **rays, t_ray *ray, int x, int y);
 t_ray			*copy_ray(t_ray *old);
 void			draw_sprite(t_list **ray, t_data *data);
 char			see_in_front(t_data *data);
+int				check_identifier(char map, char *identifier);
 
 // Textures
 

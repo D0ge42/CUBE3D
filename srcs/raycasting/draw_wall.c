@@ -20,6 +20,10 @@ t_texture	*choose_texture(t_ray *ray, t_data *data)
 		texture = data->door[0];
 	else if (ray->identifier == 'O')
 		texture = data->door[3];
+	else if (ray->identifier == '2')
+		texture = data->door[1];
+	else if (ray->identifier == '3')
+		texture = data->door[2];
 	else if (ray->identifier == 'D')
 		texture = data->desk;
 	else if (ray->side == 0)
@@ -99,9 +103,8 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	while (i < height && (k + i) < HEIGHT)
 	{
 		color = get_color(ray, data, height, i);
-		if ((color != 0xFFFFFF && \
-		(ray->identifier == 'P' || ray->identifier == 'O')) || \
-		(ray->identifier != 'P' && ray->identifier != 'O'))
+		if ((color != 0xFFFFFF && check_identifier(ray->identifier, "PO23") == 0) || \
+		check_identifier(ray->identifier, "23PO"))
 			my_mlx_pixel_put(data, ray->x, k + i, color);
 		i++;
 	}
