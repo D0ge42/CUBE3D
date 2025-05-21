@@ -12,18 +12,28 @@
 
 #include "cube.h"
 
+int	door_texture(t_ray *ray, t_data *data, t_texture **texture)
+{
+	*texture = NULL;
+	if (ray->identifier == 'P')
+		*texture = data->door[0];
+	else if (ray->identifier == 'O')
+		*texture = data->door[3];
+	else if (ray->identifier == '2')
+		*texture = data->door[1];
+	else if (ray->identifier == '3')
+		*texture = data->door[2];
+	if (!(*texture))
+		return (0);
+	return (1);
+}
+
 t_texture	*choose_texture(t_ray *ray, t_data *data)
 {
 	t_texture	*texture;
 
-	if (ray->identifier == 'P')
-		texture = data->door[0];
-	else if (ray->identifier == 'O')
-		texture = data->door[3];
-	else if (ray->identifier == '2')
-		texture = data->door[1];
-	else if (ray->identifier == '3')
-		texture = data->door[2];
+	if (door_texture(ray, data, &texture) == 1)
+		return (texture);
 	else if (ray->identifier == 'D')
 		texture = data->desk;
 	else if (ray->side == 0)
