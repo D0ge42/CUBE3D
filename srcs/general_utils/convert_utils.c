@@ -52,6 +52,7 @@ static void	assign_color(t_data *data, unsigned int *rgb, char flag)
 		data->map->f_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
 	else if (rgb && flag == 'C')
 		data->map->c_rgb = rgb[0] << 16 | rgb[1] << 8 | rgb[2];
+  free(rgb);
 }
 
 static void	check_overflow(t_data *data, char *str)

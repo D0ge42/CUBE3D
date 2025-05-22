@@ -52,9 +52,8 @@ void	set_texture(t_data *data)
 	//desk.img = mlx_xpm_file_to_image(data->mlx_ptr, "./srcs/sprites/cube3dtex/xpm/scrivania.xpm", &desk.width, &desk.height);
 	if (nord.img == NULL || sud.img == NULL || est.img == NULL || west.img == NULL)
 	{
-		printf("\ntexture not found\n");
-		free_everything(data);
-		return ;
+		data->err_type = E_INV_TEX;
+		print_err_and_free(data, NULL);
 	}
 	door[0].img_ptr = (unsigned int *)mlx_get_data_addr(door[0].img, &door[0].bits_per_pixel, &door[0].line_lenght, &door[0].endian);
 	door[1].img_ptr = (unsigned int *)mlx_get_data_addr(door[1].img, &door[1].bits_per_pixel, &door[1].line_lenght, &door[1].endian);

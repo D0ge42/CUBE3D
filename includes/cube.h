@@ -23,6 +23,7 @@
 #define ERR_TOO_MANY_VALUES "Error: a color can only contain 3 values \n"
 #define ERR_OUT_OF_RANGE "Error: color value must be in range [0,255]\n"
 #define ERR_ONLY_DIGITS "Error: color only contain digits\n"
+#define ERR_INV_TEXTURE "Error: texture not found\n"
 
 typedef enum e_err
 {
@@ -36,6 +37,7 @@ typedef enum e_err
   E_ERR_VALUES =  1 << 8,
   E_OUT_OF_RANGE =  1 << 9,
   E_ONLY_DIG =  1 << 10,
+  E_INV_TEX = 1 << 11,
 } t_err;
 
 typedef struct s_map
