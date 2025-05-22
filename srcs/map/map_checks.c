@@ -1,39 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_checks.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/16 10:20:32 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/16 10:20:33 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
-void are_all_info_present(t_data *data);
+static void	check_zeros_and_doors(t_data *data, char **map, int x, int y);
+static void	check_player_existence(t_data *data);
 
 void	is_map_closed(t_data *data)
 {
 	int		x;
 	int		y;
 	char	**map;
+	int		max_width;
 
 	y = data->map->map_start;
 	map = data->map->map;
-  int max_width = 0;
+	max_width = 0;
 	while (map[y])
 	{
 		x = 0;
-
 		while (map[y][x])
 		{
-      if (max_width < (int)ft_strlen(map[y]))
-        max_width = ft_strlen(map[y]) - 1;
-			if ((map[y][x] == '0' || map[y][x] == 'P') && check_zero_surroundings(data,map, x, y) == 0)
-			{
-        ft_putstr_fd(ERR_MAP_NOT_CLOSED,2);
-        free_everything(data);
-				exit(EXIT_FAILURE);
-			}
+			if (max_width < (int)ft_strlen(map[y]))
+				max_width = ft_strlen(map[y]) - 1;
+			check_zeros_and_doors(data, map, x, y);
 			x++;
 		}
 		y++;
 	}
-  data->map->map_width = max_width;
+	data->map->map_width = max_width;
 }
 
 void	is_map_valid(t_data *data)
@@ -42,55 +48,41 @@ void	is_map_valid(t_data *data)
 	int		y;
 	int		x;
 
-
 	y = data->map->map_start;
 	x = 0;
 	map = data->map->map;
-
 	while (map[y] && data->map->is_map_valid)
 	{
 		while (map[y][x])
 		{
 			if (check_and_set(data, map[y][x], x, y) == 0)
 			{
-        ft_putstr_fd(ERR_INVALID_MAP, 2);
-				data->map->is_map_valid = 0;
-        free_everything(data);
-				exit(EXIT_FAILURE);
+				data->err_type = E_INV_MAP;
+				print_err_and_free(data, NULL);
 			}
 			x++;
 		}
-		x = 0;
+		x ^= x;
 		y++;
 	}
+	check_player_existence(data);
+}
+
+static void	check_player_existence(t_data *data)
+{
 	if (data->player->exists == 0 || data->player->exists > 1)
 	{
-    	ft_putstr_fd(ERR_PLAYER_COUNT, 2);
-		data->map->is_map_valid = 0;
-    	free_everything(data);
-		exit(1);
+		data->err_type = E_PCOUNT;
+		print_err_and_free(data, NULL);
 	}
 }
 
-void are_all_info_present(t_data *data)
+static void	check_zeros_and_doors(t_data *data, char **map, int x, int y)
 {
-  if (data->map->we_txt_path == NULL ||
-    data->map->so_txt_path == NULL ||
-    data->map->no_txt_path == NULL ||
-    data->map->ea_txt_path == NULL ||
-    data->map->ceiling_info == NULL ||
-    data->map->floor_info == NULL)
-    {
-      printf("%p\n",data->map->we_txt_path);
-      printf("%p\n",data->map->ea_txt_path);
-      printf("%p\n",data->map->no_txt_path);
-      printf("%p\n",data->map->so_txt_path);
-      printf("%p\n",data->map->ceiling_info);
-      printf("%p\n",data->map->floor_info);
-    free_everything(data);
-    ft_putstr_fd("Error: Some info are missing\n", 2);
-    exit(1);
-  }
+	if ((map[y][x] == '0' || map[y][x] == 'P') && check_zero_surroundings(data,
+			map, x, y) == 0)
+	{
+		data->err_type = E_MAP_CLOSED;
+		print_err_and_free(data, NULL);
+	}
 }
-
-

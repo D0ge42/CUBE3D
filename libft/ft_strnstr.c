@@ -40,7 +40,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 /*#include <stdio.h>
 #include <string.h>
 
-int main()
+int	main(void)
 {
 	printf("%s\n",ft_strnstr("ciaone", "a", 2));
 }*/

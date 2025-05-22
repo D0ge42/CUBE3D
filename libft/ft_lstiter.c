@@ -37,14 +37,14 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 	return (new);
 }
 
-void print_list(void *data)
+void	print_list(void *data)
 {
 	printf("%s ->", (char *)data);
 }
 
-int main()
+int	main(void)
 {
-	 t_list *new = ft_lstnew("ciao");
+		t_list *new = ft_lstnew("ciao");
 	new->next = ft_lstnew("daje");
 	new->next->next = ft_lstnew("sium");
 	ft_lstiter(new, print_list);

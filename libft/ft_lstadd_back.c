@@ -39,7 +39,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	return (new);
 }
 
-int main()
+int	main(void)
 {
 	t_list **new = (t_list **)malloc(sizeof(t_list *) * 3);
 	*new = ft_lstnew("ciao");

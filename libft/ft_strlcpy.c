@@ -35,7 +35,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	return (i);
 }
 /*#include <stdio.h>
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	printf("%li\n", ft_strlcpy(av[1],av[2],4));
 }*/

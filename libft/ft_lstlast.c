@@ -33,7 +33,7 @@ t_list	*ft_lstlast(t_list *lst)
 	return (new);
 }
 
-int main()
+int	main(void)
 {
 	t_list *new = ft_lstnew("hello");
 	new->next = ft_lstnew("world");

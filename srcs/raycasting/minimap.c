@@ -18,7 +18,7 @@ void	define_values(t_minimap *minimap, t_data *data)
 	if (minimap->start_x < 0)
 		minimap->start_x = 0;
 	minimap->start_y = data->player->pos_y - data->map->map_start - 10;
-	if (minimap->start_y < data->map->map_start)
+	if (minimap->start_y < 0)
 		minimap->start_y = 0;
 	minimap->end_x = data->player->pos_x + 10;
 	if (minimap->end_x > data->map->map_width)
@@ -46,6 +46,7 @@ void	fill_square(int x, int y, t_data *data, int color)
 		height++;
 	}
 }
+
 void	draw_mini_map(t_data *data)
 {
 	char				**map;
@@ -63,7 +64,7 @@ void	draw_mini_map(t_data *data)
 		while (map[temp_y][temp_x] && temp_x < minimap.end_x && temp_x < WIDTH)
 		{
 			if (map[temp_y][temp_x] == '1')
-				fill_square((temp_x - minimap.start_x) * 10, (temp_y - minimap.start_y) * 10, data, 0xFF0000);
+				fill_square((temp_x - minimap.start_x) * 10, (temp_y - minimap.start_y) * 10, data, 0xFFFFFF);
 			else if (map[temp_y][temp_x] != ' ' && map[temp_y][temp_x] != '\n')
 				fill_square((temp_x - minimap.start_x) * 10, (temp_y - minimap.start_y) * 10, data, 0x000000);
 			temp_x++;

@@ -39,7 +39,7 @@ void	set_texture(t_data *data)
 	static t_texture	sud;
 	static t_texture	est;
 	static t_texture	west;
-	static t_texture	desk;
+	//static t_texture	desk;
 
 	door[0].img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->door_txt_path[0], &door[0].width, &door[0].height);
 	door[1].img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->door_txt_path[1], &door[1].width, &door[1].height);
@@ -49,7 +49,7 @@ void	set_texture(t_data *data)
 	sud.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->so_txt_path, &sud.width, &sud.height);
 	est.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->ea_txt_path, &est.width, &est.height);
 	west.img = mlx_xpm_file_to_image(data->mlx_ptr, data->map->we_txt_path, &west.width, &west.height);
-	desk.img = mlx_xpm_file_to_image(data->mlx_ptr, "./srcs/sprites/cube3dtex/xpm/scrivania.xpm", &desk.width, &desk.height);
+	//desk.img = mlx_xpm_file_to_image(data->mlx_ptr, "./srcs/sprites/cube3dtex/xpm/scrivania.xpm", &desk.width, &desk.height);
 	if (nord.img == NULL || sud.img == NULL || est.img == NULL || west.img == NULL)
 	{
 		printf("\ntexture not found\n");
@@ -64,7 +64,7 @@ void	set_texture(t_data *data)
 	sud.img_ptr = (unsigned *)mlx_get_data_addr(sud.img, &sud.bits_per_pixel, &sud.line_lenght, &sud.endian);
 	est.img_ptr = (unsigned *)mlx_get_data_addr(est.img, &est.bits_per_pixel, &est.line_lenght, &est.endian);
 	west.img_ptr = (unsigned *)mlx_get_data_addr(west.img, &west.bits_per_pixel, &west.line_lenght, &west.endian);
-	desk.img_ptr = (unsigned *)mlx_get_data_addr(desk.img, &desk.bits_per_pixel, &desk.line_lenght, &desk.endian);
+	//desk.img_ptr = (unsigned *)mlx_get_data_addr(desk.img, &desk.bits_per_pixel, &desk.line_lenght, &desk.endian);
   data->door[0] = &door[0];
   data->door[1] = &door[1];
   data->door[2] = &door[2];
@@ -73,7 +73,7 @@ void	set_texture(t_data *data)
 	data->sud = &sud;
 	data->est = &est;
 	data->west = &west;
-	data->desk = &desk;
+	//data->desk = &desk;
 }
 
 static void parser(t_data *data, t_map *map, t_player *player, char **av)
@@ -94,8 +94,6 @@ static void parser(t_data *data, t_map *map, t_player *player, char **av)
   printf("FLOOR = %s\n",map->floor_info);
   printf("PLAYER X = %f\n",player->pos_x);
   printf("PLAYER Y = %f\n",player->pos_y);
-  ft_print_rgb(&data->map->c_rgb);
-  ft_print_rgb(&data->map->f_rgb);
   print_strs(&data->map->map[map->map_start]);
 
     // Free memory

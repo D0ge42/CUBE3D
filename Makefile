@@ -1,5 +1,5 @@
-NAME = cube3d
-TITLE = cube3d
+NAME = cub3d
+TITLE = cub3d
 
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a
@@ -16,21 +16,27 @@ RM = rm -rf
 OBJS_DIR = objs
 SRCS_DIR = srcs
 
-SRC = srcs/main.c\
-      srcs/general_utils/strs_utils.c\
-      srcs/map/create_map.c\
-      srcs/map/map_utils.c\
-      srcs/map/map_checks.c\
-      srcs/raycasting/raycasting_setup.c\
-	  srcs/raycasting/minimap.c\
-	  srcs/raycasting/draw_map.c\
-      srcs/general_utils/convert_utils.c\
-	  srcs/raycasting/raycasting.c\
-	  srcs/raycasting/draw_wall.c\
-	  srcs/hook.c\
-	  srcs/hook_utils.c\
-	  srcs/mouse_hook.c\
-	  srcs/raycasting/draw_door.c
+
+SRC = srcs/main.c \
+	srcs/general_utils/strs_utils.c \
+	srcs/general_utils/memory_and_error_handling.c \
+	srcs/general_utils/convert_utils.c \
+	srcs/map/create_map.c \
+	srcs/map/map_checks.c \
+	srcs/map/create_map_utils.c \
+	srcs/map/check_surroundings.c \
+	srcs/map/check_surroundings_utils.c \
+	srcs/map/map_checks.c \
+	srcs/map/create_map_utils.c \
+	srcs/raycasting/raycasting_setup.c \
+	srcs/raycasting/minimap.c \
+	srcs/raycasting/draw_map.c \
+	srcs/raycasting/raycasting.c \
+	srcs/raycasting/draw_wall.c \
+	srcs/hook.c \
+	srcs/mouse_hook.c \
+	srcs/hook_utils.c\
+	srcs/raycasting/draw_door.c
 
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 

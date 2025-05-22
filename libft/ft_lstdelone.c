@@ -41,7 +41,7 @@ t_list	*ft_lstnew(void *content)
 	return (new);
 }
 
-int main()
+int	main(void)
 {
 	char *str = (char *)malloc(sizeof(char ) *7);
 	strcpy(str,"Test42");
