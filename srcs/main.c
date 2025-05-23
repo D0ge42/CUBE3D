@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ldei-sva <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/23 16:34:37 by ldei-sva          #+#    #+#             */
+/*   Updated: 2025/05/23 16:34:39 by ldei-sva         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube.h"
 
 static int	create_img(t_data *data);
-//static void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av);
 static void	check_format(char *arg);
-static void parser(t_data *data, t_map *map, t_player *player, char **av);
+static void	parser(t_data *data, t_map *map, t_player *player, char **av);
 
 int	main(int ac, char **av)
 {
@@ -14,11 +25,11 @@ int	main(int ac, char **av)
 	static t_camera		camera;
 
 	if (ac != 2)
-    return (0);
+		return (0);
 	data.camera = &camera;
-	parser(&data,&map,&player,av);
-	rgb_converter(&data,'F');
-	rgb_converter(&data,'C');
+	parser(&data, &map, &player, av);
+	rgb_converter(&data, 'F');
+	rgb_converter(&data, 'C');
 	data.mlx_ptr = mlx_init();
 	create_img(&data);
 	setup_direction(&player);
@@ -27,7 +38,6 @@ int	main(int ac, char **av)
 	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
 	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
 	mlx_hook(data.win_ptr, 17, 0L, free_exit, &data);
-	//draw(&data);
 	mlx_loop(data.mlx_ptr);
 	return (0);
 }
@@ -64,10 +74,10 @@ void	set_texture(t_data *data)
 	est.img_ptr = (unsigned *)mlx_get_data_addr(est.img, &est.bits_per_pixel, &est.line_lenght, &est.endian);
 	west.img_ptr = (unsigned *)mlx_get_data_addr(west.img, &west.bits_per_pixel, &west.line_lenght, &west.endian);
 	//desk.img_ptr = (unsigned *)mlx_get_data_addr(desk.img, &desk.bits_per_pixel, &desk.line_lenght, &desk.endian);
-  data->door[0] = &door[0];
-  data->door[1] = &door[1];
-  data->door[2] = &door[2];
-  data->door[3] = &door[3];
+	data->door[0] = &door[0];
+	data->door[1] = &door[1];
+	data->door[2] = &door[2];
+	data->door[3] = &door[3];
 	data->nord = &nord;
 	data->sud = &sud;
 	data->est = &est;
@@ -78,22 +88,22 @@ void	set_texture(t_data *data)
 static void parser(t_data *data, t_map *map, t_player *player, char **av)
 {
 	set_pointers(data, map, player, av);
-  extract_map_only(data);
-  get_map_infos(data);
+	extract_map_only(data);
+	get_map_infos(data);
 	is_map_closed(data);
 	is_map_valid(data);
-  printf("MAP_HEIGHT = %i\n",map->map_height);
-  printf("MAP_START = %i\n",map->map_start);
-  printf("MAP_WIDTH = %i\n",map->map_width);
-  printf("NO = %s\n",map->no_txt_path);
-  printf("SO = %s\n",map->so_txt_path); // ---> invalid read of size 1
-  printf("WE = %s\n",map->we_txt_path);
-  printf("EA = %s\n",map->ea_txt_path); // --> invalid read of size 1
-  printf("CEILING = %s\n",map->ceiling_info);
-  printf("FLOOR = %s\n",map->floor_info);
-  printf("PLAYER X = %f\n",player->pos_x);
-  printf("PLAYER Y = %f\n",player->pos_y);
-  print_strs(&data->map->map[map->map_start]);
+	printf("MAP_HEIGHT = %i\n",map->map_height);
+	printf("MAP_START = %i\n",map->map_start);
+	printf("MAP_WIDTH = %i\n",map->map_width);
+	printf("NO = %s\n",map->no_txt_path);
+	printf("SO = %s\n",map->so_txt_path); // ---> invalid read of size 1
+	printf("WE = %s\n",map->we_txt_path);
+	printf("EA = %s\n",map->ea_txt_path); // --> invalid read of size 1
+	printf("CEILING = %s\n",map->ceiling_info);
+	printf("FLOOR = %s\n",map->floor_info);
+	printf("PLAYER X = %f\n",player->pos_x);
+	printf("PLAYER Y = %f\n",player->pos_y);
+	print_strs(&data->map->map[map->map_start]);
 
     // Free memory
   //free_everything(data);
