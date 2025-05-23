@@ -81,13 +81,13 @@ typedef struct s_camera
 
 typedef struct s_texture
 {
-	void	*img;
-	int		width;
-	int		height;
+	void			*img;
+	int				width;
+	int				height;
 	unsigned int	*img_ptr;
-	int		bits_per_pixel;
-	int		line_lenght;
-	int		endian;
+	int				bits_per_pixel;
+	int				line_lenght;
+	int				endian;
 }				t_texture;
 
 typedef struct s_mlx_data
@@ -187,6 +187,9 @@ char			see_in_front(t_data *data);
 int				check_identifier(char map, char *identifier);
 
 // Textures
+
+void	set_texture(t_data *data);
+void	free_textures(t_data *data, int i);
 
 // Convert
 

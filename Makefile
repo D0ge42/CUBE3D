@@ -36,7 +36,8 @@ SRC = srcs/main.c \
 	srcs/hook.c \
 	srcs/mouse_hook.c \
 	srcs/hook_utils.c\
-	srcs/raycasting/draw_door.c
+	srcs/raycasting/draw_door.c \
+	srcs/set_texture.c
 
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
