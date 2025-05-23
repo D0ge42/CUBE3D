@@ -64,3 +64,12 @@ char	see_in_front(t_data *data)
 	}
 	return (data->map->map[(int)move_y][(int)move_x]);
 }
+
+void	norm_direction(t_data *data)
+{
+	double	norm;
+
+	norm = sqrt(data->player->dir_x * data->player->dir_x + data->player->dir_y * data->player->dir_y);
+	data->player->dir_x /= norm;
+	data->player->dir_y /= norm;
+}

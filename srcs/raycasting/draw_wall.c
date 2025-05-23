@@ -106,6 +106,7 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	unsigned int	color;
 
 	i = 0;
+	ray->identifier = data->map->map[y][x];
 	height = find_height(x, y, ray, data);
 	k = (HEIGHT / 2) - (height / 2);
 	if (k + i < 0)
@@ -113,7 +114,8 @@ void	draw_wall(int x, int y, t_ray *ray, t_data *data)
 	while (i < height && (k + i) < HEIGHT)
 	{
 		color = get_color(ray, data, height, i);
-		if ((color != 0xFFFFFF && check_identifier(ray->identifier, "PO23") == 0) || \
+		if ((color != 0xFFFFFF && \
+		check_identifier(ray->identifier, "PO23") == 0) || \
 		check_identifier(ray->identifier, "23PO"))
 			my_mlx_pixel_put(data, ray->x, k + i, color);
 		i++;

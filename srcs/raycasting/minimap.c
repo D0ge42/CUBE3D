@@ -32,6 +32,8 @@ void	fill_square(int x, int y, t_data *data, int color)
 {
 	int		len;
 	int		height;
+	int		x1;
+	int		y1;
 
 	height = 0;
 	while (height < 10)
@@ -39,8 +41,10 @@ void	fill_square(int x, int y, t_data *data, int color)
 		len = 0;
 		while (len < 10)
 		{
-			if ((WIDTH - 210 + x + len) < WIDTH && (WIDTH - 210 + x + len) > 0 && (HEIGHT - 210 + y + height) < HEIGHT && (HEIGHT - 210 + y + height) > 0)
-				my_mlx_pixel_put(data, (WIDTH - (210) + x + len), HEIGHT - 210 + y + height, color);
+			x1 = WIDTH - 210 + x + len;
+			y1 = HEIGHT - 210 + y + height;
+			if (x1 < WIDTH && x1 > 0 && y1 < HEIGHT && y1 > 0)
+				my_mlx_pixel_put(data, x1, y1, color);
 			len++;
 		}
 		height++;
@@ -50,26 +54,28 @@ void	fill_square(int x, int y, t_data *data, int color)
 void	draw_mini_map(t_data *data)
 {
 	char				**map;
-	static t_minimap	minimap;
+	static t_minimap	mini;
 	int					temp_x;
 	int					temp_y;
 
 	map = data->map->map + data->map->map_start;
-	define_values(&minimap, data);
-
-	temp_y = minimap.start_y;
-	while(map[temp_y] && temp_y < minimap.end_y && temp_y < HEIGHT)
+	define_values(&mini, data);
+	temp_y = mini.start_y;
+	while (map[temp_y] && temp_y < mini.end_y && temp_y < HEIGHT)
 	{
-		temp_x = minimap.start_x;
-		while (map[temp_y][temp_x] && temp_x < minimap.end_x && temp_x < WIDTH)
+		temp_x = mini.start_x;
+		while (map[temp_y][temp_x] && temp_x < mini.end_x && temp_x < WIDTH)
 		{
 			if (map[temp_y][temp_x] == '1')
-				fill_square((temp_x - minimap.start_x) * 10, (temp_y - minimap.start_y) * 10, data, 0xFFFFFF);
+				fill_square((temp_x - mini.start_x) * 10, \
+				(temp_y - mini.start_y) * 10, data, 0xFFFFFF);
 			else if (map[temp_y][temp_x] != ' ' && map[temp_y][temp_x] != '\n')
-				fill_square((temp_x - minimap.start_x) * 10, (temp_y - minimap.start_y) * 10, data, 0x000000);
+				fill_square((temp_x - mini.start_x) * 10, \
+				(temp_y - mini.start_y) * 10, data, 0x000000);
 			temp_x++;
 		}
 		temp_y++;
 	}
-	fill_square((data->player->pos_x - minimap.start_x) * 10, (data->player->pos_y - data->map->map_start - minimap.start_y) * 10, data, 0xFFFF00);
+	fill_square((data->player->pos_x - mini.start_x) * 10, (data->player->pos_y \
+	- data->map->map_start - mini.start_y) * 10, data, 0xFFFF00);
 }

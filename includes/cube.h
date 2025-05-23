@@ -150,10 +150,10 @@ int				check_zero_surroundings(t_data *data, char **tab, int x, int y);
 void			extract_map_only(t_data *data);
 void			get_map_infos(t_data *data);
 void			are_all_info_present(t_data *data);
-void	extract_map_only(t_data *data);
-int	is_info(char *curr);
-int	skip_white_spaces(char *map);
-void	find_start_and_end_of_path(int *start, int *end, char *map_line);
+void			extract_map_only(t_data *data);
+int				is_info(char *curr);
+int				skip_white_spaces(char *map);
+void			find_start_and_end_of_path(int *start, int *end, char *map_line);
 
 // Map utils
 
@@ -209,6 +209,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, unsigned int color);
 // Hooks
 int		key_hook(int keycode, t_data *data);
 int		mouse_hook(int keycode, int x, int y, t_data *data);
-int		rotate_player(int keycode, t_data *data);
+int		rotate_player(int keycode, t_data *data, char dir);
+void	norm_direction(t_data *data);
 
 #endif

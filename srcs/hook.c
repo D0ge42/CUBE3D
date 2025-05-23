@@ -12,7 +12,7 @@
 
 #include "cube.h"
 
-static void	find_direction(t_player *player)
+static char	find_direction(t_player *player)
 {
 	if (player->dir_x == 0 && player->dir_y == -1)
 		player->facing_dir = 'N';
@@ -30,42 +30,48 @@ static void	find_direction(t_player *player)
 		player->facing_dir = 'E';
 	else if (player->dir_x <= 0 && player->dir_y >= 0)
 		player->facing_dir = 'S';
+	return (player->facing_dir);
+}
+
+static void	define_move(int kcode, double *temp_x, double *temp_y, t_data *data)
+{
+	double	move_x;
+	double	move_y;
+
+	move_x = (data->player->dir_x * 0.1);
+	move_y = (data->player->dir_y * 0.1);
+	if (kcode == 'w')
+	{
+		*temp_x = data->player->pos_x + move_x;
+		*temp_y = data->player->pos_y + move_y;
+	}
+	if (kcode == 'a')
+	{
+		*temp_x = data->player->pos_x + move_y;
+		*temp_y = data->player->pos_y - move_x;
+	}
+	if (kcode == 's')
+	{
+		*temp_x = data->player->pos_x - move_x;
+		*temp_y = data->player->pos_y - move_y;
+	}
+	if (kcode == 'd')
+	{
+		*temp_x = data->player->pos_x - move_y;
+		*temp_y = data->player->pos_y + move_x;
+	}
 }
 
 static void	move_player(int keycode, t_data *data, t_map *map)
 {
-	double	move_x;
-	double	move_y;
 	double	temp_x;
 	double	temp_y;
 
-	move_x = (data->player->dir_x * 0.1);
-	move_y = (data->player->dir_y * 0.1);
-	if (keycode == 'w')
-	{
-		temp_x = data->player->pos_x + move_x;
-		temp_y = data->player->pos_y + move_y;
-	}
-	if (keycode == 'a')
-	{
-		temp_x = data->player->pos_x + move_y;
-		temp_y = data->player->pos_y - move_x;
-	}
-	if (keycode == 's')
-	{
-		temp_x = data->player->pos_x - move_x;
-		temp_y = data->player->pos_y - move_y;
-	}
-	if (keycode == 'd')
-	{
-		temp_x = data->player->pos_x - move_y;
-		temp_y = data->player->pos_y + move_x;
-	}
+	define_move(keycode, &temp_x, &temp_y, data);
 	if (map->map[(int)temp_y][(int)temp_x]
 	&& map->map[(int)temp_y][(int)temp_x] != '1'
 	&& map->map[(int)temp_y][(int)temp_x] != ' '
 	&& map->map[(int)temp_y][(int)temp_x] != '\n'
-	&& map->map[(int)temp_y][(int)temp_x] != '\0'
 	&& map->map[(int)temp_y][(int)temp_x] != 'P')
 	{
 		data->player->pos_x = temp_x;
@@ -74,40 +80,39 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 	}
 }
 
-int	rotate_player(int keycode, t_data *data)
+int	rotate_player(int k, t_data *data, char dir)
 {
-	find_direction(data->player);
-	//printf("%f %f %c\n", data->player->dir_x, data->player->dir_y, data->player->facing_dir);
-	if ((keycode == 65361 && data->player->facing_dir == 'N') || (keycode == 65363 && data->player->facing_dir == 'S'))
+	dir = find_direction(data->player);
+	if ((k == 65361 && dir == 'N') || (k == 65363 && dir == 'S'))
 	{
 		data->player->dir_x -= 0.1;
 		data->player->dir_y -= 0.1;
 	}
-	else if ((keycode == 65361 && data->player->facing_dir == 'E') || (keycode == 65363 && data->player->facing_dir == 'W'))
+	else if ((k == 65361 && dir == 'E') || (k == 65363 && dir == 'W'))
 	{
 		data->player->dir_x += 0.1;
 		data->player->dir_y -= 0.1;
 	}
-	else if ((keycode == 65361 && data->player->facing_dir == 'S') || (keycode == 65363 && data->player->facing_dir == 'N'))
+	else if ((k == 65361 && dir == 'S') || (k == 65363 && dir == 'N'))
 	{
 		data->player->dir_x += 0.1;
 		data->player->dir_y += 0.1;
 	}
-	else if ((keycode == 65361 && data->player->facing_dir == 'W') || (keycode == 65363 && data->player->facing_dir == 'E'))
+	else if ((k == 65361 && dir == 'W') || (k == 65363 && dir == 'E'))
 	{
 		data->player->dir_x -= 0.1;
 		data->player->dir_y += 0.1;
 	}
 	else
 		return (0);
-	double norm = sqrt(data->player->dir_x * data->player->dir_x + data->player->dir_y * data->player->dir_y);
-	data->player->dir_x /= norm;
-	data->player->dir_y /= norm;
+	norm_direction(data);
 	return (1);
 }
 
 int	key_hook(int keycode, t_data *data)
 {
+	static char	dir;
+
 	if (keycode == 32)
 		see_in_front(data);
 	if (keycode == XK_Escape)
@@ -115,7 +120,7 @@ int	key_hook(int keycode, t_data *data)
 		free_everything(data);
 		exit(0);
 	}
-	if (rotate_player(keycode, data) == 1)
+	if (rotate_player(keycode, data, dir) == 1)
 		draw(data);
 	if (keycode == 'w' || keycode == 'd' || keycode == 's' || keycode == 'a')
 	{
