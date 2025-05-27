@@ -18,7 +18,7 @@ int	mouse_hook(int keycode, int x, int y, t_data *data)
 	static char	dir;
 
 	code = 0;
-	(void) y;
+	(void)y;
 	if ((x < WIDTH / 2 && keycode == 1) || keycode == 4)
 		code = rotate_player(65361, data, dir);
 	else if (keycode == 1 || keycode == 5)

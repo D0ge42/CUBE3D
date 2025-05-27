@@ -69,10 +69,10 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 
 	define_move(keycode, &temp_x, &temp_y, data);
 	if (map->map[(int)temp_y][(int)temp_x]
-	&& map->map[(int)temp_y][(int)temp_x] != '1'
-	&& map->map[(int)temp_y][(int)temp_x] != ' '
-	&& map->map[(int)temp_y][(int)temp_x] != '\n'
-	&& map->map[(int)temp_y][(int)temp_x] != 'P')
+		&& map->map[(int)temp_y][(int)temp_x] != '1'
+		&& map->map[(int)temp_y][(int)temp_x] != ' '
+		&& map->map[(int)temp_y][(int)temp_x] != '\n'
+		&& map->map[(int)temp_y][(int)temp_x] != 'P')
 	{
 		data->player->pos_x = temp_x;
 		data->player->pos_y = temp_y;

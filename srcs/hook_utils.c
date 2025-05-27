@@ -69,7 +69,8 @@ void	norm_direction(t_data *data)
 {
 	double	norm;
 
-	norm = sqrt(data->player->dir_x * data->player->dir_x + data->player->dir_y * data->player->dir_y);
+	norm = sqrt(data->player->dir_x * data->player->dir_x + data->player->dir_y
+			* data->player->dir_y);
 	data->player->dir_x /= norm;
 	data->player->dir_y /= norm;
 }
