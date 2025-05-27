@@ -15,21 +15,29 @@
 void	free_textures(t_data *data, int i)
 {
 	if (i > 0)
-		mlx_destroy_image(data->mlx_ptr, data->nord->img_ptr);
+		if (data->nord)
+			mlx_destroy_image(data->mlx_ptr, data->nord->img);
 	if (i > 1)
-		mlx_destroy_image(data->mlx_ptr, data->sud->img_ptr);
+		if (data->sud)
+			mlx_destroy_image(data->mlx_ptr, data->sud->img);
 	if (i > 2)
-		mlx_destroy_image(data->mlx_ptr, data->est->img_ptr);
+		if (data->est)
+			mlx_destroy_image(data->mlx_ptr, data->est->img);
 	if (i > 3)
-		mlx_destroy_image(data->mlx_ptr, data->west->img_ptr);
+		if (data->west)
+			mlx_destroy_image(data->mlx_ptr, data->west->img);
 	if (i > 4)
-		mlx_destroy_image(data->mlx_ptr, data->door[0]->img_ptr);
+		if (data->door[0])
+			mlx_destroy_image(data->mlx_ptr, data->door[0]->img);
 	if (i > 5)
-		mlx_destroy_image(data->mlx_ptr, data->door[1]->img_ptr);
+		if (data->door[1])
+			mlx_destroy_image(data->mlx_ptr, data->door[1]->img);
 	if (i > 6)
-		mlx_destroy_image(data->mlx_ptr, data->door[2]->img_ptr);
+		if (data->door[2])
+			mlx_destroy_image(data->mlx_ptr, data->door[2]->img);
 	if (i > 7)
-		mlx_destroy_image(data->mlx_ptr, data->door[3]->img_ptr);
+		if (data->door[3])
+			mlx_destroy_image(data->mlx_ptr, data->door[3]->img);
 }
 
 void	set_pointer(t_texture *texture, t_texture **txt_data, t_data *data,

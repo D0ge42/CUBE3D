@@ -1,604 +1,363 @@
 [
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_atoi.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_atoi.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_bzero.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_bzero.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_calloc.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_calloc.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_isalnum.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_isalnum.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_isalpha.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_isalpha.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_isascii.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_isascii.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_isdigit.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_isdigit.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_isprint.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_isprint.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_memchr.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_memchr.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_memcmp.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_memcmp.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_memcpy.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_memcpy.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_memmove.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_memmove.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_memset.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_memset.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_putchar_fd.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_putchar_fd.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_putendl_fd.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_putendl_fd.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_putnbr_fd.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_putnbr_fd.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_putstr_fd.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_putstr_fd.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_split.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_split.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strchr.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strchr.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strdup.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strdup.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_striteri.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_striteri.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strjoin.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strjoin.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strlcat.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strlcat.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strlcpy.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strlcpy.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strlen.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strlen.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strmapi.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strmapi.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strncmp.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strncmp.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strnstr.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strnstr.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strrchr.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strrchr.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_strtrim.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_strtrim.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_substr.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_substr.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_tolower.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_tolower.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_toupper.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_toupper.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "ft_itoa.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "ft_itoa.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "get_next_line.c",
-  "arguments": [
-   "cc",
-   "-Wall",
-   "-Werror",
-   "-Wextra",
-   "-c",
-   "get_next_line.c"
-  ]
- },
- {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/main.c",
-  "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/main.c"
-  ]
+   "srcs/main.c",
+   "-o",
+   "objs/main.o"
+  ],
+  "file": "srcs/main.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/general_utils/strs_utils.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/general_utils/strs_utils.c"
-  ]
+   "srcs/general_utils/strs_utils.c",
+   "-o",
+   "objs/general_utils/strs_utils.o"
+  ],
+  "file": "srcs/general_utils/strs_utils.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/map/create_map.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/map/create_map.c"
-  ]
+   "srcs/general_utils/memory_and_error_handling.c",
+   "-o",
+   "objs/general_utils/memory_and_error_handling.o"
+  ],
+  "file": "srcs/general_utils/memory_and_error_handling.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/map/map_utils.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/map/map_utils.c"
-  ]
+   "srcs/general_utils/convert_utils.c",
+   "-o",
+   "objs/general_utils/convert_utils.o"
+  ],
+  "file": "srcs/general_utils/convert_utils.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/map/map_checks.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/map/map_checks.c"
-  ]
+   "srcs/map/create_map.c",
+   "-o",
+   "objs/map/create_map.o"
+  ],
+  "file": "srcs/map/create_map.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/game/game_loop.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/game/game_loop.c"
-  ]
+   "srcs/map/map_checks.c",
+   "-o",
+   "objs/map/map_checks.o"
+  ],
+  "file": "srcs/map/map_checks.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/raycasting/raycasting_setup.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/raycasting/raycasting_setup.c"
-  ]
+   "srcs/map/create_map_utils.c",
+   "-o",
+   "objs/map/create_map_utils.o"
+  ],
+  "file": "srcs/map/create_map_utils.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/raycasting/minimap.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/raycasting/minimap.c"
-  ]
+   "srcs/map/check_surroundings.c",
+   "-o",
+   "objs/map/check_surroundings.o"
+  ],
+  "file": "srcs/map/check_surroundings.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/raycasting/draw_map.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/raycasting/draw_map.c"
-  ]
+   "srcs/map/check_surroundings_utils.c",
+   "-o",
+   "objs/map/check_surroundings_utils.o"
+  ],
+  "file": "srcs/map/check_surroundings_utils.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/general_utils/convert_utils.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/general_utils/convert_utils.c"
-  ]
+   "srcs/raycasting/raycasting_setup.c",
+   "-o",
+   "objs/raycasting/raycasting_setup.o"
+  ],
+  "file": "srcs/raycasting/raycasting_setup.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/raycasting/raycasting.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/raycasting/raycasting.c"
-  ]
+   "srcs/raycasting/minimap.c",
+   "-o",
+   "objs/raycasting/minimap.o"
+  ],
+  "file": "srcs/raycasting/minimap.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/raycasting/raycasting_utils.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/raycasting/raycasting_utils.c"
-  ]
+   "srcs/raycasting/draw_map.c",
+   "-o",
+   "objs/raycasting/draw_map.o"
+  ],
+  "file": "srcs/raycasting/draw_map.c"
  },
  {
-  "directory": "/nfs/homes/lonulli/CUBE3D",
-  "file": "srcs/hook.c",
+  "directory": "/home/doge/CUBE3D",
   "arguments": [
-   "cc",
+   "gcc",
    "-Wall",
    "-Werror",
    "-Wextra",
    "-Ilibft",
+   "-O3",
    "-Iincludes",
+   "-g",
+   "-gdwarf-4",
    "-c",
-   "srcs/hook.c"
-  ]
+   "srcs/raycasting/raycasting.c",
+   "-o",
+   "objs/raycasting/raycasting.o"
+  ],
+  "file": "srcs/raycasting/raycasting.c"
+ },
+ {
+  "directory": "/home/doge/CUBE3D",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-O3",
+   "-Iincludes",
+   "-g",
+   "-gdwarf-4",
+   "-c",
+   "srcs/raycasting/draw_wall.c",
+   "-o",
+   "objs/raycasting/draw_wall.o"
+  ],
+  "file": "srcs/raycasting/draw_wall.c"
+ },
+ {
+  "directory": "/home/doge/CUBE3D",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-O3",
+   "-Iincludes",
+   "-g",
+   "-gdwarf-4",
+   "-c",
+   "srcs/hook.c",
+   "-o",
+   "objs/hook.o"
+  ],
+  "file": "srcs/hook.c"
+ },
+ {
+  "directory": "/home/doge/CUBE3D",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-O3",
+   "-Iincludes",
+   "-g",
+   "-gdwarf-4",
+   "-c",
+   "srcs/mouse_hook.c",
+   "-o",
+   "objs/mouse_hook.o"
+  ],
+  "file": "srcs/mouse_hook.c"
+ },
+ {
+  "directory": "/home/doge/CUBE3D",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-O3",
+   "-Iincludes",
+   "-g",
+   "-gdwarf-4",
+   "-c",
+   "srcs/hook_utils.c",
+   "-o",
+   "objs/hook_utils.o"
+  ],
+  "file": "srcs/hook_utils.c"
+ },
+ {
+  "directory": "/home/doge/CUBE3D",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-O3",
+   "-Iincludes",
+   "-g",
+   "-gdwarf-4",
+   "-c",
+   "srcs/raycasting/draw_door.c",
+   "-o",
+   "objs/raycasting/draw_door.o"
+  ],
+  "file": "srcs/raycasting/draw_door.c"
+ },
+ {
+  "directory": "/home/doge/CUBE3D",
+  "arguments": [
+   "gcc",
+   "-Wall",
+   "-Werror",
+   "-Wextra",
+   "-Ilibft",
+   "-O3",
+   "-Iincludes",
+   "-g",
+   "-gdwarf-4",
+   "-c",
+   "srcs/set_texture.c",
+   "-o",
+   "objs/set_texture.o"
+  ],
+  "file": "srcs/set_texture.c"
  }
 ]

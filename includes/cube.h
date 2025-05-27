@@ -24,6 +24,7 @@
 # define ERR_OUT_OF_RANGE "Error: color value must be in range [0,255]\n"
 # define ERR_ONLY_DIGITS "Error: color only contain digits\n"
 # define ERR_INV_TEXTURE "Error: texture not found\n"
+# define ERR_DOOR_SURROUNDED "Error: door must be sorrounded\n"
 
 typedef enum e_err
 {
@@ -38,6 +39,7 @@ typedef enum e_err
 	E_OUT_OF_RANGE = 1 << 9,
 	E_ONLY_DIG = 1 << 10,
 	E_INV_TEX = 1 << 11,
+	E_DOOR = 1 << 12,
 }					t_err;
 
 typedef struct s_map
@@ -143,6 +145,7 @@ typedef struct s_minimap
 // Map related functions
 
 char				**fill_map(t_data *data);
+void				check_format(char *arg);
 void				is_map_valid(t_data *data);
 void				is_map_closed(t_data *data);
 int					check_and_set(t_data *data, char c, int x, int y);

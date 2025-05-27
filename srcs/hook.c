@@ -116,10 +116,7 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 32)
 		see_in_front(data);
 	if (keycode == XK_Escape)
-	{
-		free_everything(data);
-		exit(0);
-	}
+		free_exit(data);
 	if (rotate_player(keycode, data, dir) == 1)
 		draw(data);
 	if (keycode == 'w' || keycode == 'd' || keycode == 's' || keycode == 'a')

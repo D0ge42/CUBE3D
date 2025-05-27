@@ -14,8 +14,8 @@
 
 static int	create_img(t_data *data);
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av);
-static void	check_format(char *arg);
 static void	parser(t_data *data, t_map *map, t_player *player, char **av);
+static void	mlx_hooks(t_data *data);
 
 int	main(int ac, char **av)
 {
@@ -26,21 +26,23 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		return (0);
-	data.camera = &camera;
 	parser(&data, &map, &player, av);
-	rgb_converter(&data, 'F');
-	rgb_converter(&data, 'C');
-	data.mlx_ptr = mlx_init();
+	data.camera = &camera;
 	create_img(&data);
 	setup_direction(&player);
 	set_texture(&data);
 	draw(&data);
-	mlx_hook(data.win_ptr, 2, 1L << 0, key_hook, &data);
-	mlx_mouse_hook(data.win_ptr, mouse_hook, &data);
-	mlx_hook(data.win_ptr, 17, 0L, free_exit, &data);
+	mlx_hooks(&data);
 	mlx_loop(data.mlx_ptr);
 	free_textures(&data, 8);
 	return (0);
+}
+
+static void	mlx_hooks(t_data *data)
+{
+	mlx_hook(data->win_ptr, 2, 1L << 0, key_hook, &data);
+	mlx_mouse_hook(data->win_ptr, mouse_hook, &data);
+	mlx_hook(data->win_ptr, 17, 0L, free_exit, &data);
 }
 
 static void	parser(t_data *data, t_map *map, t_player *player, char **av)
@@ -50,18 +52,9 @@ static void	parser(t_data *data, t_map *map, t_player *player, char **av)
 	get_map_infos(data);
 	is_map_closed(data);
 	is_map_valid(data);
-	printf("MAP_HEIGHT = %i\n", map->map_height);
-	printf("MAP_START = %i\n", map->map_start);
-	printf("MAP_WIDTH = %i\n", map->map_width);
-	printf("NO = %s\n", map->no_txt_path);
-	printf("SO = %s\n", map->so_txt_path);
-	printf("WE = %s\n", map->we_txt_path);
-	printf("EA = %s\n", map->ea_txt_path);
-	printf("CEILING = %s\n", map->ceiling_info);
-	printf("FLOOR = %s\n", map->floor_info);
-	printf("PLAYER X = %f\n", player->pos_x);
-	printf("PLAYER Y = %f\n", player->pos_y);
-	print_strs(&data->map->map[map->map_start]);
+	rgb_converter(data, 'F');
+	rgb_converter(data, 'C');
+	data->mlx_ptr = mlx_init();
 }
 
 static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)
@@ -83,31 +76,11 @@ static void	set_pointers(t_data *data, t_map *map, t_player *player, char **av)
 	data->map->is_map_valid = 1;
 }
 
-static void	check_format(char *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg && arg[i])
-		i++;
-	while (i > 0)
-	{
-		if (arg[i] == '.')
-			break ;
-		i--;
-	}
-	if (ft_strncmp(&arg[i], ".cub", 5))
-	{
-		printf("Error: Format not valid\n");
-		exit(1);
-	}
-}
-
 static int	create_img(t_data *data)
 {
 	if (!data->mlx_ptr)
 		return (0);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "CUBE3D");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "CUB3D");
 	if (!data->win_ptr)
 		return (0);
 	data->img = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);

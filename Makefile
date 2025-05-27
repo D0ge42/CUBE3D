@@ -42,14 +42,13 @@ SRC = srcs/main.c \
 OBJ = $(SRC:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 $(NAME): $(MLX) $(LIBFT) $(OBJ)
-	@$(CC) $(CFLAGS) -o $@ $^ $(MLX_FLAGS) $(LIBFT_FLAGS)  # Order matters here
-	@printf "\033[0;32m$(TITLE) compiled OK!\n"
-	@printf "CUBE3D compiled!\n"
+	@$(CC) $(CFLAGS) -o $@ $^ $(MLX_FLAGS) $(LIBFT_FLAGS)
+	@printf "\033[0;32m🧊 $(TITLE) compiled OK!\n"
 	@printf "\033[0;37m"
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(MLX) $(NAME)
 
@@ -64,7 +63,7 @@ clean:
 	@$(RM) $(OBJ)
 	@$(RM) $(OBJS_DIR)
 	@$(MAKE) -C $(LIBFT_PATH) clean --no-print-directory > /dev/null
-	@printf "\033[0;31m$(TITLE) cleaned!\n"
+	@printf "\033[0;31m🧹$(TITLE) cleaned!\n"
 	@printf "\033[0;37m"
 
 fclean:
@@ -72,7 +71,7 @@ fclean:
 	@$(RM) $(OBJS_DIR)
 	@$(RM) $(NAME)
 	@$(MAKE) -C $(LIBFT_PATH) fclean --no-print-directory > /dev/null
-	@printf "\033[0;31m$(TITLE) removed!\n"
+	@printf "\033[0;31m❌$(TITLE) removed!\n"
 	@printf "\033[0;37m"
 
 re: fclean all
@@ -85,4 +84,3 @@ valgrind: $(NAME)
 	@valgrind --leak-check=full --show-leak-kinds=all --suppressions=supp.supp ./$(NAME)
 
 .PHONY: all clean fclean re run valgrind
-

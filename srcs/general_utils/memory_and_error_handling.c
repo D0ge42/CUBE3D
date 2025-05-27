@@ -14,7 +14,25 @@
 #include "libft.h"
 #include <stdlib.h>
 
+static void	print_err_and_free_map(t_data *data);
+
 void	print_err_and_free(t_data *data, void *ptr)
+{
+	print_err_and_free_map(data);
+	if (data->err_type & E_MAL_FAIL)
+		ft_putstr_fd(ERR_MALLOC_FAIL, 2);
+	if (data->err_type & E_ERR_VALUES)
+		ft_putstr_fd(ERR_TOO_MANY_VALUES, 2);
+	if (data->err_type & E_OUT_OF_RANGE)
+		ft_putstr_fd(ERR_OUT_OF_RANGE, 2);
+	if (data->err_type & E_ONLY_DIG)
+		ft_putstr_fd(ERR_ONLY_DIGITS, 2);
+	free(ptr);
+	free_everything(data);
+	exit(EXIT_FAILURE);
+}
+
+static void	print_err_and_free_map(t_data *data)
 {
 	if (data->err_type & E_INV_CHAR)
 		ft_putstr_fd(ERR_INVALID_CHAR, 2);
@@ -30,17 +48,8 @@ void	print_err_and_free(t_data *data, void *ptr)
 		ft_putstr_fd(ERR_PLAYER_COUNT, 2);
 	if (data->err_type & E_INV_MAP)
 		ft_putstr_fd(ERR_INVALID_MAP, 2);
-	if (data->err_type & E_MAL_FAIL)
-		ft_putstr_fd(ERR_MALLOC_FAIL, 2);
-	if (data->err_type & E_ERR_VALUES)
-		ft_putstr_fd(ERR_TOO_MANY_VALUES, 2);
-	if (data->err_type & E_OUT_OF_RANGE)
-		ft_putstr_fd(ERR_OUT_OF_RANGE, 2);
-	if (data->err_type & E_ONLY_DIG)
-		ft_putstr_fd(ERR_ONLY_DIGITS, 2);
-	free(ptr);
-	free_everything(data);
-	exit(EXIT_FAILURE);
+	if (data->err_type & E_DOOR)
+		ft_putstr_fd(ERR_DOOR_SURROUNDED, 2);
 }
 
 void	free_strs(char **strs)
@@ -65,6 +74,14 @@ int	free_everything(t_data *data)
 	free(data->map->ceiling_info);
 	free(data->map->floor_info);
 	free_strs(data->map->map);
+	if (data->img)
+		mlx_destroy_image(data->mlx_ptr, data->img);
+	free_textures(data, 10);
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
+		mlx_destroy_display(data->mlx_ptr);
+	free(data->mlx_ptr);
 	return (0);
 }
 

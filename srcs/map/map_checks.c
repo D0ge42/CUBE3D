@@ -17,6 +17,26 @@
 static void	check_zeros_and_doors(t_data *data, char **map, int x, int y);
 static void	check_player_existence(t_data *data);
 
+void	check_format(char *arg)
+{
+	int	i;
+
+	i = 0;
+	while (arg && arg[i])
+		i++;
+	while (i > 0)
+	{
+		if (arg[i] == '.')
+			break ;
+		i--;
+	}
+	if (ft_strncmp(&arg[i], ".cub", 5))
+	{
+		printf("Error: Format not valid\n");
+		exit(1);
+	}
+}
+
 void	is_map_closed(t_data *data)
 {
 	int		x;
@@ -79,10 +99,14 @@ static void	check_player_existence(t_data *data)
 
 static void	check_zeros_and_doors(t_data *data, char **map, int x, int y)
 {
-	if ((map[y][x] == '0' || map[y][x] == 'P') && check_zero_surroundings(data,
-			map, x, y) == 0)
+	if ((map[y][x] == '0') && check_zero_surroundings(data, map, x, y) == 0)
 	{
 		data->err_type = E_MAP_CLOSED;
+		print_err_and_free(data, NULL);
+	}
+	if ((map[y][x] == 'P') && check_zero_surroundings(data, map, x, y) == 0)
+	{
+		data->err_type = E_DOOR;
 		print_err_and_free(data, NULL);
 	}
 }
