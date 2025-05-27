@@ -40,9 +40,9 @@ int	main(int ac, char **av)
 
 static void	mlx_hooks(t_data *data)
 {
-	mlx_hook(data->win_ptr, 2, 1L << 0, key_hook, &data);
-	mlx_mouse_hook(data->win_ptr, mouse_hook, &data);
-	mlx_hook(data->win_ptr, 17, 0L, free_exit, &data);
+	mlx_hook(data->win_ptr, 2, 1L << 0, key_hook, data);
+	mlx_mouse_hook(data->win_ptr, mouse_hook, data);
+	mlx_hook(data->win_ptr, 17, 0L, free_exit, data);
 }
 
 static void	parser(t_data *data, t_map *map, t_player *player, char **av)
