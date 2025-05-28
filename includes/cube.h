@@ -58,6 +58,7 @@ typedef struct s_map
 	unsigned int	c_rgb;
 	int				map_width;
 	int				map_start;
+	int				map_end;
 }					t_map;
 
 typedef struct s_player
