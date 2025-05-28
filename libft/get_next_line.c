@@ -11,85 +11,53 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1
 #endif
 
-static int	ft_strchr_gnl(char *str, char c);
-static char	*extract_line(char *stash);
-static void	update_stash(char *stash);
-static char	*check_new_line_existence(char *stash, char **line_to_join,
-				char **line);
-
-/*Gnl will work like that. We join stash to line each iteration,
-	until there's a new line.
- * If a new line is present we extract it and join it to line.
- * We update the stash and return it.
- * If no new line is present we update stash and call bytes_read.
- * If bytes_read == 0 and line at [0] is NULL we free line and return NULL?
- * else we return line.
- *
- * Update stash will just shift the stash and fill remaining part with '/0'
- * Extract line is just basic extract line.
- * */
-
-char	*get_next_line(int fd)
+int	ft_strchr_gnl(char *str, char c)
 {
-	static char	stash[BUFFER_SIZE + 1];
-	char		*line;
-	char		*line_to_join;
-	int			bytes_read;
-
-	line = NULL;
-	bytes_read = 0;
-	while (fd > 0 && bytes_read != -1 && 1)
+	if (!str)
+		return (0);
+	while (*str)
 	{
-		if (ft_strchr_gnl(stash, '\n'))
-			return (check_new_line_existence(stash, &line_to_join, &line));
-		line = ft_strjoin(line, stash);
-		update_stash(stash);
-		bytes_read = read(fd, stash, BUFFER_SIZE);
-		if (bytes_read == 0)
-		{
-			if (line[0] == '\0')
-			{
-				free(line);
-				return (NULL);
-			}
-		}
-	}
-	return (line);
-}
-
-static int	ft_strchr_gnl(char *str, char c)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
+		if (*str == c)
 			return (1);
-		i++;
+		str++;
 	}
 	return (0);
 }
 
-static char	*check_new_line_existence(char *stash, char **line_to_join,
-		char **line)
+char	*ft_strjoin_gnl(char *line, char *stash)
 {
-	if (ft_strchr_gnl(stash, '\n'))
+	char	*dest;
+	int		i;
+	int		j;
+
+	dest = malloc(sizeof(char) * ft_strlen(line) + ft_strlen(stash) + 1);
+	i = 0;
+	j = 0;
+	while (line && line[i])
 	{
-		*line_to_join = extract_line(stash);
-		*line = ft_strjoin(*line, *line_to_join);
-		free(*line_to_join);
-		update_stash(stash);
+		dest[j] = line[i];
+		i++;
+		j++;
 	}
-	return (*line);
+	i = 0;
+	while (stash && stash[i])
+	{
+		dest[j] = stash[i];
+		i++;
+		j++;
+	}
+	free(line);
+	dest[j] = '\0';
+	return (dest);
 }
 
-static char	*extract_line(char *stash)
+char	*extract_line(char *stash)
 {
 	int		i;
 	char	*line;
@@ -111,7 +79,7 @@ static char	*extract_line(char *stash)
 	return (line);
 }
 
-static void	update_stash(char *stash)
+void	update_stash(char *stash)
 {
 	int	i;
 	int	j;
@@ -132,5 +100,45 @@ static void	update_stash(char *stash)
 	{
 		stash[j] = '\0';
 		j++;
+	}
+}
+
+/*Gnl will work like that. We join stash to line each iteration,
+	until there's a new line.
+ * If a new line is present we extract it and join it to line.
+ * We update the stash and return it.
+ * If no new line is present we update stash and call bytes_read.
+ * If bytes_read == 0 and line at [0] is NULL we free line and return NULL?
+ * else we return line.
+ *
+ * Update stash will just shift the stash and fill remaining part with '/0'
+ * Extract line is just basic extract line.
+ * */
+
+char	*get_next_line(int fd)
+{
+	static char	stash[BUFFER_SIZE + 1];
+	char		*line;
+	char		*line_to_join;
+	int			bytes_read;
+
+	line = NULL;
+	while (1)
+	{
+		if (ft_strchr_gnl(stash, '\n'))
+		{
+			line_to_join = extract_line(stash);
+			line = ft_strjoin_gnl(line, line_to_join);
+			free(line_to_join);
+			update_stash(stash);
+			return (line);
+		}
+		line = ft_strjoin_gnl(line, stash);
+		update_stash(stash);
+		bytes_read = read(fd, stash, BUFFER_SIZE);
+		if (bytes_read == -1 || (line[0] == '\0' && bytes_read == 0))
+			return (free(line), NULL);
+		if (bytes_read == 0)
+			return (line);
 	}
 }

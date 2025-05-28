@@ -59,8 +59,7 @@ void	is_map_closed(t_data *data)
 		}
 		y++;
 	}
-  data->map->map_end = y;
-  printf("Map end = %i\n",y);
+	data->map->map_end = y;
 	data->map->map_width = max_width;
 }
 
