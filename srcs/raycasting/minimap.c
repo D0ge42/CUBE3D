@@ -67,7 +67,7 @@ void	draw_mini_map(t_data *data)
 	while (map[temp_y] && temp_y < mini.end_y && temp_y < HEIGHT)
 	{
 		temp_x = mini.start_x;
-		while (map[temp_y][temp_x] && temp_x < mini.end_x && temp_x < WIDTH)
+		while ((int)ft_strlen(map[temp_y]) > temp_x && map[temp_y][temp_x] && temp_x < mini.end_x && temp_x < WIDTH)
 		{
 			if (map[temp_y][temp_x] == '1')
 				fill_square((temp_x - mini.start_x) * 10, \

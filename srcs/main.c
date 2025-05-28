@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 	draw(&data);
 	mlx_hooks(&data);
 	mlx_loop(data.mlx_ptr);
-	free_textures(&data, 8);
+	free_textures(&data);
 	return (0);
 }
 

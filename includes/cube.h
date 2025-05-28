@@ -197,7 +197,7 @@ int					check_identifier(char map, char *identifier);
 // Textures
 
 void				set_texture(t_data *data);
-void				free_textures(t_data *data, int i);
+void				free_textures(t_data *data);
 
 // Convert
 

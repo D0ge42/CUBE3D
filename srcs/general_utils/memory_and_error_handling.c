@@ -27,6 +27,8 @@ void	print_err_and_free(t_data *data, void *ptr)
 		ft_putstr_fd(ERR_OUT_OF_RANGE, 2);
 	if (data->err_type & E_ONLY_DIG)
 		ft_putstr_fd(ERR_ONLY_DIGITS, 2);
+	if (data->err_type & E_INV_TEX)
+		ft_putstr_fd(ERR_INV_TEXTURE, 2);
 	free(ptr);
 	free_everything(data);
 	exit(EXIT_FAILURE);
@@ -76,7 +78,7 @@ int	free_everything(t_data *data)
 	free_strs(data->map->map);
 	if (data->img)
 		mlx_destroy_image(data->mlx_ptr, data->img);
-	free_textures(data, 10);
+	free_textures(data);
 	if (data->win_ptr)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	if (data->mlx_ptr)
