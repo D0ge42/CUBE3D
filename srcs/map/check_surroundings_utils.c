@@ -15,7 +15,7 @@
 int	are_sorroundings_valid(t_data *data, char c)
 {
 	if (c && (c == 'P' || c == '0' || c == '1' || c == 'W' || c == 'N'
-			|| c == 'S' || c == 'E'))
+			|| c == 'S' || c == 'E' || c == 'D'))
 		return (1);
 	else if (!c || is_space(c) == 1)
 	{
