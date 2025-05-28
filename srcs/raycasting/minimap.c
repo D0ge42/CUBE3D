@@ -24,7 +24,9 @@ void	define_values(t_minimap *minimap, t_data *data)
 	if (minimap->end_x > data->map->map_width)
 		minimap->end_x = data->map->map_width;
 	minimap->end_y = data->player->pos_y - data->map->map_start + 10;
-	if (minimap->end_y > data->map->map_height)
+	if (minimap->end_x + (minimap->end_y * data->map->map_height) > data->map->map_end)
+		minimap->end_y = data->map->map_height - 1;
+	else if (minimap->end_y > data->map->map_height)
 		minimap->end_y = data->map->map_height;
 }
 

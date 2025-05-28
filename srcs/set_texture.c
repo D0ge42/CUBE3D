@@ -79,6 +79,7 @@ void	set_wall_texture(t_data *data, int *i)
 void	set_texture(t_data *data)
 {
 	static t_texture	door[4];
+	static t_texture	desk;
 	int					i;
 
 	set_wall_texture(data, &i);
@@ -90,8 +91,11 @@ void	set_texture(t_data *data)
 			data->map->door_txt_path[2], &door[2].width, &door[2].height);
 	door[3].img = mlx_xpm_file_to_image(data->mlx_ptr,
 			data->map->door_txt_path[3], &door[3].width, &door[3].height);
+	desk.img = mlx_xpm_file_to_image(data->mlx_ptr,
+			"./srcs/sprites/cube3dtex/xpm/scrivania.xpm", &desk.width, &desk.height);
 	set_pointer(&door[0], &data->door[0], data, &i);
 	set_pointer(&door[1], &data->door[1], data, &i);
 	set_pointer(&door[2], &data->door[2], data, &i);
 	set_pointer(&door[3], &data->door[3], data, &i);
+	set_pointer(&desk, &data->desk, data, &i);
 }

@@ -93,7 +93,7 @@ int	check_and_set(t_data *data, char c, int x, int y)
 		return (1);
 	}
 	else if (c == '0' || c == '1' || c == '\n' || c == '\t' || c == 'P'
-		|| c == ' ')
+		|| c == ' ' || c == 'D')
 		return (1);
 	return (0);
 }
@@ -103,18 +103,15 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 	int	map_height;
 
 	map_height = data->map->map_height;
-	if ((y <= 0 || y - data->map->map_start >= (map_height - 1) || (map[y][x
-				+ 1] != '0' && map[y][x + 1] != '1' && map[y][x + 1] != 'P')
-			|| (map[y][x - 1] != '0' && map[y][x - 1] != '1' && map[y][x
-				- 1] != 'P') || (map[y - 1][x] != '0' && map[y - 1][x] != '1'
-				&& map[y - 1][x] != 'P') || (map[y + 1][x] != '0' && map[y
-				+ 1][x] != '1' && map[y + 1][x] != 'P') || (map[y - 1][x
-				- 1] != '0' && map[y - 1][x - 1] != '1' && map[y - 1][x
-				- 1] != 'P') || (map[y - 1][x + 1] != '0' && map[y - 1][x
-				+ 1] != '1' && map[y - 1][x + 1] != 'P') || (map[y + 1][x
-				- 1] != '0' && map[y + 1][x - 1] != '1' && map[y + 1][x
-				- 1] != 'P') || (map[y + 1][x + 1] != '0' && map[y + 1][x
-				+ 1] != '1' && map[y + 1][x + 1] != 'P')))
+	if ((y <= 0 || y - data->map->map_start >= (map_height - 1)
+	|| check_identifier(map[y][x+ 1], "01PD")
+	|| check_identifier(map[y][x - 1], "01PD")
+	|| check_identifier(map[y - 1][x], "01PD")
+	|| check_identifier(map[y + 1][x], "01PD")
+	|| check_identifier(map[y - 1][x + 1], "01PD")
+	|| check_identifier(map[y - 1][x - 1], "01PD")
+	|| check_identifier(map[y + 1][x - 1], "01PD")
+	|| check_identifier(map[y + 1][x + 1], "01PD")))
 	{
 		data->err_type = E_NO_VAL_SURR;
 		print_err_and_free(data, NULL);
