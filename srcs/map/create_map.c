@@ -35,7 +35,6 @@ char	**fill_map(t_data *data)
 		res = get_next_line(data->map_ptr);
 		if (!res)
 			break ;
-    if (res-)
 		data->map->map_height++;
 		map = ft_strscat(map, res);
 		if (!map)

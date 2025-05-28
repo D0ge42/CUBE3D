@@ -37,26 +37,6 @@ void	check_format(char *arg)
 	}
 }
 
-void fill_with_spaces(t_data *data)
-{
-  int y;
-  char **map;
-
-	y = data->map->map_start;
-	map = data->map->map;
-
-  while(map[y])
-  {
-    if (ft_strlen(map[y]) < (size_t)data->map->map_width)
-    {
-      int diff = data->map->map_width - ft_strlen(map[y]);
-      char *spaces = calloc(1,sizeof(diff) + 1);
-      memset(spaces,' ',diff - 1);
-      map[y] = ft_strjoin(&map[y][ft_strlen(map[y])],spaces);
-    }
-  }
-}
-
 void	is_map_closed(t_data *data)
 {
 	int		x;
@@ -79,7 +59,7 @@ void	is_map_closed(t_data *data)
 		}
 		y++;
 	}
-  data->map->map_end = y;
+	data->map->map_end = y;
 	data->map->map_width = max_width;
 }
 

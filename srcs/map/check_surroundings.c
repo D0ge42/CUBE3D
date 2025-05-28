@@ -104,14 +104,13 @@ static void	check_player_surroundings(t_data *data, char **map, int x, int y)
 
 	map_height = data->map->map_height;
 	if ((y <= 0 || y - data->map->map_start >= (map_height - 1)
-	|| check_identifier(map[y][x+ 1], "01PD")
-	|| check_identifier(map[y][x - 1], "01PD")
-	|| check_identifier(map[y - 1][x], "01PD")
-	|| check_identifier(map[y + 1][x], "01PD")
-	|| check_identifier(map[y - 1][x + 1], "01PD")
-	|| check_identifier(map[y - 1][x - 1], "01PD")
-	|| check_identifier(map[y + 1][x - 1], "01PD")
-	|| check_identifier(map[y + 1][x + 1], "01PD")))
+			|| check_identifier(map[y][x + 1], "01PD")
+			|| check_identifier(map[y][x - 1], "01PD") || check_identifier(map[y
+				- 1][x], "01PD") || check_identifier(map[y + 1][x], "01PD")
+			|| check_identifier(map[y - 1][x + 1], "01PD")
+			|| check_identifier(map[y - 1][x - 1], "01PD")
+			|| check_identifier(map[y + 1][x - 1], "01PD")
+			|| check_identifier(map[y + 1][x + 1], "01PD")))
 	{
 		data->err_type = E_NO_VAL_SURR;
 		print_err_and_free(data, NULL);
