@@ -15,7 +15,8 @@
 
 static void	check_color_validity(t_data *data, char *str, unsigned int *rgb,
 				char **tmp_color);
-static void	check_overflow(t_data *data, char *str, unsigned int *rgb, char **tmp_color);
+static void	check_overflow(t_data *data, char *str, \
+unsigned int *rgb, char **tmp_color);
 static void	assign_color(t_data *data, unsigned int *rgb, char flag);
 
 void	rgb_converter(t_data *data, char x)
@@ -38,7 +39,7 @@ void	rgb_converter(t_data *data, char x)
 	while (rgb && tmp_color && tmp_color[j] != NULL)
 	{
 		check_color_validity(data, tmp_color[j], rgb, tmp_color);
-		check_overflow(data, tmp_color[j],rgb,tmp_color);
+		check_overflow(data, tmp_color[j], rgb, tmp_color);
 		rgb[j] = ft_atoi(tmp_color[j]);
 		j++;
 	}
@@ -55,7 +56,8 @@ static void	assign_color(t_data *data, unsigned int *rgb, char flag)
 	free(rgb);
 }
 
-static void	check_overflow(t_data *data, char *str, unsigned int *rgb, char **tmp_color)
+static void	check_overflow(t_data *data, char *str, \
+unsigned int *rgb, char **tmp_color)
 {
 	int	n;
 	int	s;

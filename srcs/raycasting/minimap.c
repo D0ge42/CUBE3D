@@ -55,26 +55,26 @@ void	draw_mini_map(t_data *data)
 {
 	char				**map;
 	static t_minimap	mini;
-	int					temp_x;
-	int					temp_y;
+	int					x;
+	int					y;
 
 	map = data->map->map + data->map->map_start;
 	define_values(&mini, data);
-	temp_y = mini.start_y;
-	while (map[temp_y] && temp_y < mini.end_y && temp_y < HEIGHT)
+	y = mini.start_y;
+	while (map[y] && y < mini.end_y && y < HEIGHT)
 	{
-		temp_x = mini.start_x;
-		while ((int)ft_strlen(map[temp_y]) > temp_x && map[temp_y][temp_x] && temp_x < mini.end_x && temp_x < WIDTH)
+		x = mini.start_x;
+		while ((int)ft_strlen(map[y]) > x && x < mini.end_x && x < WIDTH)
 		{
-			if (map[temp_y][temp_x] == '1')
-				fill_square((temp_x - mini.start_x) * 10, \
-				(temp_y - mini.start_y) * 10, data, 0xFFFFFF);
-			else if (map[temp_y][temp_x] != ' ' && map[temp_y][temp_x] != '\n')
-				fill_square((temp_x - mini.start_x) * 10, \
-				(temp_y - mini.start_y) * 10, data, 0x000000);
-			temp_x++;
+			if (map[y][x] == '1')
+				fill_square((x - mini.start_x) * 10, \
+				(y - mini.start_y) * 10, data, 0xFFFFFF);
+			else if (map[y][x] != ' ' && map[y][x] != '\n')
+				fill_square((x - mini.start_x) * 10, \
+				(y - mini.start_y) * 10, data, 0x000000);
+			x++;
 		}
-		temp_y++;
+		y++;
 	}
 	fill_square((data->player->pos_x - mini.start_x) * 10, (data->player->pos_y \
 	- data->map->map_start - mini.start_y) * 10, data, 0xFFFF00);

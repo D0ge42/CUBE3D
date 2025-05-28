@@ -27,9 +27,9 @@ void	free_textures(t_data *data)
 	if (data->door[1])
 		mlx_destroy_image(data->mlx_ptr, data->door[1]->img);
 	if (data->door[2])
-			mlx_destroy_image(data->mlx_ptr, data->door[2]->img);
+		mlx_destroy_image(data->mlx_ptr, data->door[2]->img);
 	if (data->door[3])
-			mlx_destroy_image(data->mlx_ptr, data->door[3]->img);
+		mlx_destroy_image(data->mlx_ptr, data->door[3]->img);
 	if (data->desk)
 		mlx_destroy_image(data->mlx_ptr, data->desk->img);
 }
