@@ -1,5 +1,5 @@
-NAME = cub3d
-TITLE = cub3d
+NAME = cub3D
+TITLE = cub3D
 
 LIBFT_PATH = libft
 LIBFT = $(LIBFT_PATH)/libft.a

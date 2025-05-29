@@ -45,3 +45,18 @@ int	is_space(char c)
 		return (0x1);
 	return (0x0);
 }
+
+void	check_multiple_nl(t_data *data, char **map, int x, int y)
+{
+	static size_t	nl_count;
+
+	if (map[y][x] == '\n')
+		nl_count++;
+	else
+		nl_count = 0;
+	if (nl_count == 2)
+	{
+		data->err_type = E_MULT_NL;
+		print_err_and_free(data, NULL);
+	}
+}

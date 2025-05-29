@@ -76,6 +76,7 @@ void	is_map_valid(t_data *data)
 	{
 		while (map[y][x])
 		{
+			check_multiple_nl(data, map, x, y);
 			if (check_and_set(data, map[y][x], x, y) == 0)
 			{
 				data->err_type = E_INV_MAP;
@@ -103,6 +104,11 @@ static void	check_zeros_and_doors(t_data *data, char **map, int x, int y)
 	if ((map[y][x] == '0') && check_zero_surroundings(data, map, x, y) == 0)
 	{
 		data->err_type = E_MAP_CLOSED;
+		print_err_and_free(data, NULL);
+	}
+	if ((map[y][x] == 'D') && check_zero_surroundings(data, map, x, y) == 0)
+	{
+		data->err_type = E_DOOR;
 		print_err_and_free(data, NULL);
 	}
 	if ((map[y][x] == 'P') && check_zero_surroundings(data, map, x, y) == 0)

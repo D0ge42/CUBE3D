@@ -52,6 +52,8 @@ static void	print_err_and_free_map(t_data *data)
 		ft_putstr_fd(ERR_INVALID_MAP, 2);
 	if (data->err_type & E_DOOR)
 		ft_putstr_fd(ERR_DOOR_SURROUNDED, 2);
+	if (data->err_type & E_MULT_NL)
+		ft_putstr_fd(ERR_MULTIPLE_NL, 2);
 }
 
 void	free_strs(char **strs)

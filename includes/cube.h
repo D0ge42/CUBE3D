@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cube.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lonulli <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/28 16:49:35 by lonulli           #+#    #+#             */
+/*   Updated: 2025/05/28 16:49:37 by lonulli          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUBE_H
 # define CUBE_H
 
@@ -25,6 +37,7 @@
 # define ERR_ONLY_DIGITS "Error: color only contain digits\n"
 # define ERR_INV_TEXTURE "Error: texture not found\n"
 # define ERR_DOOR_SURROUNDED "Error: door must be sorrounded\n"
+# define ERR_MULTIPLE_NL "Error: multiple new lines found\n"
 
 typedef enum e_err
 {
@@ -40,6 +53,7 @@ typedef enum e_err
 	E_ONLY_DIG = 1 << 10,
 	E_INV_TEX = 1 << 11,
 	E_DOOR = 1 << 12,
+	E_MULT_NL = 1 << 13,
 }					t_err;
 
 typedef struct s_map
@@ -164,6 +178,7 @@ void				find_start_and_end_of_path(int *start, int *end,
 // Map utils
 
 int					is_coordinate_valid(char **tab, int x, int y);
+void				check_multiple_nl(t_data *data, char **map, int y, int x);
 int					are_sorroundings_valid(t_data *data, char c);
 int					is_coordinate_valid(char **tab, int x, int y);
 int					is_space(char c);
