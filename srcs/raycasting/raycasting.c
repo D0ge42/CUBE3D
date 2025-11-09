@@ -55,16 +55,14 @@ static void	find_hit_point(t_ray *ray, char **map, t_data *data, char *id)
 {
 	int			x;
 	int			y;
-	t_list		**rays;
 
 	x = (int)data->player->pos_x;
 	y = (int)data->player->pos_y;
-	rays = calloc(1, sizeof(t_list *));
 	while (map[y][x] != '1')
 	{
 		ray->identifier = map[y][x];
 		if (check_identifier(map[y][x], id) == 0)
-			add_list(rays, ray, x, y);
+			add_list(ray->rays, ray, x, y);
 		if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->dist_x;
@@ -77,7 +75,6 @@ static void	find_hit_point(t_ray *ray, char **map, t_data *data, char *id)
 		ray->side = 1;
 	}
 	draw_wall(x, y, ray, data);
-	draw_sprite(rays, data);
 }
 
 void	raycasting(t_data *data, t_player *player, t_camera *camera, char *id)
@@ -88,6 +85,7 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera, char *id)
 
 	x = 0;
 	setup_ray_casting(data, player, camera);
+	ray.rays = calloc(1, sizeof(t_list *));
 	while (x <= WIDTH)
 	{
 		ray.x = x;
@@ -98,4 +96,5 @@ void	raycasting(t_data *data, t_player *player, t_camera *camera, char *id)
 		find_hit_point(&ray, data->map->map, data, id);
 		x++;
 	}
+	draw_sprite(ray.rays, data);
 }

@@ -37,25 +37,34 @@ static void	define_move(int kcode, double *temp_x, double *temp_y, t_data *data)
 {
 	double	move_x;
 	double	move_y;
+	clock_t	now;
 
-	move_x = (data->player->dir_x * 0.1);
-	move_y = (data->player->dir_y * 0.1);
+	now = clock();
+	if (now - data->time < 6000)
+	{
+		*temp_x = -1;
+		*temp_y = -1;
+		return ;
+	}
+	move_x = (data->player->dir_x * 2 * ((double)(now - data->time) / CLOCKS_PER_SEC));
+	move_y = (data->player->dir_y * 2 * ((double)(now - data->time) / CLOCKS_PER_SEC));
+	data->time = now;
 	if (kcode == 'w')
 	{
 		*temp_x = data->player->pos_x + move_x;
 		*temp_y = data->player->pos_y + move_y;
 	}
-	if (kcode == 'a')
+	else if (kcode == 'a')
 	{
 		*temp_x = data->player->pos_x + move_y;
 		*temp_y = data->player->pos_y - move_x;
 	}
-	if (kcode == 's')
+	else if (kcode == 's')
 	{
 		*temp_x = data->player->pos_x - move_x;
 		*temp_y = data->player->pos_y - move_y;
 	}
-	if (kcode == 'd')
+	else if (kcode == 'd')
 	{
 		*temp_x = data->player->pos_x - move_y;
 		*temp_y = data->player->pos_y + move_x;
@@ -66,13 +75,34 @@ static void	move_player(int keycode, t_data *data, t_map *map)
 {
 	double	temp_x;
 	double	temp_y;
+	const double	radius = 0.2;
+	int				ix1;
+	int				ix2;
+	int				iy1;
+	int				iy2;
 
 	define_move(keycode, &temp_x, &temp_y, data);
-	if (map->map[(int)temp_y][(int)temp_x]
-		&& map->map[(int)temp_y][(int)temp_x] != '1'
-		&& map->map[(int)temp_y][(int)temp_x] != ' '
-		&& map->map[(int)temp_y][(int)temp_x] != '\n'
-		&& map->map[(int)temp_y][(int)temp_x] != 'P')
+	if (temp_x <= 0 && temp_y <= 0)
+		return ;
+	ix1 = (int)floor(temp_x - radius);
+	ix2 = (int)floor(temp_x + radius);
+	iy1 = (int)floor(temp_y - radius);
+	iy2 = (int)floor(temp_y + radius);
+	/* assicurati che le 4 celle esistano */
+	if (!map->map[iy1] || !map->map[iy2])
+		return ;
+	if (!map->map[iy1][ix1] || !map->map[iy1][ix2]
+		|| !map->map[iy2][ix1] || !map->map[iy2][ix2])
+		return ;
+	/* tutte e 4 le celle devono essere libere */
+	if (map->map[iy1][ix1] != '1' && map->map[iy1][ix1] != ' '
+		&& map->map[iy1][ix1] != '\n' && map->map[iy1][ix1] != 'P'
+		&& map->map[iy1][ix2] != '1' && map->map[iy1][ix2] != ' '
+		&& map->map[iy1][ix2] != '\n' && map->map[iy1][ix2] != 'P'
+		&& map->map[iy2][ix1] != '1' && map->map[iy2][ix1] != ' '
+		&& map->map[iy2][ix1] != '\n' && map->map[iy2][ix1] != 'P'
+		&& map->map[iy2][ix2] != '1' && map->map[iy2][ix2] != ' '
+		&& map->map[iy2][ix2] != '\n' && map->map[iy2][ix2] != 'P')
 	{
 		data->player->pos_x = temp_x;
 		data->player->pos_y = temp_y;

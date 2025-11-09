@@ -31,6 +31,7 @@ int	main(int ac, char **av)
 	create_img(&data);
 	setup_direction(&player);
 	set_texture(&data);
+	data.time = clock();
 	draw(&data);
 	mlx_hooks(&data);
 	mlx_loop(data.mlx_ptr);

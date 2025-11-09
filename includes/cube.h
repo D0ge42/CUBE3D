@@ -14,13 +14,14 @@
 # define CUBE_H
 
 # include "../mlx/mlx.h"
-# include "libft.h"
+# include "../libft/libft.h"
 # include <X11/keysym.h>
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
 # include <stdio.h>
 # include <sys/types.h>
+# include <time.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -118,6 +119,7 @@ typedef struct s_mlx_data
 	int				line_length;
 	int				endian;
 	int				map_ptr;
+	clock_t			time;
 	t_map			*map;
 	t_player		*player;
 	t_camera		*camera;
@@ -133,6 +135,7 @@ typedef struct s_mlx_data
 typedef struct s_ray
 {
 	int				x;
+	t_list			**rays;
 	double			hitpoint_x;
 	double			hitpoint_y;
 	double			ray_y;
